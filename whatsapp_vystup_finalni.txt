@@ -1,55 +1,63 @@
-1. Praha, Vinohrady, okres Praha, kraj Hlavní město Praha
-Tel: +420 776 388 225
-~0.6 km | Manda | 
-https://www.sreality.cz/detail/prodej/byt/2+kk/praha--vinohradska/1737027660
-
-2. Ostrava, Poruba, okres Ostrava-město, kraj Moravskoslezský
-Tel: +420 607 028 240
+1. Ostrava-Zábřeh, okres Ostrava-město, kraj Moravskoslezský
+Tel: +420 734 380 376
 ~3.9 km | Hrubá | 
-https://www.sreality.cz/detail/prodej/byt/1+1/ostrava-poruba-ivana-sekaniny/3516461132
+https://www.sreality.cz/detail/prodej/byt/3+kk/ostrava-zabreh-rodimcevova/2611998796
 
-3. Praha, Hostivař, okres Praha, kraj Hlavní město Praha
-Tel: +420 603 768 417
-~4.9 km | Nemes | 
-https://www.sreality.cz/detail/prodej/byt/2+kk/praha-hostivar-arnosta-stanka/4209569868
+2. Praha-Prosek, okres Praha, kraj Hlavní město Praha
+Tel: +420 774 407 772
+~5.1 km | Suchánková | 
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha--navarovska/2973757516
 
-4. Praha, Černý Most, okres Praha, kraj Hlavní město Praha
-Tel: +420 733 509 450
-~7.4 km | Nemes | 
-https://www.sreality.cz/detail/prodej/byt/2+kk/praha-cerny-most-arnosta-valenty/4117594188
+3. Praha-Zličín, okres Praha, kraj Hlavní město Praha
+~6.5 km | Modrý | 
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-zlicin-krivatcova/1749020748
 
-5. Líbeznice, okres Praha-východ, kraj Středočeský
-Tel: +420 603 251 992
-~8.3 km | Suchánková | 
-https://reality.bazos.cz/inzerat/220246406/rodinny-radovy-dum-4kk-v-libeznicich.php
+4. Praha-Hloubětín, okres Praha, kraj Hlavní město Praha
+~6.6 km | Nemes | 
+https://www.sreality.cz/detail/prodej/dum/rodinny/praha-hloubetin/1668280396
 
-6. Praha, Jinonice, okres Praha, kraj Hlavní město Praha
-Tel: +420 777 810 079
-~9.2 km | Manda | 
-https://www.sreality.cz/detail/prodej/byt/2+kk/praha-jinonice-otopasska/1275850828
+5. Praha-Újezd nad Lesy, okres Praha, kraj Hlavní město Praha
+Tel: +420 774 710 601
+~18.0 km | Manda | 
+https://reality.bazos.cz/inzerat/220262542/novostaba-bytu-3kk-s-terasou-a-predzahradkou.php
 
-7. Bohumín, Záblatí, okres Karviná, kraj Moravskoslezský
-Tel: +420 737 733 374
-~11.7 km | Hrubá | 
-https://www.sreality.cz/detail/prodej/dum/rodinny/bohumin-zablati-bezrucova/4100976716
+6. Přišimasy, okres Kolín, kraj Středočeský
+Tel: +420 776 727 048
+~24.8 km | Nemes | 
+https://reality.bazos.cz/inzerat/220279309/rodinny-dum-4kk-se-zahradou-prisimasy-okres-kolin.php
 
-8. Praha, Újezd nad Lesy, okres Praha, kraj Hlavní město Praha
-Tel: +420 602 359 336
-~14.8 km | Nemes | 
-https://www.sreality.cz/detail/prodej/byt/4+1/praha-ujezd-nad-lesy-rohoznicka/1989734476
-
-9. Králův Dvůr, Karlova Huť, okres Beroun, kraj Středočeský
-Tel: +420 720 118 815
-~21.4 km | Modrý | 
-https://www.sreality.cz/detail/prodej/dum/rodinny/kraluv-dvur-karlova-hut-na-porici/3624894540
-
-10. Frýdek-Místek, Sedliště, okres Frýdek-Místek, kraj Moravskoslezský
-Tel: +420 730 677 313
+7. Frýdek-Místek, okres Frýdek-Místek, kraj Moravskoslezský
+Tel: +420 607 835 788
 ~25.5 km | Hrubá | 
-https://reality.bazos.cz/inzerat/220222324/prodam-stavebni-pozemek-a-pozemek-s-ornou-pudou.php
+https://reality.bazos.cz/inzerat/220254857/prodej-bytu-po-rekonstrukci-31-79m2-ul-tranovskeho-f-m.php
 
-11. Opava, Kateřinky, okres Opava, kraj Moravskoslezský
-Tel: +420 704 054 100
+8. Křenovice, okres Brno-venkov, kraj Jihomoravský
+Tel: +420 602 743 783
+~26.2 km | Tauš | 
+https://reality.idnes.cz/detail/prodej/pozemek/krenovice/6a326b2fcda26d07010c2047
+
+9. Opava-Kateřinky, okres Opava, kraj Moravskoslezský
+Tel: +420 728 367 967
 ~31.2 km | Večerek | 
-https://reality.bazos.cz/inzerat/220222839/prodej-bytu-opava.php
+https://reality.idnes.cz/detail/prodej/byt/opava-edvarda-benese/6a32448b0a3b9fef280685d2
+
+10. Brno-Bystrc, okres Brno-město, kraj Jihomoravský
+Tel: +420 776 726 407
+~36.8 km | Tauš | 
+https://www.sreality.cz/detail/prodej/byt/1+1/brno-bystrc-lastuvkova/719319116
+
+11. Slapy, okres Praha-západ, kraj Středočeský
+Tel: +420 602 696 106
+~41.0 km | Nemes | 
+https://reality.bazos.cz/inzerat/220263225/rekreacni-chata-u-slap.php
+
+12. Rebešovice, okres Brno-venkov, kraj Jihomoravský
+Tel: +420 605 297 980
+~41.7 km | Tauš | 
+https://www.sreality.cz/detail/prodej/dum/rodinny/rebesovice-rebesovice-vinohrady/802156620
+
+13. Milovice, okres Nymburk, kraj Středočeský
+Tel: +420 776 730 373
+~49.2 km | Nemes | 
+https://reality.bazos.cz/inzerat/220281681/prodej-bytu-11-s-balkonem-v-milovicich.php
 

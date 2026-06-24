@@ -1,67 +1,74 @@
-1. Praha, Vinohrady, Čerchovská, okres Praha, kraj Hlavní město Praha
-Tel: +420 775 076 049
-~0.6 km | Manda | 
-https://www.sreality.cz/detail/prodej/byt/3+kk/praha-vinohrady-cerchovska/1426321484
-
-2. Praha, Kyje, Farkasova, okres Praha, kraj Hlavní město Praha
-Tel: +420 724 353 072
-~1.5 km | Manda | 
-https://www.sreality.cz/detail/prodej/byt/3+kk/praha-kyje-farkasova/3365728332
-
-3. Praha, Strašnice, V Olšinách, okres Praha, kraj Hlavní město Praha
-Tel: +420 774 696 773
-~1.7 km | Nemes | 
-https://www.sreality.cz/detail/prodej/byt/2+kk/praha-strasnice-v-olsinach/1233973324
-
-4. Ostrava, Hrabůvka, okres Ostrava-město, kraj Moravskoslezský
-Tel: +420 733 319 534
+1. Ostrava, Zábřeh, okres Ostrava, město, kraj Moravskoslezský
+Tel: +420 777 519 910
 ~3.9 km | Hrubá | 
-https://reality.bazos.cz/inzerat/220467664/prodam-byt-21.php
+https://reality.bazos.cz/inzerat/220503174/prodej-bytu-21-50-m-ostrava-zabreh-ul-cujkovova.php
 
-5. Praha, Stodůlky, okres Praha, kraj Hlavní město Praha
-Tel: +420 602 311 101
-~10.6 km | Modrý | 
-https://www.sreality.cz/detail/prodej/byt/4+kk/praha-stodulky-symfonicka/3807637580
+2. Ostrava, Bělský les, okres Ostrava, město, kraj Moravskoslezský
+Tel: +420 721 851 932
+~3.9 km | Hrubá | 
+https://reality.bazos.cz/inzerat/220509314/byt-21-po-rekonstrukci-ostrava-belsky-les.php
 
-6. Hlučín, okres Opava, kraj Moravskoslezský
-Tel: +420 704 887 774
-~11.0 km | Hrubá | 
-https://reality.bazos.cz/inzerat/220458107/prodej-rodinneho-domu-140-m-pozemek-502-m-pekarska-hluci.php
+3. Praha, Hostivař, okres Praha, kraj Hlavní město Praha
+Tel: +420 735 307 738
+~4.7 km | Motl | 
+https://www.sreality.cz/detail/prodej/byt/1+1/praha-hostivar-plukovnika-mraze/4205047884
 
-7. Praha, Modřany, Československého exilu, okres Praha, kraj Hlavní město Praha
-Tel: +420 774 064 741
-~12.2 km | Manda | 
-https://www.sreality.cz/detail/prodej/byt/1+kk/praha-modrany-ceskoslovenskeho-exilu/181203020
+4. Praha, Černý Most, okres Praha, kraj Hlavní město Praha
+~7.4 km | Nemes | 
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-cerny-most-arnosta-valenty/1572073548
 
-8. Kladno, Kročehlavy, okres Kladno, kraj Středočeský
-Tel: +420 775 265 033
-~17.7 km | Modrý | 
-https://www.sreality.cz/detail/prodej/byt/2+1/kladno-krocehlavy-anglicka/2851336268
+5. Praha 14, Kyje, okres Praha, kraj Hlavní město Praha
+Tel: +420 704 739 230
+~7.8 km | Nemes | 
+https://reality.bazos.cz/inzerat/220518222/prodam-byt-11-37m2-praha-14-kyje-v-osobnim-vl.php
 
-9. Úvaly, Úvaly, nám. Svobody, okres Praha-východ, kraj Středočeský
-~19.7 km | Nemes | 
-https://www.sreality.cz/detail/prodej/byt/3+kk/uvaly-uvaly-nam-svobody/2451370060
+6. Praha, Kamyk, okres Praha, kraj Hlavní město Praha
+Tel: +420 602 399 178
+~10.1 km | Manda | 
+https://www.sreality.cz/detail/prodej/byt/2+1/praha-kamyk-zarubova/1212346444
 
-10. Šestajovice, okres Praha-východ, kraj Středočeský
-~21.6 km | Suchánková | 
-https://www.sreality.cz/detail/prodej/dum/rodinny/sestajovice/1936453708
+7. Dolní Břežany, okres Praha, západ, kraj Středočeský
+Tel: +420 727 835 324
+~15.2 km | Manda | 
+https://www.sreality.cz/detail/prodej/dum/rodinny/dolni-brezany-dolni-brezany-k-zamecke-obore/3116560460
 
-11. Karviná, Božkova, okres Karviná, kraj Moravskoslezský
-Tel: +420 737 150 418
-~23.3 km | Hrubá | 
-https://reality.bazos.cz/inzerat/220460490/karvina-bozkova.php
+8. Nižbor, okres Beroun, kraj Středočeský
+Tel: +420 737 211 364
+~17.1 km | Modrý | 
+https://reality.idnes.cz/detail/prodej/dum/nizbor-stradonicka/6a3acaf4fa3521d1c40daf36
 
-12. Brno, Bosonohy, Křivánky, okres Brno-město, kraj Jihomoravský
+9. Nižbor, okres Beroun, kraj Středočeský
+Tel: +420 737 211 364
+~17.1 km | Modrý | 
+https://reality.idnes.cz/detail/prodej/dum/nizbor-stradonicka/6a3acaf4fa3521d1c40daf36
+
+10. Všenory, okres Praha, západ, kraj Středočeský
+Tel: +420 737 211 364
+~23.5 km | Modrý | 
+https://reality.idnes.cz/detail/prodej/dum/vsenory-ke-hrbitovu/6a3acaf7c56801142303e5f6
+
+11. Blansko, okres Blansko, kraj Jihomoravský
+Tel: +420 608 146 394
+~32.4 km | Tauš | 
+https://reality.bazos.cz/inzerat/220508100/krasny-byt-31-blansko.php
+
+12. Sokolnice, okres Brno, venkov, kraj Jihomoravský
+Tel: +420 604 601 074
+~35.1 km | Tauš | 
+https://reality.bazos.cz/inzerat/220495714/prodej-bytu-s-terasou-2kk-37m2-v-sokolnicich-brno-venkov.php
+
+13. Brno, Sadová, okres Brno, město, kraj Jihomoravský
+Tel: +420 735 932 552
 ~36.8 km | Tauš | 
-https://www.sreality.cz/detail/prodej/pozemek/zahrada/brno-bosonohy-krivanky/2618552396
+https://www.sreality.cz/detail/prodej/dum/chata/brno-sadova-parezi/938668108
 
-13. Borkovany, okres Břeclav, kraj Jihomoravský
-Tel: +420 702 103 888
-~43.1 km | Tauš | 
-https://reality.bazos.cz/inzerat/220450892/prodej-soustavy-pozemku-v-katastralnim-uzemi-borkovany.php
+14. Kuřimany, okres Strakonice, kraj Jihočeský
+Tel: +420 724 205 394
+~43.0 km | Marešková | 
+https://www.sreality.cz/detail/prodej/komercni/ubytovani/kurimany/2322788428
 
-14. Střelice, okres Brno-venkov, kraj Jihomoravský
-Tel: +420 774 919 414
-~45.7 km | Tauš | 
-https://www.sreality.cz/detail/prodej/pozemek/zahrada/strelice/3898863692
+15. Cítov, okres Mělník, kraj Středočeský
+Tel: +420 777 963 388
+~49.6 km | Nemes | 
+https://reality.bazos.cz/inzerat/220477253/mala-rodinna-biofarmazemedelska-usedlost-6070m2-citov.php
 

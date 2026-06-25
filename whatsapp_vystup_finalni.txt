@@ -1,74 +1,40 @@
-1. Ostrava, Zábřeh, okres Ostrava, město, kraj Moravskoslezský
-Tel: +420 777 519 910
+1. Chýně, okres Praha-západ, kraj Středočeský
+Tel: +420 604 233 232
+~0.3 km | Modrý | 
+https://reality.bazos.cz/inzerat/220543965/praha-zapad-obec-chyne-21782m2.php
+
+2. Praha 11, Chodov, okres Praha, kraj Hlavní město Praha
+Tel: +420 775 096 127
+~2.2 km | Motl | 
+https://www.sreality.cz/detail/prodej/byt/1+kk/praha-chodov-kahovska/849473612
+
+3. Praha 10, Vršovice, okres Praha, kraj Hlavní město Praha
+Tel: +420 602 510 508
+~2.3 km | Manda | 
+https://www.sreality.cz/detail/prodej/komercni/obchodni-prostor/praha-vrsovice-uzbecka/4240568396
+
+4. Ostrava, Poruba, okres Ostrava-město, kraj Moravskoslezský
+Tel: +420 605 120 060
 ~3.9 km | Hrubá | 
-https://reality.bazos.cz/inzerat/220503174/prodej-bytu-21-50-m-ostrava-zabreh-ul-cujkovova.php
+https://reality.bazos.cz/inzerat/220532246/byt-3kk-poruba-alsovo-namesti.php
 
-2. Ostrava, Bělský les, okres Ostrava, město, kraj Moravskoslezský
-Tel: +420 721 851 932
+5. Ostrava, Poruba, okres Ostrava-město, kraj Moravskoslezský
+Tel: +420 605 120 060
 ~3.9 km | Hrubá | 
-https://reality.bazos.cz/inzerat/220509314/byt-21-po-rekonstrukci-ostrava-belsky-les.php
+https://reality.bazos.cz/inzerat/220532246/byt-3kk-poruba-alsovo-namesti.php
 
-3. Praha, Hostivař, okres Praha, kraj Hlavní město Praha
-Tel: +420 735 307 738
-~4.7 km | Motl | 
-https://www.sreality.cz/detail/prodej/byt/1+1/praha-hostivar-plukovnika-mraze/4205047884
-
-4. Praha, Černý Most, okres Praha, kraj Hlavní město Praha
-~7.4 km | Nemes | 
-https://www.sreality.cz/detail/prodej/byt/2+kk/praha-cerny-most-arnosta-valenty/1572073548
-
-5. Praha 14, Kyje, okres Praha, kraj Hlavní město Praha
+6. Praha 14, Kyje, okres Praha, kraj Hlavní město Praha
 Tel: +420 704 739 230
 ~7.8 km | Nemes | 
 https://reality.bazos.cz/inzerat/220518222/prodam-byt-11-37m2-praha-14-kyje-v-osobnim-vl.php
 
-6. Praha, Kamyk, okres Praha, kraj Hlavní město Praha
-Tel: +420 602 399 178
-~10.1 km | Manda | 
-https://www.sreality.cz/detail/prodej/byt/2+1/praha-kamyk-zarubova/1212346444
+7. Praha 6, Vokovice, okres Praha, kraj Hlavní město Praha
+Tel: +420 605 272 701
+~10.6 km | Manda | 
+https://www.sreality.cz/detail/prodej/byt/2+1/praha-vokovice-alzirska/199356492
 
-7. Dolní Břežany, okres Praha, západ, kraj Středočeský
-Tel: +420 727 835 324
-~15.2 km | Manda | 
-https://www.sreality.cz/detail/prodej/dum/rodinny/dolni-brezany-dolni-brezany-k-zamecke-obore/3116560460
-
-8. Nižbor, okres Beroun, kraj Středočeský
-Tel: +420 737 211 364
-~17.1 km | Modrý | 
-https://reality.idnes.cz/detail/prodej/dum/nizbor-stradonicka/6a3acaf4fa3521d1c40daf36
-
-9. Nižbor, okres Beroun, kraj Středočeský
-Tel: +420 737 211 364
-~17.1 km | Modrý | 
-https://reality.idnes.cz/detail/prodej/dum/nizbor-stradonicka/6a3acaf4fa3521d1c40daf36
-
-10. Všenory, okres Praha, západ, kraj Středočeský
-Tel: +420 737 211 364
-~23.5 km | Modrý | 
-https://reality.idnes.cz/detail/prodej/dum/vsenory-ke-hrbitovu/6a3acaf7c56801142303e5f6
-
-11. Blansko, okres Blansko, kraj Jihomoravský
-Tel: +420 608 146 394
-~32.4 km | Tauš | 
-https://reality.bazos.cz/inzerat/220508100/krasny-byt-31-blansko.php
-
-12. Sokolnice, okres Brno, venkov, kraj Jihomoravský
-Tel: +420 604 601 074
-~35.1 km | Tauš | 
-https://reality.bazos.cz/inzerat/220495714/prodej-bytu-s-terasou-2kk-37m2-v-sokolnicich-brno-venkov.php
-
-13. Brno, Sadová, okres Brno, město, kraj Jihomoravský
-Tel: +420 735 932 552
-~36.8 km | Tauš | 
-https://www.sreality.cz/detail/prodej/dum/chata/brno-sadova-parezi/938668108
-
-14. Kuřimany, okres Strakonice, kraj Jihočeský
-Tel: +420 724 205 394
-~43.0 km | Marešková | 
-https://www.sreality.cz/detail/prodej/komercni/ubytovani/kurimany/2322788428
-
-15. Cítov, okres Mělník, kraj Středočeský
-Tel: +420 777 963 388
-~49.6 km | Nemes | 
-https://reality.bazos.cz/inzerat/220477253/mala-rodinna-biofarmazemedelska-usedlost-6070m2-citov.php
+8. Kralupy nad Vltavou, okres Mělník, kraj Středočeský
+Tel: +420 739 602 072
+~20.0 km | Suchánková | 
+https://reality.bazos.cz/inzerat/220522511/prodej-mezonetoveho-bytu-2kk-kralupy-nad-vltavou.php
 

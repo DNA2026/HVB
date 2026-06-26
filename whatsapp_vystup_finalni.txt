@@ -1,40 +1,75 @@
-1. Chýně, okres Praha-západ, kraj Středočeský
-Tel: +420 604 233 232
-~0.3 km | Modrý | 
-https://reality.bazos.cz/inzerat/220543965/praha-zapad-obec-chyne-21782m2.php
-
-2. Praha 11, Chodov, okres Praha, kraj Hlavní město Praha
-Tel: +420 775 096 127
-~2.2 km | Motl | 
-https://www.sreality.cz/detail/prodej/byt/1+kk/praha-chodov-kahovska/849473612
-
-3. Praha 10, Vršovice, okres Praha, kraj Hlavní město Praha
-Tel: +420 602 510 508
-~2.3 km | Manda | 
-https://www.sreality.cz/detail/prodej/komercni/obchodni-prostor/praha-vrsovice-uzbecka/4240568396
-
-4. Ostrava, Poruba, okres Ostrava-město, kraj Moravskoslezský
-Tel: +420 605 120 060
+1. Ostrava, Moravská Ostrava, Havířská, okres Ostrava-město, kraj Moravskoslezský
+Tel: +420 776 598 198
 ~3.9 km | Hrubá | 
-https://reality.bazos.cz/inzerat/220532246/byt-3kk-poruba-alsovo-namesti.php
+https://www.sreality.cz/detail/prodej/byt/3+1/ostrava-moravska-ostrava-havirska/4275171404
 
-5. Ostrava, Poruba, okres Ostrava-město, kraj Moravskoslezský
-Tel: +420 605 120 060
+2. Ostrava, Poruba, Španielova, okres Ostrava-město, kraj Moravskoslezský
+Tel: +420 739 731 232
 ~3.9 km | Hrubá | 
-https://reality.bazos.cz/inzerat/220532246/byt-3kk-poruba-alsovo-namesti.php
+https://www.sreality.cz/detail/prodej/byt/2+1/ostrava-poruba-spanielova/2611081292
 
-6. Praha 14, Kyje, okres Praha, kraj Hlavní město Praha
-Tel: +420 704 739 230
-~7.8 km | Nemes | 
-https://reality.bazos.cz/inzerat/220518222/prodam-byt-11-37m2-praha-14-kyje-v-osobnim-vl.php
+3. Ostrava, Hrabůvka, Horní, okres Ostrava-město, kraj Moravskoslezský
+Tel: +420 724 113 638
+~3.9 km | Hrubá | 
+https://www.sreality.cz/detail/prodej/byt/3+1/ostrava-hrabuvka-horni/3051417676
 
-7. Praha 6, Vokovice, okres Praha, kraj Hlavní město Praha
-Tel: +420 605 272 701
-~10.6 km | Manda | 
-https://www.sreality.cz/detail/prodej/byt/2+1/praha-vokovice-alzirska/199356492
+4. Praha, Letňany, okres Praha, kraj Hlavní město Praha
+Tel: +420 737 356 208
+~7.8 km | Suchánková | 
+https://reality.bazos.cz/inzerat/220572957/utulny-byt-1kk.php
 
-8. Kralupy nad Vltavou, okres Mělník, kraj Středočeský
-Tel: +420 739 602 072
-~20.0 km | Suchánková | 
-https://reality.bazos.cz/inzerat/220522511/prodej-mezonetoveho-bytu-2kk-kralupy-nad-vltavou.php
+5. Praha, Stodůlky, Toufarova, okres Praha, kraj Hlavní město Praha
+Tel: +420 608 663 495
+~10.6 km | Modrý | 
+https://www.sreality.cz/detail/prodej/byt/1+kk/praha-stodulky-toufarova/2773545036
+
+6. Slaný, Slaný, Antonína Leopolda, okres Kladno, kraj Středočeský
+Tel: +420 606 209 117
+~17.7 km | Modrý | 
+https://www.sreality.cz/detail/prodej/dum/rodinny/slany-slany-antonina-leopolda/21950540
+
+7. Orlová, okres Karviná, kraj Moravskoslezský
+Tel: +420 608 043 710
+~23.3 km | Hrubá | 
+https://reality.bazos.cz/inzerat/220573514/prodej-zahrady.php
+
+8. Ostravice, okres Frýdek-Místek, kraj Moravskoslezský
+Tel: +420 775 016 112
+~25.5 km | Hrubá | 
+https://www.sreality.cz/detail/prodej/dum/rodinny/ostravice/972091468
+
+9. Veřovice, okres Nový Jičín, kraj Moravskoslezský
+Tel: +420 739 428 751
+~29.9 km | Večerek | 
+https://www.sreality.cz/detail/prodej/dum/rodinny/verovice/3624071244
+
+10. Blansko u Kaplice, okres Český Krumlov, kraj Jihočeský
+Tel: +420 728 082 270
+~32.4 km | Tauš | 
+https://reality.bazos.cz/inzerat/220578714/rekreacni-pozemky-1-922-m-blansko-u-kaplice-zastavitelne.php
+
+11. Brno, Štýřice, Ludmily Konečné, okres Brno-město, kraj Jihomoravský
+Tel: +420 731 931 084
+~36.8 km | Tauš | 
+https://reality.bazos.cz/inzerat/220563648/prodej-bytu-4kk-garaz-ludmily-konecne-brno-styrice.php
+
+12. Brno, Kníničky, okres Brno-město, kraj Jihomoravský
+Tel: +420 703 601 409
+~36.8 km | Tauš | 
+https://www.sreality.cz/detail/prodej/dum/chata/brno-kninicky/2076373068
+
+13. Plzeň, Jižní Předměstí, Skupova, okres Plzeň-město, kraj Plzeňský
+Tel: +420 775 016 112
+~40.7 km | Marešková | 
+https://www.sreality.cz/detail/prodej/byt/1+kk/plzen-jizni-predmesti-skupova/3350261836
+
+14. Velká Lečice, okres Příbram, kraj Středočeský
+Tel: +420 734 686 220
+~44.8 km | Nemes | 
+https://reality.idnes.cz/detail/prodej/dum/velka-lecice/6a3ccb922370ee8b8507dc76
+
+15. Český Těšín, Mosty, Rybářská, okres Karviná, kraj Moravskoslezský
+Tel: +420 735 211 274
+~49.2 km | Hrubá | 
+https://www.sreality.cz/detail/prodej/pozemek/zahrada/cesky-tesin-mosty-rybarska/576225356
 

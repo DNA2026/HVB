@@ -1,4 +1,4 @@
-name: Notifikace aktualizace webu
+name: Notifikace aktualizace Dashboardu
 
 on:
   schedule:
@@ -12,10 +12,9 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Poslat notifikaci
+    - name: Poslat notifikaci na Telegram
       env:
         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
       run: |
-        curl -s -X POST "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage" -d "chat_id=$TELEGRAM_CHAT_ID" -d "text=Přehled inzerce byl aktualizován."
-        
+        curl -s -X POST "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage" -d "chat_id=$TELEGRAM_CHAT_ID" -d "text=Byla aktualizována stránka Dashboard.html"

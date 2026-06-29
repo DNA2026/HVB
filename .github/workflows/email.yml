@@ -33,14 +33,15 @@ jobs:
             mail = imaplib.IMAP4_SSL('imap.gmail.com', 993)
             mail.login(os.environ['GMAIL_USERNAME'], os.environ['GMAIL_APP_PASSWORD'])
             
-            # Výběr přesné složky s velkým O
+            # Výběr složky
             status, data = mail.select('INBOX/Octopus')
             
             if status != 'OK':
                 raise Exception("Složka INBOX/Octopus nebyla nalezena.")
 
-            # Vyhledání nepřečtených zpráv
-            status, response = mail.search(None, 'UNREAD')
+            # Oprava vyhledávání: Použijeme čistý filtr bez specifikace znakové sady (None nahradíme prázdným vyhledáváním)
+            # Některé verze IMAP vyžadují uvozovky nebo velká písmena bez dalších argumentů
+            status, response = mail.search(None, '(UNREAD)')
 
             unread_count = 0
             if status == 'OK' and response[0]:

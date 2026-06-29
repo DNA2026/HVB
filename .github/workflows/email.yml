@@ -29,19 +29,24 @@ jobs:
         import os
 
         try:
-            # Přihlášení do Gmailu
+            # 1. Přihlášení do Gmailu
             mail = imaplib.IMAP4_SSL('imap.gmail.com', 993)
             mail.login(os.environ['GMAIL_USERNAME'], os.environ['GMAIL_APP_PASSWORD'])
             
-            # Pokus o výběr složky octopus
-            status, data = mail.select('inbox/octopus')
+            # Vybereme hlavní schránku (Inbox), abychom v ní mohli vyhledávat pomocí štítků
+            mail.select('inbox')
             
-            if status != 'OK':
-                # Pokud složka napřímo selže, prohledáme hlavní inbox s filtrem na štítek
-                mail.select('inbox')
-                status, response = mail.search(None, 'X-GM-LABELS', 'inbox/octopus', 'UNREAD')
-            else:
-                status, response = mail.search(None, 'UNREAD')
+            # Použijeme nativní vyhledávání Gmailu (X-GM-RAW). 
+            # Zkusíme variantu s lomítkem i bez, pro jistotu se podíváme na 'label:inbox-octopus is:unread' i 'label:inbox/octopus'
+            # Vyhledáme prostě všechny nepřečtené e-maily, které obsahují v názvu štítku "octopus"
+            status, response = mail.uid('search', None, 'X-GM-RAW', 'has:nouserlabels is:unread octopus')
+            
+            # Pokud by to nenašlo, zkusíme záložní přesný dotaz na tvůj formát složky
+            if status != 'OK' or not response[0]:
+                status, response = mail.uid('search', None, 'X-GM-RAW', 'label:inbox-octopus is:unread')
+                
+            if status != 'OK' or not response[0]:
+                status, response = mail.uid('search', None, 'X-GM-RAW', 'label:inbox/octopus is:unread')
 
             unread_count = 0
             if status == 'OK' and response[0]:
@@ -50,14 +55,14 @@ jobs:
             mail.logout()
 
             if unread_count > 0:
-                message = f"🟢 Kontrola Gmailu: Ve složce inbox/octopus máš {unread_count} nepřečtených e-mailů."
+                message = f"🟢 Kontrola Gmailu: Ve složce/štítku octopus máš {unread_count} nepřečtených e-mailů."
             else:
-                message = "⚪ Kontrola Gmailu: Žádné nové maily ve složce inbox/octopus."
+                message = "⚪ Kontrola Gmailu: Žádné nové maily ve složce octopus."
 
         except Exception as e:
             message = f"🔴 Chyba při kontrole Gmailu: {str(e)}"
 
-        # Odeslání na Telegram
+        # 2. Odeslání na Telegram
         bot_token = os.environ['TELEGRAM_BOT_TOKEN']
         chat_id = os.environ['TELEGRAM_CHAT_ID']
         url = f"https://api.telegram.org/bot{bot_token}/sendMessage"

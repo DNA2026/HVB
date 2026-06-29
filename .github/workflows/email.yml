@@ -2,8 +2,9 @@ name: Hodinová kontrola Gmailu a Telegram notifikace
 
 on:
   schedule:
+    # Tady je to plánování: Spustí se každou celou hodinu (00:00, 01:00 atd. UTC)
     - cron: '0 * * * *'
-  workflow_dispatch:
+  workflow_dispatch: # Tlačítko pro ruční spuštění v rozhraní GitHubu
 
 jobs:
   check-and-notify:
@@ -43,7 +44,6 @@ jobs:
                 all_unread = len(response_all[0].split())
                 
             # VARIANTA 2: Nepřečtené maily od konkrétního odesílatele
-            # V IMAP se filtry spojují za sebou: UNSEEN FROM "email"
             status_from, response_from = mail.search(None, 'UNSEEN', 'FROM', 'robot@octopuspro.cz')
             octopus_unread = 0
             if status_from == 'OK' and response_from[0]:

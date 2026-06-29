@@ -27,25 +27,28 @@ jobs:
         import urllib.request
         import urllib.parse
         import os
+        import re
 
         try:
             # 1. Přihlášení do Gmailu
             mail = imaplib.IMAP4_SSL('imap.gmail.com', 993)
             mail.login(os.environ['GMAIL_USERNAME'], os.environ['GMAIL_APP_PASSWORD'])
             
-            # Výběr složky
-            status, data = mail.select('INBOX/Octopus')
+            # Získání statusu složky (vyhneme se příkazu SELECT a SEARCH)
+            status, response = mail.status('INBOX/Octopus', '(UNREAD)')
             
             if status != 'OK':
-                raise Exception("Složka INBOX/Octopus nebyla nalezena.")
+                raise Exception("Nepodařilo se získat status složky INBOX/Octopus.")
 
-            # Oprava vyhledávání: Použijeme čistý filtr bez specifikace znakové sady (None nahradíme prázdným vyhledáváním)
-            # Některé verze IMAP vyžadují uvozovky nebo velká písmena bez dalších argumentů
-            status, response = mail.search(None, '(UNREAD)')
-
-            unread_count = 0
-            if status == 'OK' and response[0]:
-                unread_count = len(response[0].split())
+            # Odpověď bývá ve formátu: b' "INBOX/Octopus" (UNREAD 2)'
+            # Vytáhneme z ní číslo pomocí regulárního výrazu
+            response_text = response[0].decode('utf-8')
+            match = re.search(r'UNREAD\s+(\d+)', response_text)
+            
+            if match:
+                unread_count = int(match.group(1))
+            else:
+                unread_count = 0
             
             mail.logout()
 

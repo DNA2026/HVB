@@ -2,13 +2,14 @@ name: Hodinová kontrola Gmailu a Telegram notifikace
 
 on:
   schedule:
-    # Tady je to plánování: Spustí se každou celou hodinu (00:00, 01:00 atd. UTC)
+    # Spustí se každou celou hodinu (53. minuta UTC)
     - cron: '53 * * * *'
-  workflow_dispatch: # Tlačítko pro ruční spuštění v rozhraní GitHubu
+  workflow_dispatch: # Tlačítko pro ruční spuštění
 
 jobs:
   check-and-notify:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
 
     steps:
     - name: Nastavení Pythonu
@@ -23,55 +24,82 @@ jobs:
         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
       run: |
-        python - <<EOF
+        python - <<'PYTHON_EOF'
         import imaplib
         import urllib.request
         import urllib.parse
         import os
+        import sys
+
+        def send_telegram_message(message):
+            """Odešle zprávu na Telegram"""
+            bot_token = os.environ['TELEGRAM_BOT_TOKEN']
+            chat_id = os.environ['TELEGRAM_CHAT_ID']
+            url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
+            
+            data = urllib.parse.urlencode({
+                'chat_id': chat_id, 
+                'text': message,
+                'parse_mode': 'HTML'
+            }).encode('utf-8')
+            
+            req = urllib.request.Request(url, data=data)
+            
+            try:
+                response = urllib.request.urlopen(req, timeout=10)
+                print("✅ Zpráva úspěšně odeslána na Telegram")
+                return True
+            except Exception as e:
+                print(f"❌ Chyba při odesílání na Telegram: {e}")
+                return False
 
         try:
-            # 1. Přihlášení do Gmailu
+            print("🔍 Připojování k Gmailu...")
             mail = imaplib.IMAP4_SSL('imap.gmail.com', 993)
             mail.login(os.environ['GMAIL_USERNAME'], os.environ['GMAIL_APP_PASSWORD'])
             
-            # Vstoupíme do hlavní doručené pošty
             mail.select('INBOX')
             
-            # VARIANTA 1: Celkový počet nepřečtených mailů v celém INBOXU
+            # VARIANTA 1: Celkový počet nepřečtených mailů
             status_all, response_all = mail.search(None, 'UNSEEN')
             all_unread = 0
             if status_all == 'OK' and response_all[0]:
-                all_unread = len(response_all[0].split())
+                message_ids = response_all[0].split()
+                all_unread = len(message_ids)
+                print(f"📧 Nalezeno {all_unread} nepřečtených zpráv")
                 
             # VARIANTA 2: Nepřečtené maily od konkrétního odesílatele
-            status_from, response_from = mail.search(None, 'UNSEEN', 'FROM', 'robot@octopuspro.cz')
+            sender_email = 'robot@octopuspro.cz'
+            status_from, response_from = mail.search(None, 'UNSEEN', 'FROM', sender_email)
             octopus_unread = 0
             if status_from == 'OK' and response_from[0]:
-                octopus_unread = len(response_from[0].split())
+                message_ids = response_from[0].split()
+                octopus_unread = len(message_ids)
+                print(f"🐙 Nalezeno {octopus_unread} nepřečtených zpráv od {sender_email}")
             
             mail.logout()
+            print("✅ Odhlášeno z Gmailu")
 
             # Sestavení přehledné zprávy
             message = (
-                f"📊 Výsledek kontroly Gmailu:\n"
-                f"▪️ Celkem nepřečtených v doručené poště: {all_unread}\n"
-                f"▪️ Nepřečtených od robot@octopuspro.cz: {octopus_unread}"
+                f"<b>📊 Výsledek kontroly Gmailu</b>\n\n"
+                f"▪️ Celkem nepřečtených v INBOXU: <b>{all_unread}</b>\n"
+                f"▪️ Nepřečtených od robot@octopuspro.cz: <b>{octopus_unread}</b>"
             )
 
+        except imaplib.IMAP4.error as e:
+            message = f"<b>🔴 Chyba přihlášení k Gmailu:</b>\n{str(e)}"
+            print(f"❌ IMAP chyba: {e}")
         except Exception as e:
-            message = f"🔴 Chyba při kontrole Gmailu: {str(e)}"
+            message = f"<b>🔴 Neočekávaná chyba:</b>\n{str(e)[:200]}"
+            print(f"❌ Obecná chyba: {e}")
+            import traceback
+            traceback.print_exc()
 
-        # 2. Odeslání na Telegram
-        bot_token = os.environ['TELEGRAM_BOT_TOKEN']
-        chat_id = os.environ['TELEGRAM_CHAT_ID']
-        url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
+        # Odeslání na Telegram
+        success = send_telegram_message(message)
         
-        data = urllib.parse.urlencode({'chat_id': chat_id, 'text': message}).encode('utf-8')
-        req = urllib.request.Request(url, data=data)
-        
-        try:
-            urllib.request.urlopen(req)
-            print("Odesláno.")
-        except Exception as telegram_error:
-            print(f"Chyba: {telegram_error}")
-        EOF
+        # Exit code pro GitHub Actions
+        if not success:
+            sys.exit(1)
+        PYTHON_EOF

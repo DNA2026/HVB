@@ -3,7 +3,7 @@ name: Hodinová kontrola Gmailu a Telegram notifikace
 on:
   schedule:
     - cron: '0 * * * *'
-  workflow_dispatch: # Tlačítko pro ruční spuštění
+  workflow_dispatch:
 
 jobs:
   check-and-notify:
@@ -27,35 +27,36 @@ jobs:
         import urllib.request
         import urllib.parse
         import os
-        import re
 
         try:
             # 1. Přihlášení do Gmailu
             mail = imaplib.IMAP4_SSL('imap.gmail.com', 993)
             mail.login(os.environ['GMAIL_USERNAME'], os.environ['GMAIL_APP_PASSWORD'])
             
-            # Získání statusu složky (vyhneme se příkazu SELECT a SEARCH)
-            status, response = mail.status('INBOX/Octopus', '(UNREAD)')
+            # Vstoupíme do hlavní doručené pošty
+            mail.select('INBOX')
             
-            if status != 'OK':
-                raise Exception("Nepodařilo se získat status složky INBOX/Octopus.")
-
-            # Odpověď bývá ve formátu: b' "INBOX/Octopus" (UNREAD 2)'
-            # Vytáhneme z ní číslo pomocí regulárního výrazu
-            response_text = response[0].decode('utf-8')
-            match = re.search(r'UNREAD\s+(\d+)', response_text)
-            
-            if match:
-                unread_count = int(match.group(1))
-            else:
-                unread_count = 0
+            # VARIANTA 1: Celkový počet nepřečtených mailů v celém INBOXU
+            status_all, response_all = mail.search(None, 'UNSEEN')
+            all_unread = 0
+            if status_all == 'OK' and response_all[0]:
+                all_unread = len(response_all[0].split())
+                
+            # VARIANTA 2: Nepřečtené maily od konkrétního odesílatele
+            # V IMAP se filtry spojují za sebou: UNSEEN FROM "email"
+            status_from, response_from = mail.search(None, 'UNSEEN', 'FROM', 'robot@octopuspro.cz')
+            octopus_unread = 0
+            if status_from == 'OK' and response_from[0]:
+                octopus_unread = len(response_from[0].split())
             
             mail.logout()
 
-            if unread_count > 0:
-                message = f"🟢 Kontrola Gmailu: Ve složce INBOX/Octopus máš {unread_count} nepřečtených e-mailů."
-            else:
-                message = "⚪ Kontrola Gmailu: Žádné nové maily ve složce INBOX/Octopus."
+            # Sestavení přehledné zprávy
+            message = (
+                f"📊 Výsledek kontroly Gmailu:\n"
+                f"▪️ Celkem nepřečtených v doručené poště: {all_unread}\n"
+                f"▪️ Nepřečtených od robot@octopuspro.cz: {octopus_unread}"
+            )
 
         except Exception as e:
             message = f"🔴 Chyba při kontrole Gmailu: {str(e)}"
@@ -70,7 +71,7 @@ jobs:
         
         try:
             urllib.request.urlopen(req)
-            print("Zpráva odeslána na Telegram.")
+            print("Odesláno.")
         except Exception as telegram_error:
-            print(f"Chyba Telegramu: {telegram_error}")
+            print(f"Chyba: {telegram_error}")
         EOF

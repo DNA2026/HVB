@@ -33,19 +33,28 @@ jobs:
             mail = imaplib.IMAP4_SSL('imap.gmail.com', 993)
             mail.login(os.environ['GMAIL_USERNAME'], os.environ['GMAIL_APP_PASSWORD'])
             
-            # Vstoupíme přímo do složky inbox/octopus.
-            # V IMAP se textové názvy s lomítkem posílají v uvozovkách.
-            status, data = mail.select('"inbox/octopus"')
+            # Zkusíme různé varianty zápisu složky, které Gmail přes IMAP používá
+            variants = ['inbox/octopus', 'INBOX/octopus', 'octopus', '"INBOX/octopus"', '"inbox/octopus"']
+            status = 'NOT_OK'
             
-            # Pokud by náhodou Gmail vrátil chybu (např. kvůli malým/velkým písmenům),
-            # zkusíme jako záložní variantu jen čisté 'octopus'
-            if status != 'OK':
-                status, data = mail.select('octopus')
+            for folder in variants:
+                try:
+                    status, data = mail.select(folder)
+                    if status == 'OK':
+                        print(f"Úspěšně vybrána složka: {folder}")
+                        break
+                except:
+                    continue
                 
+            # Pokud žádná varianta neprošla, vypíšeme dostupné složky pro diagnostiku
             if status != 'OK':
-                raise Exception("Složka 'inbox/octopus' nebyla v Gmailu nalezena. Zkontroluj přesný název štítku.")
+                print("Dostupné složky v Gmailu:")
+                status, folder_list = mail.list()
+                for f in folder_list:
+                    print(f.decode('utf-8'))
+                raise Exception("Složka 'octopus' nebyla nalezena. Seznam složek byl vypsán do logu na GitHubu.")
 
-            # Základní, standardní IMAP příkaz pro vyhledání nepřečtených zpráv v otevřené složce
+            # Vyhledání nepřečtených zpráv v úspěšně otevřené složce
             status, response = mail.search(None, 'UNREAD')
 
             unread_count = 0
@@ -55,9 +64,9 @@ jobs:
             mail.logout()
 
             if unread_count > 0:
-                message = f"🟢 Kontrola Gmailu: Ve složce inbox/octopus máš {unread_count} nepřečtených e-mailů."
+                message = f"🟢 Kontrola Gmailu: Ve složce octopus máš {unread_count} nepřečtených e-mailů."
             else:
-                message = "⚪ Kontrola Gmailu: Žádné nové maily ve složce inbox/octopus."
+                message = "⚪ Kontrola Gmailu: Žádné nové maily ve složce octopus."
 
         except Exception as e:
             message = f"🔴 Chyba při kontrole Gmailu: {str(e)}"

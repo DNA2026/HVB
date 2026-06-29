@@ -3,7 +3,7 @@ name: Hodinová kontrola Gmailu a Telegram notifikace
 on:
   schedule:
     # Tady je to plánování: Spustí se každou celou hodinu (00:00, 01:00 atd. UTC)
-    - cron: '0 * * * *'
+    - cron: '53 * * * *'
   workflow_dispatch: # Tlačítko pro ruční spuštění v rozhraní GitHubu
 
 jobs:

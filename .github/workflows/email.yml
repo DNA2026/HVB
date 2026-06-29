@@ -1,0 +1,38 @@
+name: Hodinová kontrola Gmailu a Telegram notifikace
+
+on:
+  schedule:
+    # Spustí se každou celou hodinu (00:00, 01:00, 02:00 atd. UTC)
+    - cron: '0 * * * *'
+  workflow_dispatch: # Umožní ti spustit skript ručně přes tlačítko na GitHubu
+
+jobs:
+  check-and-notify:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Krok 1 - Kontrola nepřečtených e-mailů ve složce inbox/octopus
+      id: gmail_check
+      uses: aruniverse/gmail-search-action@v1
+      with:
+        imap-host: 'imap.gmail.com'
+        imap-port: 993
+        username: ${{ secrets.GMAIL_USERNAME }}
+        password: ${{ secrets.GMAIL_APP_PASSWORD }} # Heslo aplikace z Google účtu
+        search-query: 'label:inbox/octopus is:unread'
+
+    - name: Krok 2 - Odeslání zprávy na Telegram
+      # Tento krok se spustí vždy, aby ti dal vědět aktuální stav (případně ho můžeme upravit, aby psal jen když maily najde)
+      run: |
+        COUNT="${{ steps.gmail_check.outputs.mail_count }}"
+        
+        if [ "$COUNT" -gt 0 ]; then
+          MESSAGE="🟢 Kontrola Gmailu: Ve složce inbox/octopus máš $COUNT nepřečtených e-mailů."
+        else
+          MESSAGE="⚪ Kontrola Gmailu: Žádné nové maily ve složce inbox/octopus."
+        fi
+        
+        # Odeslání přes Telegram Bot API
+        curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
+          -d "chat_id=${{ secrets.TELEGRAM_CHAT_ID }}" \
+          -d "text=$MESSAGE"

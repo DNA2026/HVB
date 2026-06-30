@@ -1,5 +1,8 @@
 <html><head><meta charset='utf-8'><style>
-    body { font-family: 'Segoe UI', sans-serif; margin: 0; padding: 20px; background: #f0f2f5; }
+    body { font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; background: #f0f2f5; }
+    #lock-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(240, 242, 245, 0.8); z-index: 9999; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(10px); }
+    .lock-box { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center; }
+    #main-content { filter: blur(20px); transition: filter 0.5s ease; padding: 20px; }
     .container { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 25px; }
     .card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 20px; clear: both; }
     .map-container { height: 600px; width: 100%; overflow: hidden; border-radius: 8px; }
@@ -9,8 +12,19 @@
     .btn { display: inline-block; padding: 10px 15px; border-radius: 6px; text-decoration: none; font-weight: bold; cursor: pointer; border: none; font-size: 14px; }
     .btn-wa { background: #25D366; color: white; }
     .btn-copy { background: #0078d4; color: white; }
+    input[type='password'] { padding: 10px; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 10px; width: 200px; }
     </style>
     <script>
+    const allowed = ['1593', 'sadecka', 'tausova'];
+    function checkPassword() {
+        const val = document.getElementById('pass').value.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, "");
+        if (allowed.includes(val)) {
+            document.getElementById('lock-screen').style.display = 'none';
+            document.getElementById('main-content').style.filter = 'none';
+        } else {
+            alert('Chybné heslo!');
+        }
+    }
     function downloadOpText(opId) {
         const text = document.getElementById('txt_' + opId).value;
         const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
@@ -20,103 +34,118 @@
         link.click();
     }
     </script>
-    </head><body><div class='container'>
-    <div style='text-align:center;'><h2>Přehled realitní inzerce</h2><p>Aktualizováno: 30.06.2026 06:04:42</p></div>
-    <div class='card'><h3>📱 Sekce pro operátory</h3><div style='display:flex; flex-wrap:wrap; gap:15px;'>
+    </head><body>
+    <div id='lock-screen'>
+        <div class='lock-box'>
+            <h3>🔒 Přístup omezen</h3>
+            <p>Zadejte jméno operátora nebo kód:</p>
+            <input type='password' id='pass' onkeydown='if(event.key==="Enter") checkPassword()'><br>
+            <button class='btn btn-copy' onclick='checkPassword()'>Vstoupit</button>
+        </div>
+    </div>
+    <div id='main-content'>
+        <div class='container'>
+        <div style='text-align:center;'><h2>Přehled realitní inzerce</h2><p>Aktualizováno: 30.06.2026 14:24:12</p></div>
+        <div class='card'><h3>📱 Sekce pro operátory</h3><div style='display:flex; flex-wrap:wrap; gap:15px;'>
         <div style='border:1px solid #ddd; padding:15px; border-radius:8px; background:#fafafa; flex:1; min-width:250px;'>
-            <h4 style='margin-top:0;'>👤 Taušová</h4>
-            <p>Zakázek: 18</p>
-            <a href="https://wa.me/?text=1.%20Praha%2C%20okres%20Praha%2C%20kraj%20Hlavn%C3%AD%20m%C4%9Bsto%20Praha%0ATel%3A%20%2B420%20720%20213%20724%0A~1.5%20km%20%7C%20Manda%20%7C%20%0Ahttps%3A//www.sreality.cz/detail/prodej/byt/3%2Bkk/praha--mezi-vodami/1575415884%0A%0A2.%20Vy%C5%A1kov%2C%20okres%20Vy%C5%A1kov%2C%20kraj%20Jihomoravsk%C3%BD%0ATel%3A%20%2B420%20602%20445%20652%0A~3.5%20km%20%7C%20Tau%C5%A1%20%7C%20%0Ahttps%3A//reality.bazos.cz/inzerat/220707342/garaz-vyskov.php%0A%0A3.%20Ostrava%2C%20okres%20Ostrava-m%C4%9Bsto%2C%20kraj%20Moravskoslezsk%C3%BD%0ATel%3A%20%2B420%20603%20731%20520%0A~3.9%20km%20%7C%20Hrub%C3%A1%20%7C%20%0Ahttps%3A//www.sreality.cz/detail/prodej/komercni/restaurace/ostrava-moravska-ostrava-stodolni/628486220%0A%0A4.%20Praha%209%2C%20%C4%8Cakovice%2C%20okres%20Praha%2C%20kraj%20Hlavn%C3%AD%20m%C4%9Bsto%20Praha%0ATel%3A%20%2B420%20730%20857%20293%0A~5.5%20km%20%7C%20Nemes%20%7C%20%0Ahttps%3A//www.sreality.cz/detail/prodej/byt/2%2Bkk/praha--kojeticka/1592193100%0A%0A5.%20Praha%2C%20Vyso%C4%8Dany%2C%20okres%20Praha%2C%20kraj%20Hlavn%C3%AD%20m%C4%9Bsto%20Praha%0ATel%3A%20%2B420%20728%20741%20729%0A~6.2%20km%20%7C%20Nemes%20%7C%20%0Ahttps%3A//www.sreality.cz/detail/prodej/byt/2%2Bkk/praha-vysocany-freyova/157675596%0A%0A6.%20Vratimov%2C%20okres%20Ostrava-m%C4%9Bsto%2C%20kraj%20Moravskoslezsk%C3%BD%0ATel%3A%20%2B420%20605%20823%20410%0A~10.1%20km%20%7C%20Hrub%C3%A1%20%7C%20%0Ahttps%3A//reality.bazos.cz/inzerat/220719784/garaz.php%0A%0A7.%20Hav%C3%AD%C5%99ov%2C%20okres%20Karvin%C3%A1%2C%20kraj%20Moravskoslezsk%C3%BD%0A~16.3%20km%20%7C%20Hrub%C3%A1%20%7C%20%0Ahttps%3A//www.avizo.cz/reality/prodam-chatku-v-os-vlastnictvi-19876400.html%0A%0A8.%20Beroun%2C%20okres%20Beroun%2C%20kraj%20St%C5%99edo%C4%8Desk%C3%BD%0ATel%3A%20%2B420%20605%20152%20602%0A~17.1%20km%20%7C%20Modr%C3%BD%20%7C%20%0Ahttps%3A//reality.bazos.cz/inzerat/220728226/viceucelovy-komercni-objekt-autoservispneuservisvyroba.php%0A%0A9.%20Klatovy%2C%20okres%20Klatovy%2C%20kraj%20Plze%C5%88sk%C3%BD%0ATel%3A%20%2B420%20725%20665%20911%0A~27.4%20km%20%7C%20Mare%C5%A1kov%C3%A1%20%7C%20%0Ahttps%3A//reality.bazos.cz/inzerat/220717115/prodej-bytu-11-s-garazi-klatovy.php%0A%0A10.%20Nov%C3%BD%20Ji%C4%8D%C3%ADn%2C%20okres%20Nov%C3%BD%20Ji%C4%8D%C3%ADn%2C%20kraj%20Moravskoslezsk%C3%BD%0ATel%3A%20%2B420%20603%20268%20941%0A~29.9%20km%20%7C%20Ve%C4%8Derek%20%7C%20%0Ahttps%3A//reality.bazos.cz/inzerat/220719304/31-se-zasklenym-balkonem-bulharska-6-novy-jicin.php%0A%0A11.%20Mn%C3%AD%C5%A1ek%20pod%20Brdy%2C%20okres%20Praha-z%C3%A1pad%2C%20kraj%20St%C5%99edo%C4%8Desk%C3%BD%0ATel%3A%20%2B420%20732%20510%20941%0A~32.3%20km%20%7C%20Manda%20%7C%20%0Ahttps%3A//www.sreality.cz/detail/prodej/byt/3%2Bkk/mnisek-pod-brdy-mnisek-pod-brdy-v-edenu/1455878220%0A%0A12.%20Adamov%2C%20okres%20Blansko%2C%20kraj%20Jihomoravsk%C3%BD%0ATel%3A%20%2B420%20737%20920%20201%0A~32.4%20km%20%7C%20Tau%C5%A1%20%7C%20%0Ahttps%3A//reality.bazos.cz/inzerat/220710695/prodej-bytu-31-73m2-osobni-adamov-okr-blansko.php%0A%0A13.%20Brno%2C%20okres%20Brno-m%C4%9Bsto%2C%20kraj%20Jihomoravsk%C3%BD%0ATel%3A%20%2B420%20774%20110%20353%0A~36.8%20km%20%7C%20Tau%C5%A1%20%7C%20%0Ahttps%3A//www.sreality.cz/detail/prodej/byt/2%2Bkk/brno--krenova/3259363404%0A%0A14.%20%C4%8Cesk%C3%BD%20Brod%2C%20okres%20Kol%C3%ADn%2C%20kraj%20St%C5%99edo%C4%8Desk%C3%BD%0ATel%3A%20%2B420%20603%20515%20941%0A~38.8%20km%20%7C%20Nemes%20%7C%20%0Ahttps%3A//www.sreality.cz/detail/prodej/komercni/ostatni-komercni-prostory/cesky-brod/2745463628%0A%0A15.%20V%C3%ADtkov%2C%20okres%20Opava%2C%20kraj%20Moravskoslezsk%C3%BD%0ATel%3A%20%2B420%20731%20656%20758%0A~39.8%20km%20%7C%20Ve%C4%8Derek%20%7C%20%0Ahttps%3A//reality.bazos.cz/inzerat/220728414/prodej-komercniho-objektu.php%0A%0A16.%20Hradi%C5%A1tko%2C%20okres%20Nymburk%2C%20kraj%20St%C5%99edo%C4%8Desk%C3%BD%0ATel%3A%20%2B420%20725%20101%20026%0A~40.2%20km%20%7C%20Nemes%20%7C%20%0Ahttps%3A//www.sreality.cz/detail/prodej/dum/chata/hradistko-hradistko-kersko/1084682316%0A%0A17.%20Plze%C5%88%2C%20okres%20Plze%C5%88-m%C4%9Bsto%2C%20kraj%20Plze%C5%88sk%C3%BD%0ATel%3A%20%2B420%20775%20016%20112%0A~40.7%20km%20%7C%20Mare%C5%A1kov%C3%A1%20%7C%20%0Ahttps%3A//reality.bazos.cz/inzerat/220730110/prodam-byt-1kk-20-m-plzen-bory-u-oc-luna.php%0A%0A18.%20Votice%2C%20okres%20Bene%C5%A1ov%2C%20kraj%20St%C5%99edo%C4%8Desk%C3%BD%0A~44.2%20km%20%7C%20Nemes%20%7C%20%0Ahttps%3A//www.byty.cz/komercni-stavebni-pozemky-na-prodej-votice-husova/xad14062702.aspx" target="_blank" class="btn btn-wa" style='display:block; margin-bottom:5px; text-align:center;'>WhatsApp</a>
-            <button onclick="downloadOpText('Taušová')" class="btn btn-copy" style='display:block; width:100%;'>Stáhnout TXT</button>
-            <textarea id="txt_Taušová" style="display:none;">1. Praha, okres Praha, kraj Hlavní město Praha
+            <h4 style='margin-top:0;'>👤 Sadecká</h4>
+            <p>Zakázek: 2</p>
+            <a href="https://wa.me/?text=1.%20Praha%2C%20okres%20Praha%2C%20kraj%20Hlavn%C3%AD%20m%C4%9Bsto%20Praha%0ATel%3A%20%2B420%20720%20213%20724%0A~1.5%20km%20%7C%20Manda%20%7C%20%0Ahttps%3A//www.sreality.cz/detail/prodej/byt/3%2Bkk/praha--mezi-vodami/1575415884%0A%0A2.%20Mn%C3%AD%C5%A1ek%20pod%20Brdy%2C%20okres%20Praha-z%C3%A1pad%2C%20kraj%20St%C5%99edo%C4%8Desk%C3%BD%0ATel%3A%20%2B420%20732%20510%20941%0A~32.3%20km%20%7C%20Manda%20%7C%20%0Ahttps%3A//www.sreality.cz/detail/prodej/byt/3%2Bkk/mnisek-pod-brdy-mnisek-pod-brdy-v-edenu/1455878220" target="_blank" class="btn btn-wa" style='display:block; margin-bottom:5px; text-align:center;'>WhatsApp</a>
+            <button onclick="downloadOpText('Sadecká')" class="btn btn-copy" style='display:block; width:100%;'>Stáhnout TXT</button>
+            <textarea id="txt_Sadecká" style="display:none;">1. Praha, okres Praha, kraj Hlavní město Praha
 Tel: +420 720 213 724
 ~1.5 km | Manda | 
 https://www.sreality.cz/detail/prodej/byt/3+kk/praha--mezi-vodami/1575415884
 
-2. Vyškov, okres Vyškov, kraj Jihomoravský
+2. Mníšek pod Brdy, okres Praha-západ, kraj Středočeský
+Tel: +420 732 510 941
+~32.3 km | Manda | 
+https://www.sreality.cz/detail/prodej/byt/3+kk/mnisek-pod-brdy-mnisek-pod-brdy-v-edenu/1455878220</textarea>
+        </div>
+        <div style='border:1px solid #ddd; padding:15px; border-radius:8px; background:#fafafa; flex:1; min-width:250px;'>
+            <h4 style='margin-top:0;'>👤 Taušová</h4>
+            <p>Zakázek: 16</p>
+            <a href="https://wa.me/?text=1.%20Vy%C5%A1kov%2C%20okres%20Vy%C5%A1kov%2C%20kraj%20Jihomoravsk%C3%BD%0ATel%3A%20%2B420%20602%20445%20652%0A~3.5%20km%20%7C%20Tau%C5%A1%20%7C%20%0Ahttps%3A//reality.bazos.cz/inzerat/220707342/garaz-vyskov.php%0A%0A2.%20Ostrava%2C%20okres%20Ostrava-m%C4%9Bsto%2C%20kraj%20Moravskoslezsk%C3%BD%0ATel%3A%20%2B420%20603%20731%20520%0A~3.9%20km%20%7C%20Hrub%C3%A1%20%7C%20%0Ahttps%3A//www.sreality.cz/detail/prodej/komercni/restaurace/ostrava-moravska-ostrava-stodolni/628486220%0A%0A3.%20Praha%209%2C%20%C4%8Cakovice%2C%20okres%20Praha%2C%20kraj%20Hlavn%C3%AD%20m%C4%9Bsto%20Praha%0ATel%3A%20%2B420%20730%20857%20293%0A~5.5%20km%20%7C%20Nemes%20%7C%20%0Ahttps%3A//www.sreality.cz/detail/prodej/byt/2%2Bkk/praha--kojeticka/1592193100%0A%0A4.%20Praha%2C%20Vyso%C4%8Dany%2C%20okres%20Praha%2C%20kraj%20Hlavn%C3%AD%20m%C4%9Bsto%20Praha%0ATel%3A%20%2B420%20728%20741%20729%0A~6.2%20km%20%7C%20Nemes%20%7C%20%0Ahttps%3A//www.sreality.cz/detail/prodej/byt/2%2Bkk/praha-vysocany-freyova/157675596%0A%0A5.%20Vratimov%2C%20okres%20Ostrava-m%C4%9Bsto%2C%20kraj%20Moravskoslezsk%C3%BD%0ATel%3A%20%2B420%20605%20823%20410%0A~10.1%20km%20%7C%20Hrub%C3%A1%20%7C%20%0Ahttps%3A//reality.bazos.cz/inzerat/220719784/garaz.php%0A%0A6.%20Hav%C3%AD%C5%99ov%2C%20okres%20Karvin%C3%A1%2C%20kraj%20Moravskoslezsk%C3%BD%0A~16.3%20km%20%7C%20Hrub%C3%A1%20%7C%20%0Ahttps%3A//www.avizo.cz/reality/prodam-chatku-v-os-vlastnictvi-19876400.html%0A%0A7.%20Beroun%2C%20okres%20Beroun%2C%20kraj%20St%C5%99edo%C4%8Desk%C3%BD%0ATel%3A%20%2B420%20605%20152%20602%0A~17.1%20km%20%7C%20Modr%C3%BD%20%7C%20%0Ahttps%3A//reality.bazos.cz/inzerat/220728226/viceucelovy-komercni-objekt-autoservispneuservisvyroba.php%0A%0A8.%20Klatovy%2C%20okres%20Klatovy%2C%20kraj%20Plze%C5%88sk%C3%BD%0ATel%3A%20%2B420%20725%20665%20911%0A~27.4%20km%20%7C%20Mare%C5%A1kov%C3%A1%20%7C%20%0Ahttps%3A//reality.bazos.cz/inzerat/220717115/prodej-bytu-11-s-garazi-klatovy.php%0A%0A9.%20Nov%C3%BD%20Ji%C4%8D%C3%ADn%2C%20okres%20Nov%C3%BD%20Ji%C4%8D%C3%ADn%2C%20kraj%20Moravskoslezsk%C3%BD%0ATel%3A%20%2B420%20603%20268%20941%0A~29.9%20km%20%7C%20Ve%C4%8Derek%20%7C%20%0Ahttps%3A//reality.bazos.cz/inzerat/220719304/31-se-zasklenym-balkonem-bulharska-6-novy-jicin.php%0A%0A10.%20Adamov%2C%20okres%20Blansko%2C%20kraj%20Jihomoravsk%C3%BD%0ATel%3A%20%2B420%20737%20920%20201%0A~32.4%20km%20%7C%20Tau%C5%A1%20%7C%20%0Ahttps%3A//reality.bazos.cz/inzerat/220710695/prodej-bytu-31-73m2-osobni-adamov-okr-blansko.php%0A%0A11.%20Brno%2C%20okres%20Brno-m%C4%9Bsto%2C%20kraj%20Jihomoravsk%C3%BD%0ATel%3A%20%2B420%20774%20110%20353%0A~36.8%20km%20%7C%20Tau%C5%A1%20%7C%20%0Ahttps%3A//www.sreality.cz/detail/prodej/byt/2%2Bkk/brno--krenova/3259363404%0A%0A12.%20%C4%8Cesk%C3%BD%20Brod%2C%20okres%20Kol%C3%ADn%2C%20kraj%20St%C5%99edo%C4%8Desk%C3%BD%0ATel%3A%20%2B420%20603%20515%20941%0A~38.8%20km%20%7C%20Nemes%20%7C%20%0Ahttps%3A//www.sreality.cz/detail/prodej/komercni/ostatni-komercni-prostory/cesky-brod/2745463628%0A%0A13.%20V%C3%ADtkov%2C%20okres%20Opava%2C%20kraj%20Moravskoslezsk%C3%BD%0ATel%3A%20%2B420%20731%20656%20758%0A~39.8%20km%20%7C%20Ve%C4%8Derek%20%7C%20%0Ahttps%3A//reality.bazos.cz/inzerat/220728414/prodej-komercniho-objektu.php%0A%0A14.%20Hradi%C5%A1tko%2C%20okres%20Nymburk%2C%20kraj%20St%C5%99edo%C4%8Desk%C3%BD%0ATel%3A%20%2B420%20725%20101%20026%0A~40.2%20km%20%7C%20Nemes%20%7C%20%0Ahttps%3A//www.sreality.cz/detail/prodej/dum/chata/hradistko-hradistko-kersko/1084682316%0A%0A15.%20Plze%C5%88%2C%20okres%20Plze%C5%88-m%C4%9Bsto%2C%20kraj%20Plze%C5%88sk%C3%BD%0ATel%3A%20%2B420%20775%20016%20112%0A~40.7%20km%20%7C%20Mare%C5%A1kov%C3%A1%20%7C%20%0Ahttps%3A//reality.bazos.cz/inzerat/220730110/prodam-byt-1kk-20-m-plzen-bory-u-oc-luna.php%0A%0A16.%20Votice%2C%20okres%20Bene%C5%A1ov%2C%20kraj%20St%C5%99edo%C4%8Desk%C3%BD%0A~44.2%20km%20%7C%20Nemes%20%7C%20%0Ahttps%3A//www.byty.cz/komercni-stavebni-pozemky-na-prodej-votice-husova/xad14062702.aspx" target="_blank" class="btn btn-wa" style='display:block; margin-bottom:5px; text-align:center;'>WhatsApp</a>
+            <button onclick="downloadOpText('Taušová')" class="btn btn-copy" style='display:block; width:100%;'>Stáhnout TXT</button>
+            <textarea id="txt_Taušová" style="display:none;">1. Vyškov, okres Vyškov, kraj Jihomoravský
 Tel: +420 602 445 652
 ~3.5 km | Tauš | 
 https://reality.bazos.cz/inzerat/220707342/garaz-vyskov.php
 
-3. Ostrava, okres Ostrava-město, kraj Moravskoslezský
+2. Ostrava, okres Ostrava-město, kraj Moravskoslezský
 Tel: +420 603 731 520
 ~3.9 km | Hrubá | 
 https://www.sreality.cz/detail/prodej/komercni/restaurace/ostrava-moravska-ostrava-stodolni/628486220
 
-4. Praha 9, Čakovice, okres Praha, kraj Hlavní město Praha
+3. Praha 9, Čakovice, okres Praha, kraj Hlavní město Praha
 Tel: +420 730 857 293
 ~5.5 km | Nemes | 
 https://www.sreality.cz/detail/prodej/byt/2+kk/praha--kojeticka/1592193100
 
-5. Praha, Vysočany, okres Praha, kraj Hlavní město Praha
+4. Praha, Vysočany, okres Praha, kraj Hlavní město Praha
 Tel: +420 728 741 729
 ~6.2 km | Nemes | 
 https://www.sreality.cz/detail/prodej/byt/2+kk/praha-vysocany-freyova/157675596
 
-6. Vratimov, okres Ostrava-město, kraj Moravskoslezský
+5. Vratimov, okres Ostrava-město, kraj Moravskoslezský
 Tel: +420 605 823 410
 ~10.1 km | Hrubá | 
 https://reality.bazos.cz/inzerat/220719784/garaz.php
 
-7. Havířov, okres Karviná, kraj Moravskoslezský
+6. Havířov, okres Karviná, kraj Moravskoslezský
 ~16.3 km | Hrubá | 
 https://www.avizo.cz/reality/prodam-chatku-v-os-vlastnictvi-19876400.html
 
-8. Beroun, okres Beroun, kraj Středočeský
+7. Beroun, okres Beroun, kraj Středočeský
 Tel: +420 605 152 602
 ~17.1 km | Modrý | 
 https://reality.bazos.cz/inzerat/220728226/viceucelovy-komercni-objekt-autoservispneuservisvyroba.php
 
-9. Klatovy, okres Klatovy, kraj Plzeňský
+8. Klatovy, okres Klatovy, kraj Plzeňský
 Tel: +420 725 665 911
 ~27.4 km | Marešková | 
 https://reality.bazos.cz/inzerat/220717115/prodej-bytu-11-s-garazi-klatovy.php
 
-10. Nový Jičín, okres Nový Jičín, kraj Moravskoslezský
+9. Nový Jičín, okres Nový Jičín, kraj Moravskoslezský
 Tel: +420 603 268 941
 ~29.9 km | Večerek | 
 https://reality.bazos.cz/inzerat/220719304/31-se-zasklenym-balkonem-bulharska-6-novy-jicin.php
 
-11. Mníšek pod Brdy, okres Praha-západ, kraj Středočeský
-Tel: +420 732 510 941
-~32.3 km | Manda | 
-https://www.sreality.cz/detail/prodej/byt/3+kk/mnisek-pod-brdy-mnisek-pod-brdy-v-edenu/1455878220
-
-12. Adamov, okres Blansko, kraj Jihomoravský
+10. Adamov, okres Blansko, kraj Jihomoravský
 Tel: +420 737 920 201
 ~32.4 km | Tauš | 
 https://reality.bazos.cz/inzerat/220710695/prodej-bytu-31-73m2-osobni-adamov-okr-blansko.php
 
-13. Brno, okres Brno-město, kraj Jihomoravský
+11. Brno, okres Brno-město, kraj Jihomoravský
 Tel: +420 774 110 353
 ~36.8 km | Tauš | 
 https://www.sreality.cz/detail/prodej/byt/2+kk/brno--krenova/3259363404
 
-14. Český Brod, okres Kolín, kraj Středočeský
+12. Český Brod, okres Kolín, kraj Středočeský
 Tel: +420 603 515 941
 ~38.8 km | Nemes | 
 https://www.sreality.cz/detail/prodej/komercni/ostatni-komercni-prostory/cesky-brod/2745463628
 
-15. Vítkov, okres Opava, kraj Moravskoslezský
+13. Vítkov, okres Opava, kraj Moravskoslezský
 Tel: +420 731 656 758
 ~39.8 km | Večerek | 
 https://reality.bazos.cz/inzerat/220728414/prodej-komercniho-objektu.php
 
-16. Hradištko, okres Nymburk, kraj Středočeský
+14. Hradištko, okres Nymburk, kraj Středočeský
 Tel: +420 725 101 026
 ~40.2 km | Nemes | 
 https://www.sreality.cz/detail/prodej/dum/chata/hradistko-hradistko-kersko/1084682316
 
-17. Plzeň, okres Plzeň-město, kraj Plzeňský
+15. Plzeň, okres Plzeň-město, kraj Plzeňský
 Tel: +420 775 016 112
 ~40.7 km | Marešková | 
 https://reality.bazos.cz/inzerat/220730110/prodam-byt-1kk-20-m-plzen-bory-u-oc-luna.php
 
-18. Votice, okres Benešov, kraj Středočeský
+16. Votice, okres Benešov, kraj Středočeský
 ~44.2 km | Nemes | 
 https://www.byty.cz/komercni-stavebni-pozemky-na-prodej-votice-husova/xad14062702.aspx</textarea>
         </div></div></div>
-    <div class='card'><h3>📍 Mapa zakázek</h3><div class='map-container'><div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -> Trust Notebook</span><iframe srcdoc="&lt;!DOCTYPE html&gt;
+        <div class='card'><h3>📍 Mapa zakázek</h3><div class='map-container'><div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -> Trust Notebook</span><iframe srcdoc="&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
     
@@ -135,7 +164,7 @@ https://www.byty.cz/komercni-stavebni-pozemky-na-prodej-votice-husova/xad1406270
             &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; /&gt;
             &lt;style&gt;
-                #map_1dd6023d551f11c70d4ec68f28fb21b6 {
+                #map_e6cf521e6652c604c75dfc4d7b0302cf {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -172,14 +201,14 @@ https://www.byty.cz/komercni-stavebni-pozemky-na-prodej-votice-husova/xad1406270
 &lt;body&gt;
     
     
-            &lt;div class=&quot;folium-map&quot; id=&quot;map_1dd6023d551f11c70d4ec68f28fb21b6&quot; &gt;&lt;/div&gt;
+            &lt;div class=&quot;folium-map&quot; id=&quot;map_e6cf521e6652c604c75dfc4d7b0302cf&quot; &gt;&lt;/div&gt;
         
 &lt;/body&gt;
 &lt;script&gt;
     
     
-            var map_1dd6023d551f11c70d4ec68f28fb21b6 = L.map(
-                &quot;map_1dd6023d551f11c70d4ec68f28fb21b6&quot;,
+            var map_e6cf521e6652c604c75dfc4d7b0302cf = L.map(
+                &quot;map_e6cf521e6652c604c75dfc4d7b0302cf&quot;,
                 {
                     center: [49.8, 15.5],
                     crs: L.CRS.EPSG3857,
@@ -196,7 +225,7 @@ https://www.byty.cz/komercni-stavebni-pozemky-na-prodej-votice-husova/xad1406270
 
         
     
-            var tile_layer_8b0e86c65f61bb4cceaa7ad2247be065 = L.tileLayer(
+            var tile_layer_9b27d3150f93e27bd03df750e94a07c2 = L.tileLayer(
                 &quot;https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png&quot;,
                 {
   &quot;minZoom&quot;: 0,
@@ -213,17 +242,17 @@ https://www.byty.cz/komercni-stavebni-pozemky-na-prodej-votice-husova/xad1406270
             );
         
     
-            tile_layer_8b0e86c65f61bb4cceaa7ad2247be065.addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            tile_layer_9b27d3150f93e27bd03df750e94a07c2.addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-            var marker_05cd0fbb90384a32626dcd65bff8cc04 = L.marker(
+            var marker_0051f48703ee51459863e248b5c2443a = L.marker(
                 [50.0792331, 14.4832089],
                 {
 }
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-            var icon_d88567fd4d5f1b137a067a4323477615 = L.AwesomeMarkers.icon(
+            var icon_cd1161d9dbf798e960675e93ea05145e = L.AwesomeMarkers.icon(
                 {
   &quot;markerColor&quot;: &quot;purple&quot;,
   &quot;iconColor&quot;: &quot;white&quot;,
@@ -234,24 +263,24 @@ https://www.byty.cz/komercni-stavebni-pozemky-na-prodej-votice-husova/xad1406270
             );
         
     
-        var popup_a083074e63ce41db81ec3fe3e785ff30 = L.popup({
+        var popup_21e9c3f12b65f1afb936dd6790d57dfc = L.popup({
   &quot;maxWidth&quot;: &quot;100%&quot;,
 });
 
         
             
-                var html_7afa9f6551bde4a9393091f6306e46ae = $(`&lt;div id=&quot;html_7afa9f6551bde4a9393091f6306e46ae&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Makléř:&lt;/b&gt; Nemes&lt;/div&gt;`)[0];
-                popup_a083074e63ce41db81ec3fe3e785ff30.setContent(html_7afa9f6551bde4a9393091f6306e46ae);
+                var html_33b816cbc64ff5168fb31743ce19f5b1 = $(`&lt;div id=&quot;html_33b816cbc64ff5168fb31743ce19f5b1&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Makléř:&lt;/b&gt; Nemes&lt;/div&gt;`)[0];
+                popup_21e9c3f12b65f1afb936dd6790d57dfc.setContent(html_33b816cbc64ff5168fb31743ce19f5b1);
             
         
 
-        marker_05cd0fbb90384a32626dcd65bff8cc04.bindPopup(popup_a083074e63ce41db81ec3fe3e785ff30)
+        marker_0051f48703ee51459863e248b5c2443a.bindPopup(popup_21e9c3f12b65f1afb936dd6790d57dfc)
         ;
 
         
     
     
-            marker_05cd0fbb90384a32626dcd65bff8cc04.bindTooltip(
+            marker_0051f48703ee51459863e248b5c2443a.bindTooltip(
                 `&lt;div&gt;
                      Makléř: Nemes | Limit: 50.0 km
                  &lt;/div&gt;`,
@@ -261,16 +290,16 @@ https://www.byty.cz/komercni-stavebni-pozemky-na-prodej-votice-husova/xad1406270
             );
         
     
-                marker_05cd0fbb90384a32626dcd65bff8cc04.setIcon(icon_d88567fd4d5f1b137a067a4323477615);
+                marker_0051f48703ee51459863e248b5c2443a.setIcon(icon_cd1161d9dbf798e960675e93ea05145e);
             
     
-            var circle_d6446040703557094db04e97cc17b5a0 = L.circle(
+            var circle_6074ad3a9c5114de4d7ee44f213589d2 = L.circle(
                 [50.0792331, 14.4832089],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;green&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;green&quot;, &quot;fillOpacity&quot;: 0.06, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 50000.0, &quot;stroke&quot;: true, &quot;weight&quot;: 2}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-            circle_d6446040703557094db04e97cc17b5a0.bindTooltip(
+            circle_6074ad3a9c5114de4d7ee44f213589d2.bindTooltip(
                 `&lt;div&gt;
                      Dosah: Nemes (50.0 km)
                  &lt;/div&gt;`,
@@ -280,14 +309,14 @@ https://www.byty.cz/komercni-stavebni-pozemky-na-prodej-votice-husova/xad1406270
             );
         
     
-            var marker_5cbe25be7ddd7acbfdb1f045ddbd882c = L.marker(
+            var marker_83b11f5e13f8921d4b5683004a3e32d2 = L.marker(
                 [49.8413117, 18.2892586],
                 {
 }
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-            var icon_a77ef3714305721b1440021d66f31cc5 = L.AwesomeMarkers.icon(
+            var icon_a323bd9f25d23789c495e1cff7bc1087 = L.AwesomeMarkers.icon(
                 {
   &quot;markerColor&quot;: &quot;purple&quot;,
   &quot;iconColor&quot;: &quot;white&quot;,
@@ -298,24 +327,24 @@ https://www.byty.cz/komercni-stavebni-pozemky-na-prodej-votice-husova/xad1406270
             );
         
     
-        var popup_1b4d6fd59585dfe6424393ebfc53b058 = L.popup({
+        var popup_bb14338d72d55b1590a3144ca1321a41 = L.popup({
   &quot;maxWidth&quot;: &quot;100%&quot;,
 });
 
         
             
-                var html_a2972ea156e967defa9cc9be7e21a533 = $(`&lt;div id=&quot;html_a2972ea156e967defa9cc9be7e21a533&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Makléř:&lt;/b&gt; Hrubá&lt;/div&gt;`)[0];
-                popup_1b4d6fd59585dfe6424393ebfc53b058.setContent(html_a2972ea156e967defa9cc9be7e21a533);
+                var html_30e2589a38a61f6df29f439c7ef39c7c = $(`&lt;div id=&quot;html_30e2589a38a61f6df29f439c7ef39c7c&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Makléř:&lt;/b&gt; Hrubá&lt;/div&gt;`)[0];
+                popup_bb14338d72d55b1590a3144ca1321a41.setContent(html_30e2589a38a61f6df29f439c7ef39c7c);
             
         
 
-        marker_5cbe25be7ddd7acbfdb1f045ddbd882c.bindPopup(popup_1b4d6fd59585dfe6424393ebfc53b058)
+        marker_83b11f5e13f8921d4b5683004a3e32d2.bindPopup(popup_bb14338d72d55b1590a3144ca1321a41)
         ;
 
         
     
     
-            marker_5cbe25be7ddd7acbfdb1f045ddbd882c.bindTooltip(
+            marker_83b11f5e13f8921d4b5683004a3e32d2.bindTooltip(
                 `&lt;div&gt;
                      Makléř: Hrubá | Limit: 50.0 km
                  &lt;/div&gt;`,
@@ -325,16 +354,16 @@ https://www.byty.cz/komercni-stavebni-pozemky-na-prodej-votice-husova/xad1406270
             );
         
     
-                marker_5cbe25be7ddd7acbfdb1f045ddbd882c.setIcon(icon_a77ef3714305721b1440021d66f31cc5);
+                marker_83b11f5e13f8921d4b5683004a3e32d2.setIcon(icon_a323bd9f25d23789c495e1cff7bc1087);
             
     
-            var circle_4b6384ab7ff38a60cde8e0a2fbb6c5f5 = L.circle(
+            var circle_9f35ba75efd6797230ab944f3b5c9bdd = L.circle(
                 [49.8413117, 18.2892586],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;green&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;green&quot;, &quot;fillOpacity&quot;: 0.06, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 50000.0, &quot;stroke&quot;: true, &quot;weight&quot;: 2}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-            circle_4b6384ab7ff38a60cde8e0a2fbb6c5f5.bindTooltip(
+            circle_9f35ba75efd6797230ab944f3b5c9bdd.bindTooltip(
                 `&lt;div&gt;
                      Dosah: Hrubá (50.0 km)
                  &lt;/div&gt;`,
@@ -344,14 +373,14 @@ https://www.byty.cz/komercni-stavebni-pozemky-na-prodej-votice-husova/xad1406270
             );
         
     
-            var marker_e90ee4b64fe4f4231deb553f45537ce5 = L.marker(
+            var marker_ef8ca7bba0b4825dae3cbd61b0108f07 = L.marker(
                 [49.48639, 13.58139],
                 {
 }
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-            var icon_be088ea514f8d36529c0dbc265210c85 = L.AwesomeMarkers.icon(
+            var icon_0d938b541ccfc7e6ac134057941734ec = L.AwesomeMarkers.icon(
                 {
   &quot;markerColor&quot;: &quot;purple&quot;,
   &quot;iconColor&quot;: &quot;white&quot;,
@@ -362,24 +391,24 @@ https://www.byty.cz/komercni-stavebni-pozemky-na-prodej-votice-husova/xad1406270
             );
         
     
-        var popup_45daa82d6c3ee4f4406a034760355287 = L.popup({
+        var popup_8d46debfa211898a8ceaa6fd61821d96 = L.popup({
   &quot;maxWidth&quot;: &quot;100%&quot;,
 });
 
         
             
-                var html_a2db56f383bd2d3914d17a4dbad0b8f2 = $(`&lt;div id=&quot;html_a2db56f383bd2d3914d17a4dbad0b8f2&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Makléř:&lt;/b&gt; Marešková&lt;/div&gt;`)[0];
-                popup_45daa82d6c3ee4f4406a034760355287.setContent(html_a2db56f383bd2d3914d17a4dbad0b8f2);
+                var html_53d81e661aa51785b3fc0dcedc00a499 = $(`&lt;div id=&quot;html_53d81e661aa51785b3fc0dcedc00a499&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Makléř:&lt;/b&gt; Marešková&lt;/div&gt;`)[0];
+                popup_8d46debfa211898a8ceaa6fd61821d96.setContent(html_53d81e661aa51785b3fc0dcedc00a499);
             
         
 
-        marker_e90ee4b64fe4f4231deb553f45537ce5.bindPopup(popup_45daa82d6c3ee4f4406a034760355287)
+        marker_ef8ca7bba0b4825dae3cbd61b0108f07.bindPopup(popup_8d46debfa211898a8ceaa6fd61821d96)
         ;
 
         
     
     
-            marker_e90ee4b64fe4f4231deb553f45537ce5.bindTooltip(
+            marker_ef8ca7bba0b4825dae3cbd61b0108f07.bindTooltip(
                 `&lt;div&gt;
                      Makléř: Marešková | Limit: 50.0 km
                  &lt;/div&gt;`,
@@ -389,16 +418,16 @@ https://www.byty.cz/komercni-stavebni-pozemky-na-prodej-votice-husova/xad1406270
             );
         
     
-                marker_e90ee4b64fe4f4231deb553f45537ce5.setIcon(icon_be088ea514f8d36529c0dbc265210c85);
+                marker_ef8ca7bba0b4825dae3cbd61b0108f07.setIcon(icon_0d938b541ccfc7e6ac134057941734ec);
             
     
-            var circle_1194328fdd7537ec4ba51584344c2bad = L.circle(
+            var circle_d9fe6a7b79e99d68f68083901edaac6a = L.circle(
                 [49.48639, 13.58139],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;green&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;green&quot;, &quot;fillOpacity&quot;: 0.06, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 50000.0, &quot;stroke&quot;: true, &quot;weight&quot;: 2}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-            circle_1194328fdd7537ec4ba51584344c2bad.bindTooltip(
+            circle_d9fe6a7b79e99d68f68083901edaac6a.bindTooltip(
                 `&lt;div&gt;
                      Dosah: Marešková (50.0 km)
                  &lt;/div&gt;`,
@@ -408,14 +437,14 @@ https://www.byty.cz/komercni-stavebni-pozemky-na-prodej-votice-husova/xad1406270
             );
         
     
-            var marker_4f1f6f38259d6c5d2fb1debcce4caca8 = L.marker(
+            var marker_b4a7c1825f2f3106c2541c6d5e3494dc = L.marker(
                 [49.2762951, 16.951463],
                 {
 }
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-            var icon_4c2399c286c0636a729b74efbdc9196e = L.AwesomeMarkers.icon(
+            var icon_eb4e3c7acde67919aaa9d051cc1eb609 = L.AwesomeMarkers.icon(
                 {
   &quot;markerColor&quot;: &quot;purple&quot;,
   &quot;iconColor&quot;: &quot;white&quot;,
@@ -426,24 +455,24 @@ https://www.byty.cz/komercni-stavebni-pozemky-na-prodej-votice-husova/xad1406270
             );
         
     
-        var popup_b0d1dd519822e347ad173fec29a7a158 = L.popup({
+        var popup_7ae79b4a2d1cc452fe3e76fd75572326 = L.popup({
   &quot;maxWidth&quot;: &quot;100%&quot;,
 });
 
         
             
-                var html_227c7c57fbc202e41af9688dec2d7ced = $(`&lt;div id=&quot;html_227c7c57fbc202e41af9688dec2d7ced&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Makléř:&lt;/b&gt; Tauš&lt;/div&gt;`)[0];
-                popup_b0d1dd519822e347ad173fec29a7a158.setContent(html_227c7c57fbc202e41af9688dec2d7ced);
+                var html_fd3f3fc365b15d07579cc3e57121222c = $(`&lt;div id=&quot;html_fd3f3fc365b15d07579cc3e57121222c&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Makléř:&lt;/b&gt; Tauš&lt;/div&gt;`)[0];
+                popup_7ae79b4a2d1cc452fe3e76fd75572326.setContent(html_fd3f3fc365b15d07579cc3e57121222c);
             
         
 
-        marker_4f1f6f38259d6c5d2fb1debcce4caca8.bindPopup(popup_b0d1dd519822e347ad173fec29a7a158)
+        marker_b4a7c1825f2f3106c2541c6d5e3494dc.bindPopup(popup_7ae79b4a2d1cc452fe3e76fd75572326)
         ;
 
         
     
     
-            marker_4f1f6f38259d6c5d2fb1debcce4caca8.bindTooltip(
+            marker_b4a7c1825f2f3106c2541c6d5e3494dc.bindTooltip(
                 `&lt;div&gt;
                      Makléř: Tauš | Limit: 50.0 km
                  &lt;/div&gt;`,
@@ -453,16 +482,16 @@ https://www.byty.cz/komercni-stavebni-pozemky-na-prodej-votice-husova/xad1406270
             );
         
     
-                marker_4f1f6f38259d6c5d2fb1debcce4caca8.setIcon(icon_4c2399c286c0636a729b74efbdc9196e);
+                marker_b4a7c1825f2f3106c2541c6d5e3494dc.setIcon(icon_eb4e3c7acde67919aaa9d051cc1eb609);
             
     
-            var circle_f3dfbd42e78402c3875b47b5dc961a3d = L.circle(
+            var circle_f4d6d7b842b58613f8c1d10f2e769583 = L.circle(
                 [49.2762951, 16.951463],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;green&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;green&quot;, &quot;fillOpacity&quot;: 0.06, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 50000.0, &quot;stroke&quot;: true, &quot;weight&quot;: 2}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-            circle_f3dfbd42e78402c3875b47b5dc961a3d.bindTooltip(
+            circle_f4d6d7b842b58613f8c1d10f2e769583.bindTooltip(
                 `&lt;div&gt;
                      Dosah: Tauš (50.0 km)
                  &lt;/div&gt;`,
@@ -472,14 +501,14 @@ https://www.byty.cz/komercni-stavebni-pozemky-na-prodej-votice-husova/xad1406270
             );
         
     
-            var marker_970eb7d2626f8998935ce8d481fa5b15 = L.marker(
+            var marker_2c8f92bced1e87af94cc6316a2fe2df1 = L.marker(
                 [49.7863744, 18.1327877],
                 {
 }
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-            var icon_5c08ad8036a5a5ae3ad171c739db6114 = L.AwesomeMarkers.icon(
+            var icon_2f606b0f82d19fc3d09c94546fba72f0 = L.AwesomeMarkers.icon(
                 {
   &quot;markerColor&quot;: &quot;purple&quot;,
   &quot;iconColor&quot;: &quot;white&quot;,
@@ -490,24 +519,24 @@ https://www.byty.cz/komercni-stavebni-pozemky-na-prodej-votice-husova/xad1406270
             );
         
     
-        var popup_687f17b1950f4b0b9ebd28d3a6ffeabc = L.popup({
+        var popup_6d66a1d4ab6ea0a7c6fba40c843c802f = L.popup({
   &quot;maxWidth&quot;: &quot;100%&quot;,
 });
 
         
             
-                var html_182f18b20937beebfcb638b3d9a7cbd8 = $(`&lt;div id=&quot;html_182f18b20937beebfcb638b3d9a7cbd8&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Makléř:&lt;/b&gt; Večerek&lt;/div&gt;`)[0];
-                popup_687f17b1950f4b0b9ebd28d3a6ffeabc.setContent(html_182f18b20937beebfcb638b3d9a7cbd8);
+                var html_3eeaf3f01b8a3b84ab612fc3c85c904d = $(`&lt;div id=&quot;html_3eeaf3f01b8a3b84ab612fc3c85c904d&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Makléř:&lt;/b&gt; Večerek&lt;/div&gt;`)[0];
+                popup_6d66a1d4ab6ea0a7c6fba40c843c802f.setContent(html_3eeaf3f01b8a3b84ab612fc3c85c904d);
             
         
 
-        marker_970eb7d2626f8998935ce8d481fa5b15.bindPopup(popup_687f17b1950f4b0b9ebd28d3a6ffeabc)
+        marker_2c8f92bced1e87af94cc6316a2fe2df1.bindPopup(popup_6d66a1d4ab6ea0a7c6fba40c843c802f)
         ;
 
         
     
     
-            marker_970eb7d2626f8998935ce8d481fa5b15.bindTooltip(
+            marker_2c8f92bced1e87af94cc6316a2fe2df1.bindTooltip(
                 `&lt;div&gt;
                      Makléř: Večerek | Limit: 40.0 km
                  &lt;/div&gt;`,
@@ -517,16 +546,16 @@ https://www.byty.cz/komercni-stavebni-pozemky-na-prodej-votice-husova/xad1406270
             );
         
     
-                marker_970eb7d2626f8998935ce8d481fa5b15.setIcon(icon_5c08ad8036a5a5ae3ad171c739db6114);
+                marker_2c8f92bced1e87af94cc6316a2fe2df1.setIcon(icon_2f606b0f82d19fc3d09c94546fba72f0);
             
     
-            var circle_1c28237cfdeb9a69adcc32794f93d4b7 = L.circle(
+            var circle_d6697f5f1a97a3db28d8064c17f75aaf = L.circle(
                 [49.7863744, 18.1327877],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;green&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;green&quot;, &quot;fillOpacity&quot;: 0.06, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 40000.0, &quot;stroke&quot;: true, &quot;weight&quot;: 2}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-            circle_1c28237cfdeb9a69adcc32794f93d4b7.bindTooltip(
+            circle_d6697f5f1a97a3db28d8064c17f75aaf.bindTooltip(
                 `&lt;div&gt;
                      Dosah: Večerek (40.0 km)
                  &lt;/div&gt;`,
@@ -536,14 +565,14 @@ https://www.byty.cz/komercni-stavebni-pozemky-na-prodej-votice-husova/xad1406270
             );
         
     
-            var marker_2ba8424b2b5809185e68aa9ff683c307 = L.marker(
+            var marker_0c322e1334d0f814704f3cf3965016e5 = L.marker(
                 [50.0588406, 14.2245725],
                 {
 }
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-            var icon_89cf43b317ff29ef37638007afc7170b = L.AwesomeMarkers.icon(
+            var icon_35f2aca26bb1bd80c1eb23ecdddeeeb2 = L.AwesomeMarkers.icon(
                 {
   &quot;markerColor&quot;: &quot;purple&quot;,
   &quot;iconColor&quot;: &quot;white&quot;,
@@ -554,24 +583,24 @@ https://www.byty.cz/komercni-stavebni-pozemky-na-prodej-votice-husova/xad1406270
             );
         
     
-        var popup_aa0ffce566d62b15483e6dab4d1aa49f = L.popup({
+        var popup_893f2d295d046fd0ac12a2ee5fbed0b8 = L.popup({
   &quot;maxWidth&quot;: &quot;100%&quot;,
 });
 
         
             
-                var html_83445fdbadf863d384794ebdee34fe1f = $(`&lt;div id=&quot;html_83445fdbadf863d384794ebdee34fe1f&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Makléř:&lt;/b&gt; Modrý&lt;/div&gt;`)[0];
-                popup_aa0ffce566d62b15483e6dab4d1aa49f.setContent(html_83445fdbadf863d384794ebdee34fe1f);
+                var html_feae0bd0f5acea920c5c1b039604f3d4 = $(`&lt;div id=&quot;html_feae0bd0f5acea920c5c1b039604f3d4&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Makléř:&lt;/b&gt; Modrý&lt;/div&gt;`)[0];
+                popup_893f2d295d046fd0ac12a2ee5fbed0b8.setContent(html_feae0bd0f5acea920c5c1b039604f3d4);
             
         
 
-        marker_2ba8424b2b5809185e68aa9ff683c307.bindPopup(popup_aa0ffce566d62b15483e6dab4d1aa49f)
+        marker_0c322e1334d0f814704f3cf3965016e5.bindPopup(popup_893f2d295d046fd0ac12a2ee5fbed0b8)
         ;
 
         
     
     
-            marker_2ba8424b2b5809185e68aa9ff683c307.bindTooltip(
+            marker_0c322e1334d0f814704f3cf3965016e5.bindTooltip(
                 `&lt;div&gt;
                      Makléř: Modrý | Limit: 40.0 km
                  &lt;/div&gt;`,
@@ -581,16 +610,16 @@ https://www.byty.cz/komercni-stavebni-pozemky-na-prodej-votice-husova/xad1406270
             );
         
     
-                marker_2ba8424b2b5809185e68aa9ff683c307.setIcon(icon_89cf43b317ff29ef37638007afc7170b);
+                marker_0c322e1334d0f814704f3cf3965016e5.setIcon(icon_35f2aca26bb1bd80c1eb23ecdddeeeb2);
             
     
-            var circle_7aedbc559d29588ec41c940f4aa3afba = L.circle(
+            var circle_09455e0c15650703c6a9e2fe6e1d54af = L.circle(
                 [50.0588406, 14.2245725],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;green&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;green&quot;, &quot;fillOpacity&quot;: 0.06, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 40000.0, &quot;stroke&quot;: true, &quot;weight&quot;: 2}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-            circle_7aedbc559d29588ec41c940f4aa3afba.bindTooltip(
+            circle_09455e0c15650703c6a9e2fe6e1d54af.bindTooltip(
                 `&lt;div&gt;
                      Dosah: Modrý (40.0 km)
                  &lt;/div&gt;`,
@@ -600,14 +629,14 @@ https://www.byty.cz/komercni-stavebni-pozemky-na-prodej-votice-husova/xad1406270
             );
         
     
-            var marker_55a90364756a9da0d73b47bf680fe190 = L.marker(
+            var marker_f9cf8b0638887135d14c77b44d173b74 = L.marker(
                 [50.0738, 14.4519],
                 {
 }
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-            var icon_9dd2fc90444ff19c84f17c65f9a18234 = L.AwesomeMarkers.icon(
+            var icon_048b0760216f743cd1bfcc0a2b9a80b1 = L.AwesomeMarkers.icon(
                 {
   &quot;markerColor&quot;: &quot;purple&quot;,
   &quot;iconColor&quot;: &quot;white&quot;,
@@ -618,24 +647,24 @@ https://www.byty.cz/komercni-stavebni-pozemky-na-prodej-votice-husova/xad1406270
             );
         
     
-        var popup_f733e7724365842e58355563a4f755fe = L.popup({
+        var popup_b0534751b558d38d8ca53d47fe9de77c = L.popup({
   &quot;maxWidth&quot;: &quot;100%&quot;,
 });
 
         
             
-                var html_df44b3e51f96ded7e8b5d65483241a20 = $(`&lt;div id=&quot;html_df44b3e51f96ded7e8b5d65483241a20&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Makléř:&lt;/b&gt; Manda&lt;/div&gt;`)[0];
-                popup_f733e7724365842e58355563a4f755fe.setContent(html_df44b3e51f96ded7e8b5d65483241a20);
+                var html_2597063b89206caab6f321d3c62abf42 = $(`&lt;div id=&quot;html_2597063b89206caab6f321d3c62abf42&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Makléř:&lt;/b&gt; Manda&lt;/div&gt;`)[0];
+                popup_b0534751b558d38d8ca53d47fe9de77c.setContent(html_2597063b89206caab6f321d3c62abf42);
             
         
 
-        marker_55a90364756a9da0d73b47bf680fe190.bindPopup(popup_f733e7724365842e58355563a4f755fe)
+        marker_f9cf8b0638887135d14c77b44d173b74.bindPopup(popup_b0534751b558d38d8ca53d47fe9de77c)
         ;
 
         
     
     
-            marker_55a90364756a9da0d73b47bf680fe190.bindTooltip(
+            marker_f9cf8b0638887135d14c77b44d173b74.bindTooltip(
                 `&lt;div&gt;
                      Makléř: Manda | Limit: 35.0 km
                  &lt;/div&gt;`,
@@ -645,16 +674,16 @@ https://www.byty.cz/komercni-stavebni-pozemky-na-prodej-votice-husova/xad1406270
             );
         
     
-                marker_55a90364756a9da0d73b47bf680fe190.setIcon(icon_9dd2fc90444ff19c84f17c65f9a18234);
+                marker_f9cf8b0638887135d14c77b44d173b74.setIcon(icon_048b0760216f743cd1bfcc0a2b9a80b1);
             
     
-            var circle_cd33a159f858f69e5ccc0f2e0a529b00 = L.circle(
+            var circle_bd77329472c778d2c933ee212bf90e6d = L.circle(
                 [50.0738, 14.4519],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;green&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;green&quot;, &quot;fillOpacity&quot;: 0.06, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 35000.0, &quot;stroke&quot;: true, &quot;weight&quot;: 2}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-            circle_cd33a159f858f69e5ccc0f2e0a529b00.bindTooltip(
+            circle_bd77329472c778d2c933ee212bf90e6d.bindTooltip(
                 `&lt;div&gt;
                      Dosah: Manda (35.0 km)
                  &lt;/div&gt;`,
@@ -664,14 +693,14 @@ https://www.byty.cz/komercni-stavebni-pozemky-na-prodej-votice-husova/xad1406270
             );
         
     
-            var marker_87f3f9d716f5a8666593889d63c5e3a8 = L.marker(
+            var marker_5223a09effe204d69f67bb2a48629829 = L.marker(
                 [50.1399316, 14.4484852],
                 {
 }
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-            var icon_a78d92b45cf705fc09df08423c4690fd = L.AwesomeMarkers.icon(
+            var icon_667565f71c14b030812f3e57ca9f9424 = L.AwesomeMarkers.icon(
                 {
   &quot;markerColor&quot;: &quot;purple&quot;,
   &quot;iconColor&quot;: &quot;white&quot;,
@@ -682,24 +711,24 @@ https://www.byty.cz/komercni-stavebni-pozemky-na-prodej-votice-husova/xad1406270
             );
         
     
-        var popup_b264989eb43ac9d62ecc70220e15c31c = L.popup({
+        var popup_12a0c6a1b1b725fd667e2d9a84c0f424 = L.popup({
   &quot;maxWidth&quot;: &quot;100%&quot;,
 });
 
         
             
-                var html_6b8a4cf184f804e2f3571f6fd1de6224 = $(`&lt;div id=&quot;html_6b8a4cf184f804e2f3571f6fd1de6224&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Makléř:&lt;/b&gt; Suchánková&lt;/div&gt;`)[0];
-                popup_b264989eb43ac9d62ecc70220e15c31c.setContent(html_6b8a4cf184f804e2f3571f6fd1de6224);
+                var html_bad6ecbbc04232e60dd276ea24430a0a = $(`&lt;div id=&quot;html_bad6ecbbc04232e60dd276ea24430a0a&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Makléř:&lt;/b&gt; Suchánková&lt;/div&gt;`)[0];
+                popup_12a0c6a1b1b725fd667e2d9a84c0f424.setContent(html_bad6ecbbc04232e60dd276ea24430a0a);
             
         
 
-        marker_87f3f9d716f5a8666593889d63c5e3a8.bindPopup(popup_b264989eb43ac9d62ecc70220e15c31c)
+        marker_5223a09effe204d69f67bb2a48629829.bindPopup(popup_12a0c6a1b1b725fd667e2d9a84c0f424)
         ;
 
         
     
     
-            marker_87f3f9d716f5a8666593889d63c5e3a8.bindTooltip(
+            marker_5223a09effe204d69f67bb2a48629829.bindTooltip(
                 `&lt;div&gt;
                      Makléř: Suchánková | Limit: 30.0 km
                  &lt;/div&gt;`,
@@ -709,16 +738,16 @@ https://www.byty.cz/komercni-stavebni-pozemky-na-prodej-votice-husova/xad1406270
             );
         
     
-                marker_87f3f9d716f5a8666593889d63c5e3a8.setIcon(icon_a78d92b45cf705fc09df08423c4690fd);
+                marker_5223a09effe204d69f67bb2a48629829.setIcon(icon_667565f71c14b030812f3e57ca9f9424);
             
     
-            var circle_a5924ebdf6259372eaeb57b4b36b6b0b = L.circle(
+            var circle_6803de2265bb773137441f8281d78027 = L.circle(
                 [50.1399316, 14.4484852],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;green&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;green&quot;, &quot;fillOpacity&quot;: 0.06, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 30000.0, &quot;stroke&quot;: true, &quot;weight&quot;: 2}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-            circle_a5924ebdf6259372eaeb57b4b36b6b0b.bindTooltip(
+            circle_6803de2265bb773137441f8281d78027.bindTooltip(
                 `&lt;div&gt;
                      Dosah: Suchánková (30.0 km)
                  &lt;/div&gt;`,
@@ -728,14 +757,14 @@ https://www.byty.cz/komercni-stavebni-pozemky-na-prodej-votice-husova/xad1406270
             );
         
     
-            var marker_d967ebe89089c8558eb30bf0eea5bfa2 = L.marker(
+            var marker_70bb889e0ad7624404d9e846506aa408 = L.marker(
                 [50.031389, 14.530556],
                 {
 }
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-            var icon_34be271367c5b65505827a306dbd7e21 = L.AwesomeMarkers.icon(
+            var icon_94451afe6c2ebcfc52200863cd2b0717 = L.AwesomeMarkers.icon(
                 {
   &quot;markerColor&quot;: &quot;purple&quot;,
   &quot;iconColor&quot;: &quot;white&quot;,
@@ -746,24 +775,24 @@ https://www.byty.cz/komercni-stavebni-pozemky-na-prodej-votice-husova/xad1406270
             );
         
     
-        var popup_1ae16b7a07f398c2ed6847beb59f5c45 = L.popup({
+        var popup_a02b2b44a6db4082520fb2d797743fff = L.popup({
   &quot;maxWidth&quot;: &quot;100%&quot;,
 });
 
         
             
-                var html_0c47687e4e51cb4324de7f8fa36e4f3b = $(`&lt;div id=&quot;html_0c47687e4e51cb4324de7f8fa36e4f3b&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Makléř:&lt;/b&gt; Motl&lt;/div&gt;`)[0];
-                popup_1ae16b7a07f398c2ed6847beb59f5c45.setContent(html_0c47687e4e51cb4324de7f8fa36e4f3b);
+                var html_9a17ca96689fea8a49abbc01b4ec56f0 = $(`&lt;div id=&quot;html_9a17ca96689fea8a49abbc01b4ec56f0&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Makléř:&lt;/b&gt; Motl&lt;/div&gt;`)[0];
+                popup_a02b2b44a6db4082520fb2d797743fff.setContent(html_9a17ca96689fea8a49abbc01b4ec56f0);
             
         
 
-        marker_d967ebe89089c8558eb30bf0eea5bfa2.bindPopup(popup_1ae16b7a07f398c2ed6847beb59f5c45)
+        marker_70bb889e0ad7624404d9e846506aa408.bindPopup(popup_a02b2b44a6db4082520fb2d797743fff)
         ;
 
         
     
     
-            marker_d967ebe89089c8558eb30bf0eea5bfa2.bindTooltip(
+            marker_70bb889e0ad7624404d9e846506aa408.bindTooltip(
                 `&lt;div&gt;
                      Makléř: Motl | Limit: 20.0 km
                  &lt;/div&gt;`,
@@ -773,16 +802,16 @@ https://www.byty.cz/komercni-stavebni-pozemky-na-prodej-votice-husova/xad1406270
             );
         
     
-                marker_d967ebe89089c8558eb30bf0eea5bfa2.setIcon(icon_34be271367c5b65505827a306dbd7e21);
+                marker_70bb889e0ad7624404d9e846506aa408.setIcon(icon_94451afe6c2ebcfc52200863cd2b0717);
             
     
-            var circle_89d41dbc1f107cc2d74bfc7136fcfc1c = L.circle(
+            var circle_8c2ca9b749dcd1c8b0ce990db4cd3cb8 = L.circle(
                 [50.031389, 14.530556],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;green&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;green&quot;, &quot;fillOpacity&quot;: 0.06, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 20000.0, &quot;stroke&quot;: true, &quot;weight&quot;: 2}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-            circle_89d41dbc1f107cc2d74bfc7136fcfc1c.bindTooltip(
+            circle_8c2ca9b749dcd1c8b0ce990db4cd3cb8.bindTooltip(
                 `&lt;div&gt;
                      Dosah: Motl (20.0 km)
                  &lt;/div&gt;`,
@@ -792,1073 +821,1073 @@ https://www.byty.cz/komercni-stavebni-pozemky-na-prodej-votice-husova/xad1406270
             );
         
     
-            var circle_marker_bfc9d97bbf7825fa477724903e58ebf8 = L.circleMarker(
+            var circle_marker_08b12079e81c652c010c085db7cf7e96 = L.circleMarker(
                 [49.821023, 18.262624],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;green&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;green&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_d32d09284e5053d2f9501bd34043423a = L.popup({
+        var popup_b00650ad432150d709ef2f62ef01dbe8 = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_8f5de2257f1ee5dbd3b220c937f28e40 = $(`&lt;div id=&quot;html_8f5de2257f1ee5dbd3b220c937f28e40&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Ostrava, okres Ostrava-město, kraj Moravskoslezský&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Hrubá&lt;br&gt;&lt;a href=&quot;https://www.sreality.cz/detail/prodej/komercni/restaurace/ostrava-moravska-ostrava-stodolni/628486220&quot; target=&quot;_blank&quot;&gt;https://www.sreality.cz/detail/prodej/komercni/restaurace/ostrava-moravska-ostrava-stodolni/628486220&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_d32d09284e5053d2f9501bd34043423a.setContent(html_8f5de2257f1ee5dbd3b220c937f28e40);
+                var html_c13a3aeb23df64bf8448e661718b01b5 = $(`&lt;div id=&quot;html_c13a3aeb23df64bf8448e661718b01b5&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Ostrava, okres Ostrava-město, kraj Moravskoslezský&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Hrubá&lt;br&gt;&lt;a href=&quot;https://www.sreality.cz/detail/prodej/komercni/restaurace/ostrava-moravska-ostrava-stodolni/628486220&quot; target=&quot;_blank&quot;&gt;https://www.sreality.cz/detail/prodej/komercni/restaurace/ostrava-moravska-ostrava-stodolni/628486220&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_b00650ad432150d709ef2f62ef01dbe8.setContent(html_c13a3aeb23df64bf8448e661718b01b5);
             
         
 
-        circle_marker_bfc9d97bbf7825fa477724903e58ebf8.bindPopup(popup_d32d09284e5053d2f9501bd34043423a)
+        circle_marker_08b12079e81c652c010c085db7cf7e96.bindPopup(popup_b00650ad432150d709ef2f62ef01dbe8)
         ;
 
         
     
     
-            var circle_marker_1a752cd626f8f536f774e37aed6da77f = L.circleMarker(
+            var circle_marker_5d1abcfda2fa7258f10719976a4ade3e = L.circleMarker(
                 [49.635883, 15.781671],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;red&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;red&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_74b57c4090d5af08ad6a0cfd1e35d251 = L.popup({
+        var popup_1a7aeec6059bdca58605b63ee131891b = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_f39f8d5e7efac0d7e3f952e43095f573 = $(`&lt;div id=&quot;html_f39f8d5e7efac0d7e3f952e43095f573&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Havlíčkova Borová, okres Havlíčkův Brod, kraj Vysočina&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220695169/prodej-prostorneho-rodinneho-domu-142-m-havlickova-borova.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220695169/prodej-prostorneho-rodinneho-domu-142-m-havlickova-borova.php&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_74b57c4090d5af08ad6a0cfd1e35d251.setContent(html_f39f8d5e7efac0d7e3f952e43095f573);
+                var html_89d1b8026a43efa25463854ee0147ff8 = $(`&lt;div id=&quot;html_89d1b8026a43efa25463854ee0147ff8&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Havlíčkova Borová, okres Havlíčkův Brod, kraj Vysočina&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220695169/prodej-prostorneho-rodinneho-domu-142-m-havlickova-borova.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220695169/prodej-prostorneho-rodinneho-domu-142-m-havlickova-borova.php&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_1a7aeec6059bdca58605b63ee131891b.setContent(html_89d1b8026a43efa25463854ee0147ff8);
             
         
 
-        circle_marker_1a752cd626f8f536f774e37aed6da77f.bindPopup(popup_74b57c4090d5af08ad6a0cfd1e35d251)
+        circle_marker_5d1abcfda2fa7258f10719976a4ade3e.bindPopup(popup_1a7aeec6059bdca58605b63ee131891b)
         ;
 
         
     
     
-            var circle_marker_99cefc4e968bd0075175f8a4bfdfe941 = L.circleMarker(
+            var circle_marker_b20b8367b70950fd4191a84208f7f299 = L.circleMarker(
                 [49.821023, 18.262624],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;green&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;green&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_6124df2a3894cbc8ccbfb4036a0069c2 = L.popup({
+        var popup_99c81b7754647a79ddfc8d86d8c6c551 = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_4dc01c7696d00b3e385971a6bf51dbd8 = $(`&lt;div id=&quot;html_4dc01c7696d00b3e385971a6bf51dbd8&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Ostrava, okres Ostrava-město, kraj Moravskoslezský&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Hrubá&lt;br&gt;&lt;a href=&quot;https://www.sreality.cz/detail/prodej/komercni/restaurace/ostrava-moravska-ostrava-stodolni/628486220&quot; target=&quot;_blank&quot;&gt;https://www.sreality.cz/detail/prodej/komercni/restaurace/ostrava-moravska-ostrava-stodolni/628486220&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_6124df2a3894cbc8ccbfb4036a0069c2.setContent(html_4dc01c7696d00b3e385971a6bf51dbd8);
+                var html_fb6d0b0bcccf217919c4fdc588bd226c = $(`&lt;div id=&quot;html_fb6d0b0bcccf217919c4fdc588bd226c&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Ostrava, okres Ostrava-město, kraj Moravskoslezský&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Hrubá&lt;br&gt;&lt;a href=&quot;https://www.sreality.cz/detail/prodej/komercni/restaurace/ostrava-moravska-ostrava-stodolni/628486220&quot; target=&quot;_blank&quot;&gt;https://www.sreality.cz/detail/prodej/komercni/restaurace/ostrava-moravska-ostrava-stodolni/628486220&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_99c81b7754647a79ddfc8d86d8c6c551.setContent(html_fb6d0b0bcccf217919c4fdc588bd226c);
             
         
 
-        circle_marker_99cefc4e968bd0075175f8a4bfdfe941.bindPopup(popup_6124df2a3894cbc8ccbfb4036a0069c2)
+        circle_marker_b20b8367b70950fd4191a84208f7f299.bindPopup(popup_99c81b7754647a79ddfc8d86d8c6c551)
         ;
 
         
     
     
-            var circle_marker_7fce464a3d5c73a4150f571ceb0925fb = L.circleMarker(
+            var circle_marker_4ecdb457470a3931578c820aae779092 = L.circleMarker(
                 [49.821023, 18.262624],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;green&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;green&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_2fd1c5a330f958a60c3d5bd378623a22 = L.popup({
+        var popup_005fca2f28d17d3812e8a9011f62417b = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_8a144eb43bfa528d04282b429cce6aa6 = $(`&lt;div id=&quot;html_8a144eb43bfa528d04282b429cce6aa6&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Ostrava, okres Ostrava-město, kraj Moravskoslezský&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Hrubá&lt;br&gt;&lt;a href=&quot;https://www.sreality.cz/detail/prodej/komercni/restaurace/ostrava-moravska-ostrava-stodolni/628486220&quot; target=&quot;_blank&quot;&gt;https://www.sreality.cz/detail/prodej/komercni/restaurace/ostrava-moravska-ostrava-stodolni/628486220&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_2fd1c5a330f958a60c3d5bd378623a22.setContent(html_8a144eb43bfa528d04282b429cce6aa6);
+                var html_09a02276e934b5ecc2816ab021827b57 = $(`&lt;div id=&quot;html_09a02276e934b5ecc2816ab021827b57&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Ostrava, okres Ostrava-město, kraj Moravskoslezský&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Hrubá&lt;br&gt;&lt;a href=&quot;https://www.sreality.cz/detail/prodej/komercni/restaurace/ostrava-moravska-ostrava-stodolni/628486220&quot; target=&quot;_blank&quot;&gt;https://www.sreality.cz/detail/prodej/komercni/restaurace/ostrava-moravska-ostrava-stodolni/628486220&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_005fca2f28d17d3812e8a9011f62417b.setContent(html_09a02276e934b5ecc2816ab021827b57);
             
         
 
-        circle_marker_7fce464a3d5c73a4150f571ceb0925fb.bindPopup(popup_2fd1c5a330f958a60c3d5bd378623a22)
+        circle_marker_4ecdb457470a3931578c820aae779092.bindPopup(popup_005fca2f28d17d3812e8a9011f62417b)
         ;
 
         
     
     
-            var circle_marker_245cffc7e60f8e7fd4391ca3e73be7bd = L.circleMarker(
+            var circle_marker_865b9ff631cceefa907996573cfc14dc = L.circleMarker(
                 [49.439803, 12.931243],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;red&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;red&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_67b7d921872b32ee77de5f02ae6c5258 = L.popup({
+        var popup_16d9b255dc9ff6a424fa55f3dbffcaac = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_b205621137b330ebae522242c0bdcbf1 = $(`&lt;div id=&quot;html_b205621137b330ebae522242c0bdcbf1&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Domažlice, okres Domažlice, kraj Plzeňský&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220705195/zajimave-nemovitosti.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220705195/zajimave-nemovitosti.php&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_67b7d921872b32ee77de5f02ae6c5258.setContent(html_b205621137b330ebae522242c0bdcbf1);
+                var html_a02f2eb0c968b50f30ff549310b5cb0c = $(`&lt;div id=&quot;html_a02f2eb0c968b50f30ff549310b5cb0c&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Domažlice, okres Domažlice, kraj Plzeňský&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220705195/zajimave-nemovitosti.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220705195/zajimave-nemovitosti.php&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_16d9b255dc9ff6a424fa55f3dbffcaac.setContent(html_a02f2eb0c968b50f30ff549310b5cb0c);
             
         
 
-        circle_marker_245cffc7e60f8e7fd4391ca3e73be7bd.bindPopup(popup_67b7d921872b32ee77de5f02ae6c5258)
+        circle_marker_865b9ff631cceefa907996573cfc14dc.bindPopup(popup_16d9b255dc9ff6a424fa55f3dbffcaac)
         ;
 
         
     
     
-            var circle_marker_28af9eddac99d222b42a454511603af2 = L.circleMarker(
+            var circle_marker_4bb92f204a9c4f0f143fd984ca5a3337 = L.circleMarker(
                 [50.074304, 14.860919],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;green&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;green&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_6556306d46df20d265d9fa73665f9b8c = L.popup({
+        var popup_487fe7cf44563739a6a3a4c0749dabc5 = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_c9bb885ae7a21bc423dc0aaa570a9ef6 = $(`&lt;div id=&quot;html_c9bb885ae7a21bc423dc0aaa570a9ef6&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Český Brod, okres Kolín, kraj Středočeský&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Nemes&lt;br&gt;&lt;a href=&quot;https://www.sreality.cz/detail/prodej/komercni/ostatni-komercni-prostory/cesky-brod/2745463628&quot; target=&quot;_blank&quot;&gt;https://www.sreality.cz/detail/prodej/komercni/ostatni-komercni-prostory/cesky-brod/2745463628&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_6556306d46df20d265d9fa73665f9b8c.setContent(html_c9bb885ae7a21bc423dc0aaa570a9ef6);
+                var html_1051d54a4da64da80a0d90d2b0e106bf = $(`&lt;div id=&quot;html_1051d54a4da64da80a0d90d2b0e106bf&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Český Brod, okres Kolín, kraj Středočeský&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Nemes&lt;br&gt;&lt;a href=&quot;https://www.sreality.cz/detail/prodej/komercni/ostatni-komercni-prostory/cesky-brod/2745463628&quot; target=&quot;_blank&quot;&gt;https://www.sreality.cz/detail/prodej/komercni/ostatni-komercni-prostory/cesky-brod/2745463628&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_487fe7cf44563739a6a3a4c0749dabc5.setContent(html_1051d54a4da64da80a0d90d2b0e106bf);
             
         
 
-        circle_marker_28af9eddac99d222b42a454511603af2.bindPopup(popup_6556306d46df20d265d9fa73665f9b8c)
+        circle_marker_4bb92f204a9c4f0f143fd984ca5a3337.bindPopup(popup_487fe7cf44563739a6a3a4c0749dabc5)
         ;
 
         
     
     
-            var circle_marker_557d130ae1f9ac3203f6151f6424a9aa = L.circleMarker(
+            var circle_marker_675eaea80a83e48c90c27c6a5e629b77 = L.circleMarker(
                 [50.661216, 14.053246],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;red&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;red&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_795de2f0704f6e85543f4eac0c6ece57 = L.popup({
+        var popup_44b72a6479a3549448d6e22620d4efe6 = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_444df021238ede72bda5b37bcbe7ffbd = $(`&lt;div id=&quot;html_444df021238ede72bda5b37bcbe7ffbd&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Ústí nad Labem, okres Ústí nad Labem, kraj Ústecký&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220704394/prodej-druzstevniho-bytu-2kk.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220704394/prodej-druzstevniho-bytu-2kk.php&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_795de2f0704f6e85543f4eac0c6ece57.setContent(html_444df021238ede72bda5b37bcbe7ffbd);
+                var html_55654fd8380c8488d5e51431c735f5fe = $(`&lt;div id=&quot;html_55654fd8380c8488d5e51431c735f5fe&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Ústí nad Labem, okres Ústí nad Labem, kraj Ústecký&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220704394/prodej-druzstevniho-bytu-2kk.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220704394/prodej-druzstevniho-bytu-2kk.php&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_44b72a6479a3549448d6e22620d4efe6.setContent(html_55654fd8380c8488d5e51431c735f5fe);
             
         
 
-        circle_marker_557d130ae1f9ac3203f6151f6424a9aa.bindPopup(popup_795de2f0704f6e85543f4eac0c6ece57)
+        circle_marker_675eaea80a83e48c90c27c6a5e629b77.bindPopup(popup_44b72a6479a3549448d6e22620d4efe6)
         ;
 
         
     
     
-            var circle_marker_51e3ac676ead280d8e2175fbea209ff7 = L.circleMarker(
+            var circle_marker_25196918ebf297f801e1980c88b9d8fe = L.circleMarker(
                 [50.106889, 14.503111],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;green&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;green&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_6ed30329be19abe2dcb27c15ce9fdf7f = L.popup({
+        var popup_bfa07333d9c46d311a26615e6ebf5ec3 = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_c63cd776e49e7862e32e9468ed40aa9b = $(`&lt;div id=&quot;html_c63cd776e49e7862e32e9468ed40aa9b&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Praha 9, Čakovice, okres Praha, kraj Hlavní město Praha&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Nemes&lt;br&gt;&lt;a href=&quot;https://www.sreality.cz/detail/prodej/byt/2+kk/praha--kojeticka/1592193100&quot; target=&quot;_blank&quot;&gt;https://www.sreality.cz/detail/prodej/byt/2+kk/praha--kojeticka/1592193100&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_6ed30329be19abe2dcb27c15ce9fdf7f.setContent(html_c63cd776e49e7862e32e9468ed40aa9b);
+                var html_f344cf0d652431d0ee4aa55d9f96c49d = $(`&lt;div id=&quot;html_f344cf0d652431d0ee4aa55d9f96c49d&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Praha 9, Čakovice, okres Praha, kraj Hlavní město Praha&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Nemes&lt;br&gt;&lt;a href=&quot;https://www.sreality.cz/detail/prodej/byt/2+kk/praha--kojeticka/1592193100&quot; target=&quot;_blank&quot;&gt;https://www.sreality.cz/detail/prodej/byt/2+kk/praha--kojeticka/1592193100&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_bfa07333d9c46d311a26615e6ebf5ec3.setContent(html_f344cf0d652431d0ee4aa55d9f96c49d);
             
         
 
-        circle_marker_51e3ac676ead280d8e2175fbea209ff7.bindPopup(popup_6ed30329be19abe2dcb27c15ce9fdf7f)
+        circle_marker_25196918ebf297f801e1980c88b9d8fe.bindPopup(popup_bfa07333d9c46d311a26615e6ebf5ec3)
         ;
 
         
     
     
-            var circle_marker_68897d206c55e5a929e7ec6138e4af5d = L.circleMarker(
+            var circle_marker_219dbbf314dd2b3ea8b74fcd7d4d9843 = L.circleMarker(
                 [50.72625, 15.609549],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;red&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;red&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_b643afad8de775e1eae91d67198cbdd1 = L.popup({
+        var popup_45a4b175915fe9540ddfb86c7ed011f0 = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_4cc8861599648f80fa72fb5e0d5b3c70 = $(`&lt;div id=&quot;html_4cc8861599648f80fa72fb5e0d5b3c70&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Špindlerův Mlýn, okres Trutnov, kraj Královéhradecký&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220708946/garazove-stani-spindleruv-mlyn.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220708946/garazove-stani-spindleruv-mlyn.php&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_b643afad8de775e1eae91d67198cbdd1.setContent(html_4cc8861599648f80fa72fb5e0d5b3c70);
+                var html_022a38d3bbd2a04360d88c122ece6110 = $(`&lt;div id=&quot;html_022a38d3bbd2a04360d88c122ece6110&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Špindlerův Mlýn, okres Trutnov, kraj Královéhradecký&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220708946/garazove-stani-spindleruv-mlyn.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220708946/garazove-stani-spindleruv-mlyn.php&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_45a4b175915fe9540ddfb86c7ed011f0.setContent(html_022a38d3bbd2a04360d88c122ece6110);
             
         
 
-        circle_marker_68897d206c55e5a929e7ec6138e4af5d.bindPopup(popup_b643afad8de775e1eae91d67198cbdd1)
+        circle_marker_219dbbf314dd2b3ea8b74fcd7d4d9843.bindPopup(popup_45a4b175915fe9540ddfb86c7ed011f0)
         ;
 
         
     
     
-            var circle_marker_08cc3f3972dfcd4034dd77a3e8fa021b = L.circleMarker(
+            var circle_marker_5799205959a87f4b5a17a6565ea3b256 = L.circleMarker(
                 [48.975758, 14.480355],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;red&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;red&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_4efcfe51fde16a1a72fd0978cb3ff574 = L.popup({
+        var popup_27675eee4402f5cf58c62ce0457860b5 = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_3b029e8be46fe2bac4df505955584a75 = $(`&lt;div id=&quot;html_3b029e8be46fe2bac4df505955584a75&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Borovany, okres České Budějovice, kraj Jihočeský&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220708858/les-u-borovan.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220708858/les-u-borovan.php&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_4efcfe51fde16a1a72fd0978cb3ff574.setContent(html_3b029e8be46fe2bac4df505955584a75);
+                var html_85397dc8a9158b479fddfe138979c30a = $(`&lt;div id=&quot;html_85397dc8a9158b479fddfe138979c30a&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Borovany, okres České Budějovice, kraj Jihočeský&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220708858/les-u-borovan.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220708858/les-u-borovan.php&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_27675eee4402f5cf58c62ce0457860b5.setContent(html_85397dc8a9158b479fddfe138979c30a);
             
         
 
-        circle_marker_08cc3f3972dfcd4034dd77a3e8fa021b.bindPopup(popup_4efcfe51fde16a1a72fd0978cb3ff574)
+        circle_marker_5799205959a87f4b5a17a6565ea3b256.bindPopup(popup_27675eee4402f5cf58c62ce0457860b5)
         ;
 
         
     
     
-            var circle_marker_047df8992a955c81eb1f6aec3a87ef9a = L.circleMarker(
+            var circle_marker_4c24cec9b5baa946a26ee452ed4beda2 = L.circleMarker(
                 [49.36495, 16.647855],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;green&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;green&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_6d79784e84a99eee8cec6a1a92c6db17 = L.popup({
+        var popup_aff7e90e7ee68e0d38a3e40056dd6b42 = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_d1d41572c4e90df9359b30d9be2f54b2 = $(`&lt;div id=&quot;html_d1d41572c4e90df9359b30d9be2f54b2&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Adamov, okres Blansko, kraj Jihomoravský&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Tauš&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220710695/prodej-bytu-31-73m2-osobni-adamov-okr-blansko.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220710695/prodej-bytu-31-73m2-osobni-adamov-okr-blansko.php&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_6d79784e84a99eee8cec6a1a92c6db17.setContent(html_d1d41572c4e90df9359b30d9be2f54b2);
+                var html_593c5e8369354bbcca9d0ebc4d74337f = $(`&lt;div id=&quot;html_593c5e8369354bbcca9d0ebc4d74337f&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Adamov, okres Blansko, kraj Jihomoravský&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Tauš&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220710695/prodej-bytu-31-73m2-osobni-adamov-okr-blansko.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220710695/prodej-bytu-31-73m2-osobni-adamov-okr-blansko.php&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_aff7e90e7ee68e0d38a3e40056dd6b42.setContent(html_593c5e8369354bbcca9d0ebc4d74337f);
             
         
 
-        circle_marker_047df8992a955c81eb1f6aec3a87ef9a.bindPopup(popup_6d79784e84a99eee8cec6a1a92c6db17)
+        circle_marker_4c24cec9b5baa946a26ee452ed4beda2.bindPopup(popup_aff7e90e7ee68e0d38a3e40056dd6b42)
         ;
 
         
     
     
-            var circle_marker_e47bce21c8bf34d451787c44e89a1de3 = L.circleMarker(
+            var circle_marker_a41db48e76d33a3388406c81332cc5d7 = L.circleMarker(
                 [49.277552, 16.996199],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;green&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;green&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_2be005a5efdb29d56712a0e88240e977 = L.popup({
+        var popup_8a9b6f015ffc277a14ea68173161f6a6 = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_cb13f2b7571eb597a1f108bebb686c99 = $(`&lt;div id=&quot;html_cb13f2b7571eb597a1f108bebb686c99&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Vyškov, okres Vyškov, kraj Jihomoravský&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Tauš&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220707342/garaz-vyskov.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220707342/garaz-vyskov.php&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_2be005a5efdb29d56712a0e88240e977.setContent(html_cb13f2b7571eb597a1f108bebb686c99);
+                var html_890a2e2858027461bd55923ade67f5c7 = $(`&lt;div id=&quot;html_890a2e2858027461bd55923ade67f5c7&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Vyškov, okres Vyškov, kraj Jihomoravský&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Tauš&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220707342/garaz-vyskov.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220707342/garaz-vyskov.php&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_8a9b6f015ffc277a14ea68173161f6a6.setContent(html_890a2e2858027461bd55923ade67f5c7);
             
         
 
-        circle_marker_e47bce21c8bf34d451787c44e89a1de3.bindPopup(popup_2be005a5efdb29d56712a0e88240e977)
+        circle_marker_a41db48e76d33a3388406c81332cc5d7.bindPopup(popup_8a9b6f015ffc277a14ea68173161f6a6)
         ;
 
         
     
     
-            var circle_marker_68d1201b1ce5ee73f69d61273dda0286 = L.circleMarker(
+            var circle_marker_45c93b15e231fc31050939d46c9569a8 = L.circleMarker(
                 [48.75324, 16.882617],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;red&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;red&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_de9c79cbb90303ad2a3cae2c67365017 = L.popup({
+        var popup_ce1cf1108ed8d1ed47187e626743cbf2 = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_d8c99a0fd93c7bd051242b6bd5084a39 = $(`&lt;div id=&quot;html_d8c99a0fd93c7bd051242b6bd5084a39&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Bulhary, okres Břeclav, kraj Jihomoravský&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://www.sreality.cz/detail/prodej/pozemek/pole/bulhary/2598826060&quot; target=&quot;_blank&quot;&gt;https://www.sreality.cz/detail/prodej/pozemek/pole/bulhary/2598826060&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_de9c79cbb90303ad2a3cae2c67365017.setContent(html_d8c99a0fd93c7bd051242b6bd5084a39);
+                var html_c78799047d66489fce92e386f2771085 = $(`&lt;div id=&quot;html_c78799047d66489fce92e386f2771085&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Bulhary, okres Břeclav, kraj Jihomoravský&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://www.sreality.cz/detail/prodej/pozemek/pole/bulhary/2598826060&quot; target=&quot;_blank&quot;&gt;https://www.sreality.cz/detail/prodej/pozemek/pole/bulhary/2598826060&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_ce1cf1108ed8d1ed47187e626743cbf2.setContent(html_c78799047d66489fce92e386f2771085);
             
         
 
-        circle_marker_68d1201b1ce5ee73f69d61273dda0286.bindPopup(popup_de9c79cbb90303ad2a3cae2c67365017)
+        circle_marker_45c93b15e231fc31050939d46c9569a8.bindPopup(popup_ce1cf1108ed8d1ed47187e626743cbf2)
         ;
 
         
     
     
-            var circle_marker_1d872f2f2609cb764f57d8e34ba241a6 = L.circleMarker(
+            var circle_marker_bebcfcdf8e3437a05b06569697d6eb1f = L.circleMarker(
                 [50.075638, 14.4379],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;green&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;green&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_e26336071c94ee92175dfe23925072e6 = L.popup({
+        var popup_f0cc7db7a4e1330f86150ab85ed921b9 = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_c681e4648d4b27baaccb61d52af8d474 = $(`&lt;div id=&quot;html_c681e4648d4b27baaccb61d52af8d474&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Praha, okres Praha, kraj Hlavní město Praha&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Manda&lt;br&gt;&lt;a href=&quot;https://www.sreality.cz/detail/prodej/byt/3+kk/praha--mezi-vodami/1575415884&quot; target=&quot;_blank&quot;&gt;https://www.sreality.cz/detail/prodej/byt/3+kk/praha--mezi-vodami/1575415884&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_e26336071c94ee92175dfe23925072e6.setContent(html_c681e4648d4b27baaccb61d52af8d474);
+                var html_83ba6d44d20a85c8ea453d067bf46d19 = $(`&lt;div id=&quot;html_83ba6d44d20a85c8ea453d067bf46d19&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Praha, okres Praha, kraj Hlavní město Praha&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Manda&lt;br&gt;&lt;a href=&quot;https://www.sreality.cz/detail/prodej/byt/3+kk/praha--mezi-vodami/1575415884&quot; target=&quot;_blank&quot;&gt;https://www.sreality.cz/detail/prodej/byt/3+kk/praha--mezi-vodami/1575415884&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_f0cc7db7a4e1330f86150ab85ed921b9.setContent(html_83ba6d44d20a85c8ea453d067bf46d19);
             
         
 
-        circle_marker_1d872f2f2609cb764f57d8e34ba241a6.bindPopup(popup_e26336071c94ee92175dfe23925072e6)
+        circle_marker_bebcfcdf8e3437a05b06569697d6eb1f.bindPopup(popup_f0cc7db7a4e1330f86150ab85ed921b9)
         ;
 
         
     
     
-            var circle_marker_a26bf9431283fdbe6a1dbd88b57c8287 = L.circleMarker(
+            var circle_marker_d7788fe740f2541155c0c6935ef020d4 = L.circleMarker(
                 [48.975758, 14.480355],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;red&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;red&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_59ed9d1d286f8ce1a466195525e19bad = L.popup({
+        var popup_2e09b6f2fe65ec40f87c6207de4946b7 = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_461aff487d762c31750607b878dec6d2 = $(`&lt;div id=&quot;html_461aff487d762c31750607b878dec6d2&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;České Budějovice, okres České Budějovice, kraj Jihočeský&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220716247/prenechani-luxusniho-beauty-spa-salonu-ceske-budejovice.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220716247/prenechani-luxusniho-beauty-spa-salonu-ceske-budejovice.php&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_59ed9d1d286f8ce1a466195525e19bad.setContent(html_461aff487d762c31750607b878dec6d2);
+                var html_69e3906413e2cda4a8232b191b872129 = $(`&lt;div id=&quot;html_69e3906413e2cda4a8232b191b872129&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;České Budějovice, okres České Budějovice, kraj Jihočeský&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220716247/prenechani-luxusniho-beauty-spa-salonu-ceske-budejovice.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220716247/prenechani-luxusniho-beauty-spa-salonu-ceske-budejovice.php&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_2e09b6f2fe65ec40f87c6207de4946b7.setContent(html_69e3906413e2cda4a8232b191b872129);
             
         
 
-        circle_marker_a26bf9431283fdbe6a1dbd88b57c8287.bindPopup(popup_59ed9d1d286f8ce1a466195525e19bad)
+        circle_marker_d7788fe740f2541155c0c6935ef020d4.bindPopup(popup_2e09b6f2fe65ec40f87c6207de4946b7)
         ;
 
         
     
     
-            var circle_marker_0deec9657be0a824e46fc09c3b94235f = L.circleMarker(
+            var circle_marker_a95607a8412840c66ddb1dca22d6f4b9 = L.circleMarker(
                 [49.430721, 15.223083],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;red&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;red&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_a64f6ef77624b06df62b9f9ba8f4f66a = L.popup({
+        var popup_481195a27511db56604522626eaff3da = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_a76780cfbeeabbc74a20fe81d81bcd96 = $(`&lt;div id=&quot;html_a76780cfbeeabbc74a20fe81d81bcd96&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Eš, okres Pelhřimov, kraj Vysočina&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220718565/prodam-les.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220718565/prodam-les.php&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_a64f6ef77624b06df62b9f9ba8f4f66a.setContent(html_a76780cfbeeabbc74a20fe81d81bcd96);
+                var html_38e8ec6bbdff2a5a0958fbc80b9543e9 = $(`&lt;div id=&quot;html_38e8ec6bbdff2a5a0958fbc80b9543e9&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Eš, okres Pelhřimov, kraj Vysočina&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220718565/prodam-les.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220718565/prodam-les.php&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_481195a27511db56604522626eaff3da.setContent(html_38e8ec6bbdff2a5a0958fbc80b9543e9);
             
         
 
-        circle_marker_0deec9657be0a824e46fc09c3b94235f.bindPopup(popup_a64f6ef77624b06df62b9f9ba8f4f66a)
+        circle_marker_a95607a8412840c66ddb1dca22d6f4b9.bindPopup(popup_481195a27511db56604522626eaff3da)
         ;
 
         
     
     
-            var circle_marker_ab04adb47f590b0d3df21e617900b0c7 = L.circleMarker(
+            var circle_marker_15e98163c79c70c2bb0d608e8edfa1ff = L.circleMarker(
                 [49.144582, 15.006239],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;red&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;red&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_ae65d9f070ea2a894191a92bf281d00b = L.popup({
+        var popup_7dd37bb4bdcc1698c23b33c85d085442 = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_403fbc88f5239ea6fadaa07d7f9161df = $(`&lt;div id=&quot;html_403fbc88f5239ea6fadaa07d7f9161df&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Horní Skrýchov, okres Jindřichův Hradec, kraj Jihočeský&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://www.sreality.cz/detail/prodej/pozemek/bydleni/horni-skrychov/2074538060&quot; target=&quot;_blank&quot;&gt;https://www.sreality.cz/detail/prodej/pozemek/bydleni/horni-skrychov/2074538060&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_ae65d9f070ea2a894191a92bf281d00b.setContent(html_403fbc88f5239ea6fadaa07d7f9161df);
+                var html_469513a365d45b68de5173f12ad65506 = $(`&lt;div id=&quot;html_469513a365d45b68de5173f12ad65506&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Horní Skrýchov, okres Jindřichův Hradec, kraj Jihočeský&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://www.sreality.cz/detail/prodej/pozemek/bydleni/horni-skrychov/2074538060&quot; target=&quot;_blank&quot;&gt;https://www.sreality.cz/detail/prodej/pozemek/bydleni/horni-skrychov/2074538060&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_7dd37bb4bdcc1698c23b33c85d085442.setContent(html_469513a365d45b68de5173f12ad65506);
             
         
 
-        circle_marker_ab04adb47f590b0d3df21e617900b0c7.bindPopup(popup_ae65d9f070ea2a894191a92bf281d00b)
+        circle_marker_15e98163c79c70c2bb0d608e8edfa1ff.bindPopup(popup_7dd37bb4bdcc1698c23b33c85d085442)
         ;
 
         
     
     
-            var circle_marker_6ae12fbdbcc3faf16653479a65b0d7f9 = L.circleMarker(
+            var circle_marker_6725573ac27ad6ec6c2616ad1a1a9364 = L.circleMarker(
                 [49.19516, 16.606937],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;green&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;green&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_be609997a04830fd8d38b0f7615fcac6 = L.popup({
+        var popup_0266058369b90dad384779833c1c0f30 = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_402ad043e9bed45c612726c3c2b6a3df = $(`&lt;div id=&quot;html_402ad043e9bed45c612726c3c2b6a3df&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Brno, okres Brno-město, kraj Jihomoravský&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Tauš&lt;br&gt;&lt;a href=&quot;https://www.sreality.cz/detail/prodej/byt/2+kk/brno--krenova/3259363404&quot; target=&quot;_blank&quot;&gt;https://www.sreality.cz/detail/prodej/byt/2+kk/brno--krenova/3259363404&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_be609997a04830fd8d38b0f7615fcac6.setContent(html_402ad043e9bed45c612726c3c2b6a3df);
+                var html_ad8ab1395363c347ac17c2037940b248 = $(`&lt;div id=&quot;html_ad8ab1395363c347ac17c2037940b248&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Brno, okres Brno-město, kraj Jihomoravský&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Tauš&lt;br&gt;&lt;a href=&quot;https://www.sreality.cz/detail/prodej/byt/2+kk/brno--krenova/3259363404&quot; target=&quot;_blank&quot;&gt;https://www.sreality.cz/detail/prodej/byt/2+kk/brno--krenova/3259363404&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_0266058369b90dad384779833c1c0f30.setContent(html_ad8ab1395363c347ac17c2037940b248);
             
         
 
-        circle_marker_6ae12fbdbcc3faf16653479a65b0d7f9.bindPopup(popup_be609997a04830fd8d38b0f7615fcac6)
+        circle_marker_6725573ac27ad6ec6c2616ad1a1a9364.bindPopup(popup_0266058369b90dad384779833c1c0f30)
         ;
 
         
     
     
-            var circle_marker_fba3a34d8407565fab6beefe300655fd = L.circleMarker(
+            var circle_marker_3b0813647805dc6014a57ad0d56af604 = L.circleMarker(
                 [48.75324, 16.882617],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;red&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;red&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_a648606ee437bc71c673873cb8778afe = L.popup({
+        var popup_1550d3c586311aa5e29053b65bf4a51a = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_03ddccf814d3fc1df0fb3e29b38688cf = $(`&lt;div id=&quot;html_03ddccf814d3fc1df0fb3e29b38688cf&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Březí, okres Břeclav, kraj Jihomoravský&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220718560/prodej-vinice-brezi-u-mikulova.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220718560/prodej-vinice-brezi-u-mikulova.php&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_a648606ee437bc71c673873cb8778afe.setContent(html_03ddccf814d3fc1df0fb3e29b38688cf);
+                var html_4a8ea5e3fd269fb8c3c15465d0aab58c = $(`&lt;div id=&quot;html_4a8ea5e3fd269fb8c3c15465d0aab58c&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Březí, okres Břeclav, kraj Jihomoravský&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220718560/prodej-vinice-brezi-u-mikulova.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220718560/prodej-vinice-brezi-u-mikulova.php&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_1550d3c586311aa5e29053b65bf4a51a.setContent(html_4a8ea5e3fd269fb8c3c15465d0aab58c);
             
         
 
-        circle_marker_fba3a34d8407565fab6beefe300655fd.bindPopup(popup_a648606ee437bc71c673873cb8778afe)
+        circle_marker_3b0813647805dc6014a57ad0d56af604.bindPopup(popup_1550d3c586311aa5e29053b65bf4a51a)
         ;
 
         
     
     
-            var circle_marker_98f4d2db8205e70b991eacb70b2bbf1d = L.circleMarker(
+            var circle_marker_53acd5e0d3eb13502d851a9037882375 = L.circleMarker(
                 [49.780492, 18.430725],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;green&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;green&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_69145e12b24002d33a88c1f6fbf35d50 = L.popup({
+        var popup_3aca3d2fb60d5e41d9a8ccefea01b6a1 = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_30978123f55c8dafdc6b3e60b6fe7a80 = $(`&lt;div id=&quot;html_30978123f55c8dafdc6b3e60b6fe7a80&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Havířov, okres Karviná, kraj Moravskoslezský&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Hrubá&lt;br&gt;&lt;a href=&quot;https://www.avizo.cz/reality/prodam-chatku-v-os-vlastnictvi-19876400.html&quot; target=&quot;_blank&quot;&gt;https://www.avizo.cz/reality/prodam-chatku-v-os-vlastnictvi-19876400.html&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_69145e12b24002d33a88c1f6fbf35d50.setContent(html_30978123f55c8dafdc6b3e60b6fe7a80);
+                var html_cf1c15c653932891647af46cc0ba9db8 = $(`&lt;div id=&quot;html_cf1c15c653932891647af46cc0ba9db8&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Havířov, okres Karviná, kraj Moravskoslezský&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Hrubá&lt;br&gt;&lt;a href=&quot;https://www.avizo.cz/reality/prodam-chatku-v-os-vlastnictvi-19876400.html&quot; target=&quot;_blank&quot;&gt;https://www.avizo.cz/reality/prodam-chatku-v-os-vlastnictvi-19876400.html&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_3aca3d2fb60d5e41d9a8ccefea01b6a1.setContent(html_cf1c15c653932891647af46cc0ba9db8);
             
         
 
-        circle_marker_98f4d2db8205e70b991eacb70b2bbf1d.bindPopup(popup_69145e12b24002d33a88c1f6fbf35d50)
+        circle_marker_53acd5e0d3eb13502d851a9037882375.bindPopup(popup_3aca3d2fb60d5e41d9a8ccefea01b6a1)
         ;
 
         
     
     
-            var circle_marker_a475babaf4c86c250e701964ed9ac616 = L.circleMarker(
+            var circle_marker_6780463a2b7ef26cf264418676eecf51 = L.circleMarker(
                 [49.395655, 13.295194],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;green&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;green&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_fc19c62e0a65db8e97f3bbeacda75054 = L.popup({
+        var popup_e78061e39cc5908a2fee5eab735cb915 = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_93c7d7f030efd135b1ab731db2ff05ff = $(`&lt;div id=&quot;html_93c7d7f030efd135b1ab731db2ff05ff&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Klatovy, okres Klatovy, kraj Plzeňský&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Marešková&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220717115/prodej-bytu-11-s-garazi-klatovy.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220717115/prodej-bytu-11-s-garazi-klatovy.php&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_fc19c62e0a65db8e97f3bbeacda75054.setContent(html_93c7d7f030efd135b1ab731db2ff05ff);
+                var html_78d89449bb8f49805c2bd3ba3ebb1632 = $(`&lt;div id=&quot;html_78d89449bb8f49805c2bd3ba3ebb1632&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Klatovy, okres Klatovy, kraj Plzeňský&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Marešková&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220717115/prodej-bytu-11-s-garazi-klatovy.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220717115/prodej-bytu-11-s-garazi-klatovy.php&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_e78061e39cc5908a2fee5eab735cb915.setContent(html_78d89449bb8f49805c2bd3ba3ebb1632);
             
         
 
-        circle_marker_a475babaf4c86c250e701964ed9ac616.bindPopup(popup_fc19c62e0a65db8e97f3bbeacda75054)
+        circle_marker_6780463a2b7ef26cf264418676eecf51.bindPopup(popup_e78061e39cc5908a2fee5eab735cb915)
         ;
 
         
     
     
-            var circle_marker_36f01aba144195d602ef5d264feb674e = L.circleMarker(
+            var circle_marker_9dc5afa647751a0e1d7fd945798559fe = L.circleMarker(
                 [49.866601, 14.261865],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;green&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;green&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_bfa352d0ec26d2ce50e34e6f26212452 = L.popup({
+        var popup_ca8aa3bdaf34150994d68316e9a860ab = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_fee807120b4ea53d6628df47df6ab3eb = $(`&lt;div id=&quot;html_fee807120b4ea53d6628df47df6ab3eb&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Mníšek pod Brdy, okres Praha-západ, kraj Středočeský&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Manda&lt;br&gt;&lt;a href=&quot;https://www.sreality.cz/detail/prodej/byt/3+kk/mnisek-pod-brdy-mnisek-pod-brdy-v-edenu/1455878220&quot; target=&quot;_blank&quot;&gt;https://www.sreality.cz/detail/prodej/byt/3+kk/mnisek-pod-brdy-mnisek-pod-brdy-v-edenu/1455878220&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_bfa352d0ec26d2ce50e34e6f26212452.setContent(html_fee807120b4ea53d6628df47df6ab3eb);
+                var html_1b5b3246e04af4cbee69b2cf2587a210 = $(`&lt;div id=&quot;html_1b5b3246e04af4cbee69b2cf2587a210&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Mníšek pod Brdy, okres Praha-západ, kraj Středočeský&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Manda&lt;br&gt;&lt;a href=&quot;https://www.sreality.cz/detail/prodej/byt/3+kk/mnisek-pod-brdy-mnisek-pod-brdy-v-edenu/1455878220&quot; target=&quot;_blank&quot;&gt;https://www.sreality.cz/detail/prodej/byt/3+kk/mnisek-pod-brdy-mnisek-pod-brdy-v-edenu/1455878220&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_ca8aa3bdaf34150994d68316e9a860ab.setContent(html_1b5b3246e04af4cbee69b2cf2587a210);
             
         
 
-        circle_marker_36f01aba144195d602ef5d264feb674e.bindPopup(popup_bfa352d0ec26d2ce50e34e6f26212452)
+        circle_marker_9dc5afa647751a0e1d7fd945798559fe.bindPopup(popup_ca8aa3bdaf34150994d68316e9a860ab)
         ;
 
         
     
     
-            var circle_marker_56c9b3f9fd063024e8c2429bb1b9786a = L.circleMarker(
+            var circle_marker_dfe7d82b6a1e8dc265ff5427474f05a7 = L.circleMarker(
                 [49.783882, 14.68747],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;green&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;green&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_27cf094fff6166423c962a460bab7530 = L.popup({
+        var popup_849b93f35e36efba6813d76aa1cf65ad = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_48b62aa8b21208f2be01d5c59142cd9c = $(`&lt;div id=&quot;html_48b62aa8b21208f2be01d5c59142cd9c&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Votice, okres Benešov, kraj Středočeský&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Nemes&lt;br&gt;&lt;a href=&quot;https://www.byty.cz/komercni-stavebni-pozemky-na-prodej-votice-husova/xad14062702.aspx&quot; target=&quot;_blank&quot;&gt;https://www.byty.cz/komercni-stavebni-pozemky-na-prodej-votice-husova/xad14062702.aspx&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_27cf094fff6166423c962a460bab7530.setContent(html_48b62aa8b21208f2be01d5c59142cd9c);
+                var html_59183b76b46cc1556d335809276c56e5 = $(`&lt;div id=&quot;html_59183b76b46cc1556d335809276c56e5&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Votice, okres Benešov, kraj Středočeský&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Nemes&lt;br&gt;&lt;a href=&quot;https://www.byty.cz/komercni-stavebni-pozemky-na-prodej-votice-husova/xad14062702.aspx&quot; target=&quot;_blank&quot;&gt;https://www.byty.cz/komercni-stavebni-pozemky-na-prodej-votice-husova/xad14062702.aspx&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_849b93f35e36efba6813d76aa1cf65ad.setContent(html_59183b76b46cc1556d335809276c56e5);
             
         
 
-        circle_marker_56c9b3f9fd063024e8c2429bb1b9786a.bindPopup(popup_27cf094fff6166423c962a460bab7530)
+        circle_marker_dfe7d82b6a1e8dc265ff5427474f05a7.bindPopup(popup_849b93f35e36efba6813d76aa1cf65ad)
         ;
 
         
     
     
-            var circle_marker_76c8fcc50815d68a271fe7343f943be5 = L.circleMarker(
+            var circle_marker_124a801a598331c4c466da3c799b8302 = L.circleMarker(
                 [50.165593, 14.935157],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;green&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;green&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_edb3ccf76b4701dc7a49e18eba8436a7 = L.popup({
+        var popup_edd2b656fa911355068746920f35c979 = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_74a6db8abe077dc913dabc8e625d5142 = $(`&lt;div id=&quot;html_74a6db8abe077dc913dabc8e625d5142&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Hradištko, okres Nymburk, kraj Středočeský&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Nemes&lt;br&gt;&lt;a href=&quot;https://www.sreality.cz/detail/prodej/dum/chata/hradistko-hradistko-kersko/1084682316&quot; target=&quot;_blank&quot;&gt;https://www.sreality.cz/detail/prodej/dum/chata/hradistko-hradistko-kersko/1084682316&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_edb3ccf76b4701dc7a49e18eba8436a7.setContent(html_74a6db8abe077dc913dabc8e625d5142);
+                var html_31c3e891753c9e66a51ded0ae88fac0b = $(`&lt;div id=&quot;html_31c3e891753c9e66a51ded0ae88fac0b&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Hradištko, okres Nymburk, kraj Středočeský&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Nemes&lt;br&gt;&lt;a href=&quot;https://www.sreality.cz/detail/prodej/dum/chata/hradistko-hradistko-kersko/1084682316&quot; target=&quot;_blank&quot;&gt;https://www.sreality.cz/detail/prodej/dum/chata/hradistko-hradistko-kersko/1084682316&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_edd2b656fa911355068746920f35c979.setContent(html_31c3e891753c9e66a51ded0ae88fac0b);
             
         
 
-        circle_marker_76c8fcc50815d68a271fe7343f943be5.bindPopup(popup_edb3ccf76b4701dc7a49e18eba8436a7)
+        circle_marker_124a801a598331c4c466da3c799b8302.bindPopup(popup_edd2b656fa911355068746920f35c979)
         ;
 
         
     
     
-            var circle_marker_4e465f0f276d7fd477608931e0d192a3 = L.circleMarker(
+            var circle_marker_295ca2ebda315d3eb506bfae55697a99 = L.circleMarker(
                 [50.079633, 12.369964],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;red&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;red&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_74193bf59b0f8f7550d17b2bd51c9947 = L.popup({
+        var popup_3ded73a5a6799fbc79e06440e7de7f53 = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_41f5d0bd2189ab5151b9101488bf2da6 = $(`&lt;div id=&quot;html_41f5d0bd2189ab5151b9101488bf2da6&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Aš, okres Cheb, kraj Karlovarský&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220714558/prodej-slunneho-bytu-31-s-balkonem-v-osobnim-vlastnictvi.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220714558/prodej-slunneho-bytu-31-s-balkonem-v-osobnim-vlastnictvi.php&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_74193bf59b0f8f7550d17b2bd51c9947.setContent(html_41f5d0bd2189ab5151b9101488bf2da6);
+                var html_9bbeec33f9463f425f42749825cde33e = $(`&lt;div id=&quot;html_9bbeec33f9463f425f42749825cde33e&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Aš, okres Cheb, kraj Karlovarský&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220714558/prodej-slunneho-bytu-31-s-balkonem-v-osobnim-vlastnictvi.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220714558/prodej-slunneho-bytu-31-s-balkonem-v-osobnim-vlastnictvi.php&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_3ded73a5a6799fbc79e06440e7de7f53.setContent(html_9bbeec33f9463f425f42749825cde33e);
             
         
 
-        circle_marker_4e465f0f276d7fd477608931e0d192a3.bindPopup(popup_74193bf59b0f8f7550d17b2bd51c9947)
+        circle_marker_295ca2ebda315d3eb506bfae55697a99.bindPopup(popup_3ded73a5a6799fbc79e06440e7de7f53)
         ;
 
         
     
     
-            var circle_marker_8be9ed56395ec44289666631d3e97e1d = L.circleMarker(
+            var circle_marker_b3ccfe656fc6bb5b90a3d9563d0ac35a = L.circleMarker(
                 [49.604436, 15.579755],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;red&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;red&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_8dc203060217b5c02a6b12cc6db6f237 = L.popup({
+        var popup_e9fe929507ac8da8732fcb45b1868ebe = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_01c99b5aae3b1dbd866f33f113b3ed3c = $(`&lt;div id=&quot;html_01c99b5aae3b1dbd866f33f113b3ed3c&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Chotěboř, okres Havlíčkův Brod, kraj Vysočina&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220715475/pozemky-na-zahradky.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220715475/pozemky-na-zahradky.php&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_8dc203060217b5c02a6b12cc6db6f237.setContent(html_01c99b5aae3b1dbd866f33f113b3ed3c);
+                var html_350763bf3aa5b71f476abf90cf3c5579 = $(`&lt;div id=&quot;html_350763bf3aa5b71f476abf90cf3c5579&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Chotěboř, okres Havlíčkův Brod, kraj Vysočina&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220715475/pozemky-na-zahradky.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220715475/pozemky-na-zahradky.php&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_e9fe929507ac8da8732fcb45b1868ebe.setContent(html_350763bf3aa5b71f476abf90cf3c5579);
             
         
 
-        circle_marker_8be9ed56395ec44289666631d3e97e1d.bindPopup(popup_8dc203060217b5c02a6b12cc6db6f237)
+        circle_marker_b3ccfe656fc6bb5b90a3d9563d0ac35a.bindPopup(popup_e9fe929507ac8da8732fcb45b1868ebe)
         ;
 
         
     
     
-            var circle_marker_1d0f90c20ea5fb11988d28a454e6b20e = L.circleMarker(
+            var circle_marker_5cf398cf83e3ab9787eb56131eec7248 = L.circleMarker(
                 [49.144582, 15.006239],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;red&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;red&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_ff5b7eefe964dd3c5599d553865df92d = L.popup({
+        var popup_cf6bbf59dab4c52cdd31aa47f9cbd03a = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_87dd0b883f5a2853469e9ff486fe602a = $(`&lt;div id=&quot;html_87dd0b883f5a2853469e9ff486fe602a&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Strmilov, okres Jindřichův Hradec, kraj Jihočeský&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220720158/stavebni-pozemek-713-m-strmilov-okres-jindrichuv-hradec.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220720158/stavebni-pozemek-713-m-strmilov-okres-jindrichuv-hradec.php&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_ff5b7eefe964dd3c5599d553865df92d.setContent(html_87dd0b883f5a2853469e9ff486fe602a);
+                var html_f8c6fab5bf692e4bd33f8b9fbe41c868 = $(`&lt;div id=&quot;html_f8c6fab5bf692e4bd33f8b9fbe41c868&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Strmilov, okres Jindřichův Hradec, kraj Jihočeský&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220720158/stavebni-pozemek-713-m-strmilov-okres-jindrichuv-hradec.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220720158/stavebni-pozemek-713-m-strmilov-okres-jindrichuv-hradec.php&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_cf6bbf59dab4c52cdd31aa47f9cbd03a.setContent(html_f8c6fab5bf692e4bd33f8b9fbe41c868);
             
         
 
-        circle_marker_1d0f90c20ea5fb11988d28a454e6b20e.bindPopup(popup_ff5b7eefe964dd3c5599d553865df92d)
+        circle_marker_5cf398cf83e3ab9787eb56131eec7248.bindPopup(popup_cf6bbf59dab4c52cdd31aa47f9cbd03a)
         ;
 
         
     
     
-            var circle_marker_2d1f2f63e76087905d235d74ee0bdcd4 = L.circleMarker(
+            var circle_marker_753d8fa084fca12c238d0fbf186ca49a = L.circleMarker(
                 [50.644558, 13.835384],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;red&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;red&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_8ce47b9a1d8cf4edb14671fa5b0fea43 = L.popup({
+        var popup_dcfc8c54bc153b561c4c1e450185f6f6 = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_083e124a51b4a0158e3abf3f1a2c5691 = $(`&lt;div id=&quot;html_083e124a51b4a0158e3abf3f1a2c5691&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Žim, okres Teplice, kraj Ústecký&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220721878/nabizim-k-prodeji-pozemek-s-moznosti-vystavby-rodinneho-domu.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220721878/nabizim-k-prodeji-pozemek-s-moznosti-vystavby-rodinneho-domu.php&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_8ce47b9a1d8cf4edb14671fa5b0fea43.setContent(html_083e124a51b4a0158e3abf3f1a2c5691);
+                var html_76c03d58ee846af6d62440b8e4b72c23 = $(`&lt;div id=&quot;html_76c03d58ee846af6d62440b8e4b72c23&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Žim, okres Teplice, kraj Ústecký&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220721878/nabizim-k-prodeji-pozemek-s-moznosti-vystavby-rodinneho-domu.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220721878/nabizim-k-prodeji-pozemek-s-moznosti-vystavby-rodinneho-domu.php&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_dcfc8c54bc153b561c4c1e450185f6f6.setContent(html_76c03d58ee846af6d62440b8e4b72c23);
             
         
 
-        circle_marker_2d1f2f63e76087905d235d74ee0bdcd4.bindPopup(popup_8ce47b9a1d8cf4edb14671fa5b0fea43)
+        circle_marker_753d8fa084fca12c238d0fbf186ca49a.bindPopup(popup_dcfc8c54bc153b561c4c1e450185f6f6)
         ;
 
         
     
     
-            var circle_marker_1cb79220f129d0319deb4cb7ba58e973 = L.circleMarker(
+            var circle_marker_9e90034e65827f7403fb833248daccb4 = L.circleMarker(
                 [49.594425, 18.013636],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;green&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;green&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_71e3a729aeef1d450587b10d8617389c = L.popup({
+        var popup_afb82a93d7df248c345ac30e36259af6 = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_d5e10796a40dd4aea7c340627d9e5514 = $(`&lt;div id=&quot;html_d5e10796a40dd4aea7c340627d9e5514&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Nový Jičín, okres Nový Jičín, kraj Moravskoslezský&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Večerek&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220719304/31-se-zasklenym-balkonem-bulharska-6-novy-jicin.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220719304/31-se-zasklenym-balkonem-bulharska-6-novy-jicin.php&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_71e3a729aeef1d450587b10d8617389c.setContent(html_d5e10796a40dd4aea7c340627d9e5514);
+                var html_3c37db263e102ac0df4b7655e347bda9 = $(`&lt;div id=&quot;html_3c37db263e102ac0df4b7655e347bda9&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Nový Jičín, okres Nový Jičín, kraj Moravskoslezský&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Večerek&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220719304/31-se-zasklenym-balkonem-bulharska-6-novy-jicin.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220719304/31-se-zasklenym-balkonem-bulharska-6-novy-jicin.php&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_afb82a93d7df248c345ac30e36259af6.setContent(html_3c37db263e102ac0df4b7655e347bda9);
             
         
 
-        circle_marker_1cb79220f129d0319deb4cb7ba58e973.bindPopup(popup_71e3a729aeef1d450587b10d8617389c)
+        circle_marker_9e90034e65827f7403fb833248daccb4.bindPopup(popup_afb82a93d7df248c345ac30e36259af6)
         ;
 
         
     
     
-            var circle_marker_e0e44f89c3dba37fbe6ef28ab1633b48 = L.circleMarker(
+            var circle_marker_1740b4a8c3353173294e536fbb00b5ed = L.circleMarker(
                 [49.77005, 18.310255],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;green&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;green&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_f7f548dcb3a47f34a90b69b8b297c613 = L.popup({
+        var popup_3e5393f4ac1ce41398eaf8376f99fd60 = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_278c10ca1e7915d082694ac4b5555010 = $(`&lt;div id=&quot;html_278c10ca1e7915d082694ac4b5555010&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Vratimov, okres Ostrava-město, kraj Moravskoslezský&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Hrubá&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220719784/garaz.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220719784/garaz.php&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_f7f548dcb3a47f34a90b69b8b297c613.setContent(html_278c10ca1e7915d082694ac4b5555010);
+                var html_b8c7d14dd06f53c97f25242f6d85aaab = $(`&lt;div id=&quot;html_b8c7d14dd06f53c97f25242f6d85aaab&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Vratimov, okres Ostrava-město, kraj Moravskoslezský&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Hrubá&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220719784/garaz.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220719784/garaz.php&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_3e5393f4ac1ce41398eaf8376f99fd60.setContent(html_b8c7d14dd06f53c97f25242f6d85aaab);
             
         
 
-        circle_marker_e0e44f89c3dba37fbe6ef28ab1633b48.bindPopup(popup_f7f548dcb3a47f34a90b69b8b297c613)
+        circle_marker_1740b4a8c3353173294e536fbb00b5ed.bindPopup(popup_3e5393f4ac1ce41398eaf8376f99fd60)
         ;
 
         
     
     
-            var circle_marker_c0bf940c8fb4e887cb9fe1977137a69b = L.circleMarker(
+            var circle_marker_ed5f1bd1370af534ccd40c08fc87d80c = L.circleMarker(
                 [50.359895, 13.70302],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;red&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;red&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_fe5cac93225ff8b96d37706b67d88eae = L.popup({
+        var popup_8c5060e75806b35ecc61a82360d9ada2 = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_392390936078703f7531af4091f5feff = $(`&lt;div id=&quot;html_392390936078703f7531af4091f5feff&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Postoloprty, okres Louny, kraj Ústecký&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220719769/zahrada-v-postoloprtech-399m2.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220719769/zahrada-v-postoloprtech-399m2.php&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_fe5cac93225ff8b96d37706b67d88eae.setContent(html_392390936078703f7531af4091f5feff);
+                var html_50da50096079ff2dc56d548a606ecbdb = $(`&lt;div id=&quot;html_50da50096079ff2dc56d548a606ecbdb&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Postoloprty, okres Louny, kraj Ústecký&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220719769/zahrada-v-postoloprtech-399m2.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220719769/zahrada-v-postoloprtech-399m2.php&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_8c5060e75806b35ecc61a82360d9ada2.setContent(html_50da50096079ff2dc56d548a606ecbdb);
             
         
 
-        circle_marker_c0bf940c8fb4e887cb9fe1977137a69b.bindPopup(popup_fe5cac93225ff8b96d37706b67d88eae)
+        circle_marker_ed5f1bd1370af534ccd40c08fc87d80c.bindPopup(popup_8c5060e75806b35ecc61a82360d9ada2)
         ;
 
         
     
     
-            var circle_marker_1890d71619681c1c2374770fdcf878ce = L.circleMarker(
+            var circle_marker_161d15daa18cbf400c21ff36aefa5233 = L.circleMarker(
                 [50.109167, 14.502222],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;green&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;green&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_9e782ed44569020e63b2791702776d20 = L.popup({
+        var popup_23b38ba242d1c2d0a4d5602c65d37eee = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_7cb6ae9a66d3c715eb8cddbbe7d048e1 = $(`&lt;div id=&quot;html_7cb6ae9a66d3c715eb8cddbbe7d048e1&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Praha, Vysočany, okres Praha, kraj Hlavní město Praha&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Nemes&lt;br&gt;&lt;a href=&quot;https://www.sreality.cz/detail/prodej/byt/2+kk/praha-vysocany-freyova/157675596&quot; target=&quot;_blank&quot;&gt;https://www.sreality.cz/detail/prodej/byt/2+kk/praha-vysocany-freyova/157675596&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_9e782ed44569020e63b2791702776d20.setContent(html_7cb6ae9a66d3c715eb8cddbbe7d048e1);
+                var html_329073dedf9332d8ba1fbe5ac38c9233 = $(`&lt;div id=&quot;html_329073dedf9332d8ba1fbe5ac38c9233&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Praha, Vysočany, okres Praha, kraj Hlavní město Praha&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Nemes&lt;br&gt;&lt;a href=&quot;https://www.sreality.cz/detail/prodej/byt/2+kk/praha-vysocany-freyova/157675596&quot; target=&quot;_blank&quot;&gt;https://www.sreality.cz/detail/prodej/byt/2+kk/praha-vysocany-freyova/157675596&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_23b38ba242d1c2d0a4d5602c65d37eee.setContent(html_329073dedf9332d8ba1fbe5ac38c9233);
             
         
 
-        circle_marker_1890d71619681c1c2374770fdcf878ce.bindPopup(popup_9e782ed44569020e63b2791702776d20)
+        circle_marker_161d15daa18cbf400c21ff36aefa5233.bindPopup(popup_23b38ba242d1c2d0a4d5602c65d37eee)
         ;
 
         
     
     
-            var circle_marker_c6f4c43221154c1815798251ea78e87e = L.circleMarker(
+            var circle_marker_fab96b1ae138ed2d8fe539562484b7d2 = L.circleMarker(
                 [50.76638, 15.054439],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;red&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;red&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_b4f37c60534ed8b125238f52dc78388c = L.popup({
+        var popup_4dc550767b9c7dd78c35c244bebe277d = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_8a8039a860d7b0e5d7e923f26ee59d38 = $(`&lt;div id=&quot;html_8a8039a860d7b0e5d7e923f26ee59d38&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Ktová, okres Semily, kraj Liberecký&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220725685/prodam-garaz.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220725685/prodam-garaz.php&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_b4f37c60534ed8b125238f52dc78388c.setContent(html_8a8039a860d7b0e5d7e923f26ee59d38);
+                var html_ddbe33e79c0e434782364c2858f75600 = $(`&lt;div id=&quot;html_ddbe33e79c0e434782364c2858f75600&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Ktová, okres Semily, kraj Liberecký&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220725685/prodam-garaz.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220725685/prodam-garaz.php&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_4dc550767b9c7dd78c35c244bebe277d.setContent(html_ddbe33e79c0e434782364c2858f75600);
             
         
 
-        circle_marker_c6f4c43221154c1815798251ea78e87e.bindPopup(popup_b4f37c60534ed8b125238f52dc78388c)
+        circle_marker_fab96b1ae138ed2d8fe539562484b7d2.bindPopup(popup_4dc550767b9c7dd78c35c244bebe277d)
         ;
 
         
     
     
-            var circle_marker_296a9b06fcda581ac68d5152be59fb5c = L.circleMarker(
+            var circle_marker_20ef0a009c1be8f4c03c49c4c6938056 = L.circleMarker(
                 [49.821023, 18.262624],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;green&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;green&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_6fae90b8fcbfc2c16bb5bea40aa7a191 = L.popup({
+        var popup_fba0952f66c365a705342d3c0f192359 = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_b89e52fb5f0149f2cf1c2c2c159aff7d = $(`&lt;div id=&quot;html_b89e52fb5f0149f2cf1c2c2c159aff7d&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Ostrava, okres Ostrava-město, kraj Moravskoslezský&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Hrubá&lt;br&gt;&lt;a href=&quot;https://www.sreality.cz/detail/prodej/komercni/restaurace/ostrava-moravska-ostrava-stodolni/628486220&quot; target=&quot;_blank&quot;&gt;https://www.sreality.cz/detail/prodej/komercni/restaurace/ostrava-moravska-ostrava-stodolni/628486220&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_6fae90b8fcbfc2c16bb5bea40aa7a191.setContent(html_b89e52fb5f0149f2cf1c2c2c159aff7d);
+                var html_9383292aa9e201cb74bad21e7cea66ea = $(`&lt;div id=&quot;html_9383292aa9e201cb74bad21e7cea66ea&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Ostrava, okres Ostrava-město, kraj Moravskoslezský&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Hrubá&lt;br&gt;&lt;a href=&quot;https://www.sreality.cz/detail/prodej/komercni/restaurace/ostrava-moravska-ostrava-stodolni/628486220&quot; target=&quot;_blank&quot;&gt;https://www.sreality.cz/detail/prodej/komercni/restaurace/ostrava-moravska-ostrava-stodolni/628486220&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_fba0952f66c365a705342d3c0f192359.setContent(html_9383292aa9e201cb74bad21e7cea66ea);
             
         
 
-        circle_marker_296a9b06fcda581ac68d5152be59fb5c.bindPopup(popup_6fae90b8fcbfc2c16bb5bea40aa7a191)
+        circle_marker_20ef0a009c1be8f4c03c49c4c6938056.bindPopup(popup_fba0952f66c365a705342d3c0f192359)
         ;
 
         
     
     
-            var circle_marker_0a771a2c3f699b4a61f746ee30dfe738 = L.circleMarker(
+            var circle_marker_a2dbc58b0abda4f020b5d0edeecd845e = L.circleMarker(
                 [50.772656, 14.212861],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;red&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;red&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_693711c8769022f4a038b79e8ee2945c = L.popup({
+        var popup_1e57d88a5ba21e8cf9fcb9a928ceddf7 = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_864f17bd90034360104a851e5cb23350 = $(`&lt;div id=&quot;html_864f17bd90034360104a851e5cb23350&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Děčín, okres Děčín, kraj Ústecký&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220724989/garaz-po-kompletni-rekonstrukci-hrbitovni-decin-folknare.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220724989/garaz-po-kompletni-rekonstrukci-hrbitovni-decin-folknare.php&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_693711c8769022f4a038b79e8ee2945c.setContent(html_864f17bd90034360104a851e5cb23350);
+                var html_7f9decc6560e7900be2dc41fe634f953 = $(`&lt;div id=&quot;html_7f9decc6560e7900be2dc41fe634f953&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Děčín, okres Děčín, kraj Ústecký&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220724989/garaz-po-kompletni-rekonstrukci-hrbitovni-decin-folknare.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220724989/garaz-po-kompletni-rekonstrukci-hrbitovni-decin-folknare.php&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_1e57d88a5ba21e8cf9fcb9a928ceddf7.setContent(html_7f9decc6560e7900be2dc41fe634f953);
             
         
 
-        circle_marker_0a771a2c3f699b4a61f746ee30dfe738.bindPopup(popup_693711c8769022f4a038b79e8ee2945c)
+        circle_marker_a2dbc58b0abda4f020b5d0edeecd845e.bindPopup(popup_1e57d88a5ba21e8cf9fcb9a928ceddf7)
         ;
 
         
     
     
-            var circle_marker_4317f81ef3277b482ed5838d0151ecfe = L.circleMarker(
+            var circle_marker_39522e84256e7bb275e85fb8f53460c2 = L.circleMarker(
                 [49.41586, 15.595469],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;red&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;red&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_0e2f8dc301383175916001fb57902b36 = L.popup({
+        var popup_84a5340db3bc452081fe737712d30a35 = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_5797b078ea0ae029c78a60e461248286 = $(`&lt;div id=&quot;html_5797b078ea0ae029c78a60e461248286&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Jihlava, okres Jihlava, kraj Vysočina&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://www.sreality.cz/detail/prodej/byt/2+1/jihlava-jihlava-fugnerova/4163366988&quot; target=&quot;_blank&quot;&gt;https://www.sreality.cz/detail/prodej/byt/2+1/jihlava-jihlava-fugnerova/4163366988&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_0e2f8dc301383175916001fb57902b36.setContent(html_5797b078ea0ae029c78a60e461248286);
+                var html_f6b2d9ce2caa27179ffe8b014375b2a8 = $(`&lt;div id=&quot;html_f6b2d9ce2caa27179ffe8b014375b2a8&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Jihlava, okres Jihlava, kraj Vysočina&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://www.sreality.cz/detail/prodej/byt/2+1/jihlava-jihlava-fugnerova/4163366988&quot; target=&quot;_blank&quot;&gt;https://www.sreality.cz/detail/prodej/byt/2+1/jihlava-jihlava-fugnerova/4163366988&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_84a5340db3bc452081fe737712d30a35.setContent(html_f6b2d9ce2caa27179ffe8b014375b2a8);
             
         
 
-        circle_marker_4317f81ef3277b482ed5838d0151ecfe.bindPopup(popup_0e2f8dc301383175916001fb57902b36)
+        circle_marker_39522e84256e7bb275e85fb8f53460c2.bindPopup(popup_84a5340db3bc452081fe737712d30a35)
         ;
 
         
     
     
-            var circle_marker_03b845a6571bb27062132375a42ca7dc = L.circleMarker(
+            var circle_marker_a4d7f4e6eab52f094a55c5fc639757e0 = L.circleMarker(
                 [49.19516, 16.606937],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;green&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;green&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_6eda51130c66f636431b90855df38d20 = L.popup({
+        var popup_3747bd77ef3a3b35589121ebd99c1d46 = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_496797e33eedcd24dad3c0136a359f49 = $(`&lt;div id=&quot;html_496797e33eedcd24dad3c0136a359f49&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Brno, okres Brno-město, kraj Jihomoravský&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Tauš&lt;br&gt;&lt;a href=&quot;https://www.sreality.cz/detail/prodej/byt/2+kk/brno--krenova/3259363404&quot; target=&quot;_blank&quot;&gt;https://www.sreality.cz/detail/prodej/byt/2+kk/brno--krenova/3259363404&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_6eda51130c66f636431b90855df38d20.setContent(html_496797e33eedcd24dad3c0136a359f49);
+                var html_7f78b4cc194e1f2a5b250292c9e23c24 = $(`&lt;div id=&quot;html_7f78b4cc194e1f2a5b250292c9e23c24&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Brno, okres Brno-město, kraj Jihomoravský&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Tauš&lt;br&gt;&lt;a href=&quot;https://www.sreality.cz/detail/prodej/byt/2+kk/brno--krenova/3259363404&quot; target=&quot;_blank&quot;&gt;https://www.sreality.cz/detail/prodej/byt/2+kk/brno--krenova/3259363404&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_3747bd77ef3a3b35589121ebd99c1d46.setContent(html_7f78b4cc194e1f2a5b250292c9e23c24);
             
         
 
-        circle_marker_03b845a6571bb27062132375a42ca7dc.bindPopup(popup_6eda51130c66f636431b90855df38d20)
+        circle_marker_a4d7f4e6eab52f094a55c5fc639757e0.bindPopup(popup_3747bd77ef3a3b35589121ebd99c1d46)
         ;
 
         
     
     
-            var circle_marker_e43c72749f86de3bee815a31b330ed49 = L.circleMarker(
+            var circle_marker_6ce2d76983199c3e26f95cf199ed5484 = L.circleMarker(
                 [50.231952, 12.872062],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;red&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;red&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_8b2a40c2738be0369521061ed1d247c7 = L.popup({
+        var popup_c1f95e6668e9f47313ae416a19281b7c = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_62662fb08ce8dbba59e876e9d717aa69 = $(`&lt;div id=&quot;html_62662fb08ce8dbba59e876e9d717aa69&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Karlovy Vary, okres Karlovy Vary, kraj Karlovarský&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220729260/byt-na-prodej-68m2-horni-drahovice-karlovy-vary.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220729260/byt-na-prodej-68m2-horni-drahovice-karlovy-vary.php&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_8b2a40c2738be0369521061ed1d247c7.setContent(html_62662fb08ce8dbba59e876e9d717aa69);
+                var html_737213a59997fe5ddbafc951a648bbae = $(`&lt;div id=&quot;html_737213a59997fe5ddbafc951a648bbae&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Karlovy Vary, okres Karlovy Vary, kraj Karlovarský&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220729260/byt-na-prodej-68m2-horni-drahovice-karlovy-vary.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220729260/byt-na-prodej-68m2-horni-drahovice-karlovy-vary.php&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_c1f95e6668e9f47313ae416a19281b7c.setContent(html_737213a59997fe5ddbafc951a648bbae);
             
         
 
-        circle_marker_e43c72749f86de3bee815a31b330ed49.bindPopup(popup_8b2a40c2738be0369521061ed1d247c7)
+        circle_marker_6ce2d76983199c3e26f95cf199ed5484.bindPopup(popup_c1f95e6668e9f47313ae416a19281b7c)
         ;
 
         
     
     
-            var circle_marker_be53a32dc85f00316a19a85729e918f9 = L.circleMarker(
+            var circle_marker_700f8d7c44a7d7f6b43f139863d0b96b = L.circleMarker(
                 [49.774549, 17.749517],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;green&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;green&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_59a784697a6cc0277ce679380099a26b = L.popup({
+        var popup_ea7da8463ee23710d4249e608fa9fde7 = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_2f9a0148fd9b320bf20927f15078b46f = $(`&lt;div id=&quot;html_2f9a0148fd9b320bf20927f15078b46f&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Vítkov, okres Opava, kraj Moravskoslezský&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Večerek&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220728414/prodej-komercniho-objektu.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220728414/prodej-komercniho-objektu.php&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_59a784697a6cc0277ce679380099a26b.setContent(html_2f9a0148fd9b320bf20927f15078b46f);
+                var html_8f2f4cd198cfda9dd2e96487d386e568 = $(`&lt;div id=&quot;html_8f2f4cd198cfda9dd2e96487d386e568&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Vítkov, okres Opava, kraj Moravskoslezský&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Večerek&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220728414/prodej-komercniho-objektu.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220728414/prodej-komercniho-objektu.php&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_ea7da8463ee23710d4249e608fa9fde7.setContent(html_8f2f4cd198cfda9dd2e96487d386e568);
             
         
 
-        circle_marker_be53a32dc85f00316a19a85729e918f9.bindPopup(popup_59a784697a6cc0277ce679380099a26b)
+        circle_marker_700f8d7c44a7d7f6b43f139863d0b96b.bindPopup(popup_ea7da8463ee23710d4249e608fa9fde7)
         ;
 
         
     
     
-            var circle_marker_773b34b808584e23fcbb02efd2446cc9 = L.circleMarker(
+            var circle_marker_2feed82593f3ad977bc6615ca98640a9 = L.circleMarker(
                 [50.837124, 14.264055],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;red&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;red&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_9f5b64aa6e19edf67f5d72f6e395c7d3 = L.popup({
+        var popup_23b93a38f8485c847c0b5e00e0e4dc13 = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_35df6c77e7cac7c8ba63d3a5238d1dc3 = $(`&lt;div id=&quot;html_35df6c77e7cac7c8ba63d3a5238d1dc3&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Arnoltice, okres Děčín, kraj Ústecký&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220727669/prodej-pozemku.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220727669/prodej-pozemku.php&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_9f5b64aa6e19edf67f5d72f6e395c7d3.setContent(html_35df6c77e7cac7c8ba63d3a5238d1dc3);
+                var html_9e3f18e5518dd332efa22534b73053ca = $(`&lt;div id=&quot;html_9e3f18e5518dd332efa22534b73053ca&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Arnoltice, okres Děčín, kraj Ústecký&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220727669/prodej-pozemku.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220727669/prodej-pozemku.php&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_23b93a38f8485c847c0b5e00e0e4dc13.setContent(html_9e3f18e5518dd332efa22534b73053ca);
             
         
 
-        circle_marker_773b34b808584e23fcbb02efd2446cc9.bindPopup(popup_9f5b64aa6e19edf67f5d72f6e395c7d3)
+        circle_marker_2feed82593f3ad977bc6615ca98640a9.bindPopup(popup_23b93a38f8485c847c0b5e00e0e4dc13)
         ;
 
         
     
     
-            var circle_marker_d2705cd29676cdcf6547bccccfe8cff3 = L.circleMarker(
+            var circle_marker_f4700f637f58efeb26a5158fcc9950ed = L.circleMarker(
                 [49.738531, 13.373737],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;green&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;green&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_00ff7dc14e2ca4707bc56961902bd604 = L.popup({
+        var popup_ad0b29f602da37479c8c2d5f0f3416b1 = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_59aede5f082ad4265b32bad523a58095 = $(`&lt;div id=&quot;html_59aede5f082ad4265b32bad523a58095&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Plzeň, okres Plzeň-město, kraj Plzeňský&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Marešková&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220730110/prodam-byt-1kk-20-m-plzen-bory-u-oc-luna.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220730110/prodam-byt-1kk-20-m-plzen-bory-u-oc-luna.php&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_00ff7dc14e2ca4707bc56961902bd604.setContent(html_59aede5f082ad4265b32bad523a58095);
+                var html_c1f847c7ae5c86f11721727aa44a7ed5 = $(`&lt;div id=&quot;html_c1f847c7ae5c86f11721727aa44a7ed5&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Plzeň, okres Plzeň-město, kraj Plzeňský&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Marešková&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220730110/prodam-byt-1kk-20-m-plzen-bory-u-oc-luna.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220730110/prodam-byt-1kk-20-m-plzen-bory-u-oc-luna.php&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_ad0b29f602da37479c8c2d5f0f3416b1.setContent(html_c1f847c7ae5c86f11721727aa44a7ed5);
             
         
 
-        circle_marker_d2705cd29676cdcf6547bccccfe8cff3.bindPopup(popup_00ff7dc14e2ca4707bc56961902bd604)
+        circle_marker_f4700f637f58efeb26a5158fcc9950ed.bindPopup(popup_ad0b29f602da37479c8c2d5f0f3416b1)
         ;
 
         
     
     
-            var circle_marker_38c486e57842dd56445fd96a154fccf3 = L.circleMarker(
+            var circle_marker_44593471132190da29b037e982468548 = L.circleMarker(
                 [49.967305, 14.086384],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;green&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;green&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_bb0380a3ab3e1dd586632bc674773e8c = L.popup({
+        var popup_bef2cccbc827e5ad9af38dbbc0728452 = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_5ed195578930ee7cf3da2e0551427dd1 = $(`&lt;div id=&quot;html_5ed195578930ee7cf3da2e0551427dd1&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Beroun, okres Beroun, kraj Středočeský&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Modrý&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220728226/viceucelovy-komercni-objekt-autoservispneuservisvyroba.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220728226/viceucelovy-komercni-objekt-autoservispneuservisvyroba.php&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_bb0380a3ab3e1dd586632bc674773e8c.setContent(html_5ed195578930ee7cf3da2e0551427dd1);
+                var html_49cf9a0aee37e59c47f4032398302990 = $(`&lt;div id=&quot;html_49cf9a0aee37e59c47f4032398302990&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Beroun, okres Beroun, kraj Středočeský&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Modrý&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220728226/viceucelovy-komercni-objekt-autoservispneuservisvyroba.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220728226/viceucelovy-komercni-objekt-autoservispneuservisvyroba.php&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_bef2cccbc827e5ad9af38dbbc0728452.setContent(html_49cf9a0aee37e59c47f4032398302990);
             
         
 
-        circle_marker_38c486e57842dd56445fd96a154fccf3.bindPopup(popup_bb0380a3ab3e1dd586632bc674773e8c)
+        circle_marker_44593471132190da29b037e982468548.bindPopup(popup_bef2cccbc827e5ad9af38dbbc0728452)
         ;
 
         
     
     
-            var circle_marker_267fae600ead8a907c7779bcd9b6e5c7 = L.circleMarker(
+            var circle_marker_2d8fa5f9c36e24c05c9098704f0b80ef = L.circleMarker(
                 [50.501655, 13.633012],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;red&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;red&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_b039e7150db4e3e18bfa840bd1fbd0e9 = L.popup({
+        var popup_caec1d0adc47827c19e26428781c6e02 = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_e0701e621c490092fa61a78bd4b2f4c2 = $(`&lt;div id=&quot;html_e0701e621c490092fa61a78bd4b2f4c2&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Most, okres Most, kraj Ústecký&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://www.sreality.cz/detail/prodej/byt/3+1/most-most-frantiska-halase/356905036&quot; target=&quot;_blank&quot;&gt;https://www.sreality.cz/detail/prodej/byt/3+1/most-most-frantiska-halase/356905036&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_b039e7150db4e3e18bfa840bd1fbd0e9.setContent(html_e0701e621c490092fa61a78bd4b2f4c2);
+                var html_a854f10dd076ab7674ce2e3bae81f107 = $(`&lt;div id=&quot;html_a854f10dd076ab7674ce2e3bae81f107&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Most, okres Most, kraj Ústecký&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://www.sreality.cz/detail/prodej/byt/3+1/most-most-frantiska-halase/356905036&quot; target=&quot;_blank&quot;&gt;https://www.sreality.cz/detail/prodej/byt/3+1/most-most-frantiska-halase/356905036&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_caec1d0adc47827c19e26428781c6e02.setContent(html_a854f10dd076ab7674ce2e3bae81f107);
             
         
 
-        circle_marker_267fae600ead8a907c7779bcd9b6e5c7.bindPopup(popup_b039e7150db4e3e18bfa840bd1fbd0e9)
+        circle_marker_2d8fa5f9c36e24c05c9098704f0b80ef.bindPopup(popup_caec1d0adc47827c19e26428781c6e02)
         ;
 
         
     
     
-            var circle_marker_7634e0cfb5cd136465c880399c23503c = L.circleMarker(
+            var circle_marker_7499840d3dd5f394e2e261283fd4c86c = L.circleMarker(
                 [50.837124, 14.264055],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;red&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;red&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_8cce0219aae9cac03b82d9f11809a647 = L.popup({
+        var popup_9ce7140c06b20eed8aebdaa14400144a = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_6c2545f8add96bff6738db66f76da76b = $(`&lt;div id=&quot;html_6c2545f8add96bff6738db66f76da76b&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Arnoltice, okres Děčín, kraj Ústecký&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220727669/prodej-pozemku.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220727669/prodej-pozemku.php&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_8cce0219aae9cac03b82d9f11809a647.setContent(html_6c2545f8add96bff6738db66f76da76b);
+                var html_4dc99459eb85d5e5742c811876766827 = $(`&lt;div id=&quot;html_4dc99459eb85d5e5742c811876766827&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Arnoltice, okres Děčín, kraj Ústecký&lt;/b&gt;&lt;br&gt;Stav: Odfiltrováno&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220727669/prodej-pozemku.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220727669/prodej-pozemku.php&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_9ce7140c06b20eed8aebdaa14400144a.setContent(html_4dc99459eb85d5e5742c811876766827);
             
         
 
-        circle_marker_7634e0cfb5cd136465c880399c23503c.bindPopup(popup_8cce0219aae9cac03b82d9f11809a647)
+        circle_marker_7499840d3dd5f394e2e261283fd4c86c.bindPopup(popup_9ce7140c06b20eed8aebdaa14400144a)
         ;
 
         
     
     
-            var circle_marker_049923480cef27b399de76e1083ac1e4 = L.circleMarker(
+            var circle_marker_2eeae92642b335b52eecdfc9a8f47dac = L.circleMarker(
                 [49.738531, 13.373737],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;green&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;green&quot;, &quot;fillOpacity&quot;: 0.8, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 6, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            ).addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-        var popup_468b8101f451a095c8b6a85a11b3dfa5 = L.popup({
+        var popup_960e8ce7dc78f026170dedeb80ad6f85 = L.popup({
   &quot;maxWidth&quot;: 350,
 });
 
         
             
-                var html_e0b3883e435c2ea5f6436bcef7e70ea7 = $(`&lt;div id=&quot;html_e0b3883e435c2ea5f6436bcef7e70ea7&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Plzeň, okres Plzeň-město, kraj Plzeňský&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Marešková&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220730110/prodam-byt-1kk-20-m-plzen-bory-u-oc-luna.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220730110/prodam-byt-1kk-20-m-plzen-bory-u-oc-luna.php&lt;/a&gt;&lt;/div&gt;`)[0];
-                popup_468b8101f451a095c8b6a85a11b3dfa5.setContent(html_e0b3883e435c2ea5f6436bcef7e70ea7);
+                var html_7d279c055374ee594c680491c8348593 = $(`&lt;div id=&quot;html_7d279c055374ee594c680491c8348593&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;&lt;b&gt;Plzeň, okres Plzeň-město, kraj Plzeňský&lt;/b&gt;&lt;br&gt;Stav: Přiřazeno: Marešková&lt;br&gt;&lt;a href=&quot;https://reality.bazos.cz/inzerat/220730110/prodam-byt-1kk-20-m-plzen-bory-u-oc-luna.php&quot; target=&quot;_blank&quot;&gt;https://reality.bazos.cz/inzerat/220730110/prodam-byt-1kk-20-m-plzen-bory-u-oc-luna.php&lt;/a&gt;&lt;/div&gt;`)[0];
+                popup_960e8ce7dc78f026170dedeb80ad6f85.setContent(html_7d279c055374ee594c680491c8348593);
             
         
 
-        circle_marker_049923480cef27b399de76e1083ac1e4.bindPopup(popup_468b8101f451a095c8b6a85a11b3dfa5)
+        circle_marker_2eeae92642b335b52eecdfc9a8f47dac.bindPopup(popup_960e8ce7dc78f026170dedeb80ad6f85)
         ;
 
         
     
     
-            tile_layer_8b0e86c65f61bb4cceaa7ad2247be065.addTo(map_1dd6023d551f11c70d4ec68f28fb21b6);
+            tile_layer_9b27d3150f93e27bd03df750e94a07c2.addTo(map_e6cf521e6652c604c75dfc4d7b0302cf);
         
     
-                marker_05cd0fbb90384a32626dcd65bff8cc04.setIcon(icon_d88567fd4d5f1b137a067a4323477615);
+                marker_0051f48703ee51459863e248b5c2443a.setIcon(icon_cd1161d9dbf798e960675e93ea05145e);
             
     
-                marker_5cbe25be7ddd7acbfdb1f045ddbd882c.setIcon(icon_a77ef3714305721b1440021d66f31cc5);
+                marker_83b11f5e13f8921d4b5683004a3e32d2.setIcon(icon_a323bd9f25d23789c495e1cff7bc1087);
             
     
-                marker_e90ee4b64fe4f4231deb553f45537ce5.setIcon(icon_be088ea514f8d36529c0dbc265210c85);
+                marker_ef8ca7bba0b4825dae3cbd61b0108f07.setIcon(icon_0d938b541ccfc7e6ac134057941734ec);
             
     
-                marker_4f1f6f38259d6c5d2fb1debcce4caca8.setIcon(icon_4c2399c286c0636a729b74efbdc9196e);
+                marker_b4a7c1825f2f3106c2541c6d5e3494dc.setIcon(icon_eb4e3c7acde67919aaa9d051cc1eb609);
             
     
-                marker_970eb7d2626f8998935ce8d481fa5b15.setIcon(icon_5c08ad8036a5a5ae3ad171c739db6114);
+                marker_2c8f92bced1e87af94cc6316a2fe2df1.setIcon(icon_2f606b0f82d19fc3d09c94546fba72f0);
             
     
-                marker_2ba8424b2b5809185e68aa9ff683c307.setIcon(icon_89cf43b317ff29ef37638007afc7170b);
+                marker_0c322e1334d0f814704f3cf3965016e5.setIcon(icon_35f2aca26bb1bd80c1eb23ecdddeeeb2);
             
     
-                marker_55a90364756a9da0d73b47bf680fe190.setIcon(icon_9dd2fc90444ff19c84f17c65f9a18234);
+                marker_f9cf8b0638887135d14c77b44d173b74.setIcon(icon_048b0760216f743cd1bfcc0a2b9a80b1);
             
     
-                marker_87f3f9d716f5a8666593889d63c5e3a8.setIcon(icon_a78d92b45cf705fc09df08423c4690fd);
+                marker_5223a09effe204d69f67bb2a48629829.setIcon(icon_667565f71c14b030812f3e57ca9f9424);
             
     
-                marker_d967ebe89089c8558eb30bf0eea5bfa2.setIcon(icon_34be271367c5b65505827a306dbd7e21);
+                marker_70bb889e0ad7624404d9e846506aa408.setIcon(icon_94451afe6c2ebcfc52200863cd2b0717);
             
 &lt;/script&gt;
 &lt;/html&gt;" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe></div></div></div></div>
-    <div class='card' style='margin-top:30px;'><h3>📋 Seznam unikátních inzerátů</h3><table border="1" class="dataframe pure-table">
+        <div class='card' style='margin-top:30px;'><h3>📋 Seznam unikátních inzerátů</h3><table border="1" class="dataframe pure-table">
   <thead>
     <tr style="text-align: right;">
       <th>#</th>
@@ -1875,7 +1904,7 @@ https://www.byty.cz/komercni-stavebni-pozemky-na-prodej-votice-husova/xad1406270
       <td>1</td>
       <td>Praha, okres Praha, kraj Hlavní město Praha</td>
       <td>1.5</td>
-      <td>Taušová</td>
+      <td>Sadecká</td>
       <td>Manda</td>
       <td>+420 720 213 724</td>
       <td><a href="https://www.sreality.cz/detail/prodej/byt/3+kk/praha--mezi-vodami/1575415884" target="_blank">Otevřít</a></td>
@@ -1965,7 +1994,7 @@ https://www.byty.cz/komercni-stavebni-pozemky-na-prodej-votice-husova/xad1406270
       <td>11</td>
       <td>Mníšek pod Brdy, okres Praha-západ, kraj Středočeský</td>
       <td>32.3</td>
-      <td>Taušová</td>
+      <td>Sadecká</td>
       <td>Manda</td>
       <td>+420 732 510 941</td>
       <td><a href="https://www.sreality.cz/detail/prodej/byt/3+kk/mnisek-pod-brdy-mnisek-pod-brdy-v-edenu/1455878220" target="_blank">Otevřít</a></td>
@@ -2035,5 +2064,7 @@ https://www.byty.cz/komercni-stavebni-pozemky-na-prodej-votice-husova/xad1406270
     </tr>
   </tbody>
 </table></div>
-    <div class='card'><h3>📊 Statistika dle krajů</h3><table><thead><tr><th>Kraj</th><th>Počet inzerátů</th><th>Počet makléřů</th><th>Průměr / Makléř</th><th>Průměrná vzdálenost (km)</th></tr></thead><tbody><tr><td>kraj Hlavní město Praha</td><td>3</td><td>5</td><td>0.6</td><td>4.4</td></tr><tr><td>kraj Jihomoravský</td><td>3</td><td>1</td><td>3.0</td><td>24.2</td></tr><tr><td>kraj Moravskoslezský</td><td>5</td><td>2</td><td>2.5</td><td>20.0</td></tr><tr><td>kraj Plzeňský</td><td>2</td><td>1</td><td>2.0</td><td>34.0</td></tr><tr><td>kraj Středočeský</td><td>5</td><td>4</td><td>1.2</td><td>34.5</td></tr></tbody></table></div>
-    </div></body></html>
+        <div class='card'><h3>📊 Statistika dle krajů</h3><table><thead><tr><th>Kraj</th><th>Počet inzerátů</th><th>Počet makléřů</th><th>Průměr / Makléř</th><th>Průměrná vzdálenost (km)</th></tr></thead><tbody><tr><td>kraj Hlavní město Praha</td><td>3</td><td>5</td><td>0.6</td><td>4.4</td></tr><tr><td>kraj Jihomoravský</td><td>3</td><td>1</td><td>3.0</td><td>24.2</td></tr><tr><td>kraj Moravskoslezský</td><td>5</td><td>2</td><td>2.5</td><td>20.0</td></tr><tr><td>kraj Plzeňský</td><td>2</td><td>1</td><td>2.0</td><td>34.0</td></tr><tr><td>kraj Středočeský</td><td>5</td><td>4</td><td>1.2</td><td>34.5</td></tr></tbody></table></div>
+        </div>
+    </div>
+    </body></html>

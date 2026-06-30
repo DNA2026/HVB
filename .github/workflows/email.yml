@@ -53,6 +53,9 @@ jobs:
                 print(f"❌ Chyba při odesílání na Telegram: {e}")
                 return False
 
+        message = None
+        success = True
+
         try:
             print("🔍 Připojování k Gmailu...")
             mail = imaplib.IMAP4_SSL('imap.gmail.com', 993)
@@ -60,32 +63,25 @@ jobs:
             
             mail.select('INBOX')
             
-            # VARIANTA 1: Celkový počet nepřečtených mailů
-            status_all, response_all = mail.search(None, 'UNSEEN')
-            all_unread = 0
-            if status_all == 'OK' and response_all[0]:
-                message_ids = response_all[0].split()
-                all_unread = len(message_ids)
-                print(f"📧 Nalezeno {all_unread} nepřečtených zpráv")
-                
-            # VARIANTA 2: Nepřečtené maily od konkrétního odesílatele
+            # Vyhledávání nepřečtených mailů pouze od konkrétního odesílatele
             sender_email = 'robot@octopuspro.cz'
             status_from, response_from = mail.search(None, 'UNSEEN', 'FROM', sender_email)
             octopus_unread = 0
+            
             if status_from == 'OK' and response_from[0]:
                 message_ids = response_from[0].split()
                 octopus_unread = len(message_ids)
-                print(f"🐙 Nalezeno {octopus_unread} nepřečtených zpráv od {sender_email}")
+            
+            print(f"🐙 Nalezeno {octopus_unread} nepřečtených zpráv od {sender_email}")
             
             mail.logout()
             print("✅ Odhlášeno z Gmailu")
 
-            # Sestavení přehledné zprávy
-            message = (
-                f"<b>📊 Výsledek kontroly Gmailu</b>\n\n"
-                f"▪️ Celkem nepřečtených v INBOXU: <b>{all_unread}</b>\n"
-                f"▪️ Nepřečtených od robot@octopuspro.cz: <b>{octopus_unread}</b>"
-            )
+            # Zpráva se sestaví a odešle POUZE pokud jsou nalezeny nepřečtené maily
+            if octopus_unread > 0:
+                message = f"Nepřečtených zpráv od Octopus : {octopus_unread}"
+            else:
+                print("📭 Žádné nové zprávy od Octopus, notifikace se neposílá.")
 
         except imaplib.IMAP4.error as e:
             message = f"<b>🔴 Chyba přihlášení k Gmailu:</b>\n{str(e)}"
@@ -96,8 +92,9 @@ jobs:
             import traceback
             traceback.print_exc()
 
-        # Odeslání na Telegram
-        success = send_telegram_message(message)
+        # Odeslání na Telegram (pokud je připravena zpráva k odeslání)
+        if message:
+            success = send_telegram_message(message)
         
         # Exit code pro GitHub Actions
         if not success:

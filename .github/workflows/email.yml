@@ -2,8 +2,8 @@ name: Hodinová kontrola Gmailu a Telegram notifikace
 
 on:
   schedule:
-    # Spustí se každou celou hodinu (53. minuta UTC)
-    - cron: '53 * * * *'
+    # Spustí se každou celou hodinu (23. minuta UTC)
+    - cron: '23 * * * *'
   
   repository_dispatch:
     # Umožní okamžité spuštění z MacroDroidu

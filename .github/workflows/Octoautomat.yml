@@ -21,16 +21,20 @@ jobs:
           python-version: '3.12'
 
       - name: Instalace pip balicku
-        # Přidali jsme 'pytz', aby tvůj skript neselhal před dokončením Dashboardu
         run: pip install pandas requests openrouteservice gdown openpyxl ipython folium pytz
 
       - name: Priprava prostredi Colabu a stahnuti dat
         env:
           FOLDER_ID: ${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}
         run: |
+          # Vytvoření identické struktury složek jako v Google Colab
           sudo mkdir -p /content/drive/MyDrive/HVB
           sudo chmod -R 777 /content
+          
+          # Stažení tvých zdrojových souborů z Google Disku do Colab složky
           gdown --folder "$FOLDER_ID" -O /content/drive/MyDrive/HVB
+          
+          # Čisté zkopírování dat do aktuálního adresáře (skript s nimi bude pracovat přímo zde)
           cp -r /content/drive/MyDrive/HVB/* . || true
 
       - name: Spusteni Python skriptu OCTO
@@ -66,8 +70,6 @@ jobs:
           sys.modules['google.colab.output'] = m_output
           sys.modules['google.colab'] = m_colab
           
-          # Žádný try-except blok, který by maskoval chyby. 
-          # Chceme, aby OCTO.py běžel naprosto čistě až do konce.
           exec(open('OCTO.py', encoding='utf-8').read())
           "
 
@@ -76,14 +78,28 @@ jobs:
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           
-          # Synchronizujeme případné soubory zapsané do /content složky
-          cp -r /content/drive/MyDrive/HVB/* . 2>/dev/null || true
+          # ODSTRANĚNÍ RIZIKA EMBEDDED REPOZITÁŘE:
+          # Vyčistíme starou stopu indexu a smažeme složku HVB, pokud ji tam gdown vytvořil,
+          # protože všechny její soubory už máme vybalené přímo v kořeni.
+          git rm --cached HVB 2>/dev/null || true
+          rm -rf HVB 2>/dev/null || true
           
-          # Řekneme Gitu, ať se podívá na všechny změny v repozitáři.
-          # Nahraje se pouze to, co tvůj skript reálně vytvořil nebo upravil.
-          git add -A
+          # STRIKTNÍ A BEZPEČNÝ FILTR PRO GIT:
+          # Použijeme interní exclude soubor. Nejprve zakážeme úplně všechno...
+          echo "*" > .git/info/exclude
+          # ...a pak povolíme výhradně dynamické přípony, které OCTO.py produkuje jako své výsledky.
+          echo "!*.html" >> .git/info/exclude
+          echo "!*.txt" >> .git/info/exclude
+          echo "!*.zip" >> .git/info/exclude
           
-          # Velká zdrojová data (obce01.csv, Makléři.xlsx) odfiltrujeme z commitu, pokud tam jsou
-          git reset obce01.csv Makléři.xlsx 2>/dev/null || true
+          # Výjimka z výjimek: Velké databáze a samotný kód skriptu nechceme nikdy přepisovat zpět do repozitáře
+          echo "obce01.csv" >> .git/info/exclude
+          echo "Makléři.xlsx" >> .git/info/exclude
+          echo "OCTO.py" >> .git/info/exclude
           
-          git commit -m "Automatická aktualizace webu z OCTO.py" && git push || echo "Žádné změny k nahrání."
+          # Git nyní bezpečně prohledá kořen a přidá VŠECHNY nově vygenerované html mapy, Dashboard
+          # i jakékoliv dynamické množství WhatsApp textů, přičemž obří data nechá kompletně bez povšimnutí.
+          git add .
+          
+          # Odeslání změn na GitHub. Pokud se data nezměnila, proces v klidu skončí bez chybové hlášky.
+          git commit -m "Automatická aktualizace kompletních dynamických výstupů z OCTO.py" && git push || echo "Web i WhatsApp výstupy jsou již aktuální."

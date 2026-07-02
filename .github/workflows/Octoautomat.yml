@@ -2,9 +2,8 @@ name: Automatizace OCTO
 
 on:
   schedule:
-    # Běží v 14:00 UTC (16:00 našeho času) pouze v pondělí, úterý, středu, čtvrtek a pátek (1-5)
     - cron: '0 14 * * MON-FRI'
-  workflow_dispatch: # Tlačítko pro ruční spuštění
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -20,17 +19,16 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
-      - run: pip install pandas requests openrouteservice gdown
+      
+      - name: Instalace pip balicku
+        run: pip install pandas requests openrouteservice gdown
 
       - name: Priprava souboru z Google Disku a Tokenu
+        env:
+          FOLDER_ID: ${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}
         run: |
-          # 1. Stáhneme složku z Disku do dočasného adresáře "data_temp"
           gdown --folder "$FOLDER_ID" -O data_temp
-          
-          # 2. Přesuneme všechny stažené soubory z "data_temp" přímo sem ke skriptu
           cp -r data_temp/* .
-          
-          # 2. Vytvoří textový soubor s tokenem pro OpenRouteService
           echo "${{ secrets.OPENROUTESERVICE_TOKEN }}" > ors_token.txt
 
       - name: Spusteni Python skriptu OCTO
@@ -40,5 +38,5 @@ jobs:
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-          git add index.html # Změň název, pokud se HTML jmenuje jinak
+          git add index.html
           git diff --quiet && git diff --staged --quiet || (git commit -m "Aktualizace webu z OCTO.py" && git push)

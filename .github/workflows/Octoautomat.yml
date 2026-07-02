@@ -21,7 +21,8 @@ jobs:
           python-version: '3.12'
 
       - name: Instalace pip balicku
-        run: pip install pandas requests openrouteservice gdown openpyxl ipython folium
+        # Přidali jsme 'pytz', aby tvůj skript neselhal před dokončením Dashboardu
+        run: pip install pandas requests openrouteservice gdown openpyxl ipython folium pytz
 
       - name: Priprava prostredi Colabu a stahnuti dat
         env:
@@ -65,12 +66,9 @@ jobs:
           sys.modules['google.colab.output'] = m_output
           sys.modules['google.colab'] = m_colab
           
-          # NEPRŮSTŘELNÝ BLOCK: Spustíme celý skript, a pokud na úplném konci vyhodí 
-          # IPython/Colab chybu zobrazení objektu, bezpečně ji zachytíme a pokračujeme.
-          try:
-              exec(open('OCTO.py', encoding='utf-8').read())
-          except Exception as e:
-              print(f'\n[INFO] Skript dokončen. Odfiltrován závěrečný IPython prvek: {e}')
+          # Žádný try-except blok, který by maskoval chyby. 
+          # Chceme, aby OCTO.py běžel naprosto čistě až do konce.
+          exec(open('OCTO.py', encoding='utf-8').read())
           "
 
       - name: Ulozeni vygenerovaneho HTML na GitHub web
@@ -78,21 +76,14 @@ jobs:
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           
-          # Zkopírujeme soubory z /content složky, kam je OCTO.py uložil
-          cp /content/drive/MyDrive/HVB/Dashboard.html ./Dashboard.html 2>/dev/null || cp Dashboard.html ./Dashboard.html 2>/dev/null || true
-          cp /content/drive/MyDrive/HVB/mapa_zakazky.html ./mapa_zakazky.html 2>/dev/null || cp mapa_zakazky.html ./mapa_zakazky.html 2>/dev/null || true
-          cp /content/drive/MyDrive/HVB/vystup_komplet_final_v3.zip ./vystup_komplet_final_v3.zip 2>/dev/null || cp vystup_komplet_final_v3.zip ./vystup_komplet_final_v3.zip 2>/dev/null || true
-          cp /content/drive/MyDrive/HVB/whatsapp_vystup_finalni.txt ./whatsapp_vystup_finalni.txt 2>/dev/null || cp whatsapp_vystup_finalni.txt ./whatsapp_vystup_finalni.txt 2>/dev/null || true
-          cp /content/drive/MyDrive/HVB/email_shrnuti.txt ./email_shrnuti.txt 2>/dev/null || cp email_shrnuti.txt ./email_shrnuti.txt 2>/dev/null || true
-          cp /content/drive/MyDrive/HVB/ORS_komplet.txt ./ORS_komplet.txt 2>/dev/null || cp ORS_komplet.txt ./ORS_komplet.txt 2>/dev/null || true
+          # Synchronizujeme případné soubory zapsané do /content složky
+          cp -r /content/drive/MyDrive/HVB/* . 2>/dev/null || true
           
-          # Pojistka: Pokud skript uložil pouze mapa_zakazky.html, uděláme kopii pro webový odkaz Dashboard.html
-          if [ -f ./mapa_zakazky.html ] && [ ! -f ./Dashboard.html ]; then
-            cp ./mapa_zakazky.html ./Dashboard.html
-          fi
+          # Řekneme Gitu, ať se podívá na všechny změny v repozitáři.
+          # Nahraje se pouze to, co tvůj skript reálně vytvořil nebo upravil.
+          git add -A
           
-          # Přidáme pouze vygenerované soubory určené ke zveřejnění
-          git add Dashboard.html mapa_zakazky.html vystup_komplet_final_v3.zip whatsapp_vystup_finalni.txt email_shrnuti.txt ORS_komplet.txt 2>/dev/null || true
+          # Velká zdrojová data (obce01.csv, Makléři.xlsx) odfiltrujeme z commitu, pokud tam jsou
+          git reset obce01.csv Makléři.xlsx 2>/dev/null || true
           
-          # Commit a Push. Pokud se inzeráty nezměnily, akce projde čistě dál.
           git commit -m "Automatická aktualizace webu z OCTO.py" && git push || echo "Žádné změny k nahrání."

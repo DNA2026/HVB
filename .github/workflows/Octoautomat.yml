@@ -27,25 +27,21 @@ jobs:
         env:
           FOLDER_ID: ${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}
         run: |
-          # 1. Vytvoříme složku pro Colab prostředí
+          # Vytvoříme přesnou strukturu složek, do které OCTO.py zapisuje a ze které čte
           sudo mkdir -p /content/drive/MyDrive/HVB
           sudo chmod -R 777 /content
           
-          # 2. Stáhneme data z Disku (obce, makléře atd.)
+          # Stáhneme zdrojové soubory z Google Disku přímo do této složky
           gdown --folder "$FOLDER_ID" -O /content/drive/MyDrive/HVB
           
-          # 3. JISTOTA: Vezmeme už vygenerovaný ORS_komplet.txt z GitHubu 
-          # a podstrčíme ho do Colab složky JEŠTĚ PŘED spuštěním skriptu.
-          # Díky tomu OCTO.py uvidí, že výpočet je hotový, a nepustí nové ORS dotazy.
-          cp ORS_komplet.txt /content/drive/MyDrive/HVB/ORS_komplet.txt 2>/dev/null || true
-          
-          # Kopie do aktuálního adresáře pro relativní importy
+          # Pro jistotu zrcadlíme do aktuálního adresáře pro případné relativní importy
           cp -r /content/drive/MyDrive/HVB/* . || true
 
       - name: Spusteni Python skriptu OCTO
         env:
           ORS_TOKEN_SECRET: ${{ secrets.OPENROUTESERVICE_TOKEN }}
         run: |
+          # Spustíme plnou verzi skriptu se stoprocentní simulací prostředí Colabu
           python -c "
           import sys, types, os
           
@@ -74,6 +70,7 @@ jobs:
           sys.modules['google.colab.output'] = m_output
           sys.modules['google.colab'] = m_colab
           
+          # Spuštění ostrého kódu. Bez try-except, pokud nastane chyba v Pythonu, hned ji uvidíme.
           exec(open('OCTO.py', encoding='utf-8').read())
           "
 
@@ -82,13 +79,17 @@ jobs:
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           
-          # Přetáhneme vygenerovaný Dashboard a soubory zpět z Colab složky, pokud je tam skript zapsal
-          cp /content/drive/MyDrive/HVB/Dashboard.html ./Dashboard.html 2>/dev/null || true
-          cp /content/drive/MyDrive/HVB/whatsapp_vystup_finalni.txt ./whatsapp_vystup_finalni.txt 2>/dev/null || true
-          cp /content/drive/MyDrive/HVB/email_shrnuti.txt ./email_shrnuti.txt 2>/dev/null || true
-          cp /content/drive/MyDrive/HVB/ORS_komplet.txt ./ORS_komplet.txt 2>/dev/null || true
+          # KLÍČOVÝ KROK: Vezmeme Dashboard.html a ostatní soubory z Colab složky 
+          # a přesuneme je přímo sem do kořene repozitáře, aby je Git mohl nahrát.
+          cp /content/drive/MyDrive/HVB/Dashboard.html ./Dashboard.html 2>/dev/null || cp Dashboard.html ./Dashboard.html 2>/dev/null || true
+          cp /content/drive/MyDrive/HVB/mapa_zakazky.html ./mapa_zakazky.html 2>/dev/null || cp mapa_zakazky.html ./mapa_zakazky.html 2>/dev/null || true
+          cp /content/drive/MyDrive/HVB/vystup_komplet_final_v3.zip ./vystup_komplet_final_v3.zip 2>/dev/null || cp vystup_komplet_final_v3.zip ./vystup_komplet_final_v3.zip 2>/dev/null || true
+          cp /content/drive/MyDrive/HVB/whatsapp_vystup_finalni.txt ./whatsapp_vystup_finalni.txt 2>/dev/null || cp whatsapp_vystup_finalni.txt ./whatsapp_vystup_finalni.txt 2>/dev/null || true
+          cp /content/drive/MyDrive/HVB/email_shrnuti.txt ./email_shrnuti.txt 2>/dev/null || cp email_shrnuti.txt ./email_shrnuti.txt 2>/dev/null || true
+          cp /content/drive/MyDrive/HVB/ORS_komplet.txt ./ORS_komplet.txt 2>/dev/null || cp ORS_komplet.txt ./ORS_komplet.txt 2>/dev/null || true
           
-          # Nahráváme pouze explicitní výstupy zadané v OCTO.py
-          git add Dashboard.html whatsapp_vystup_finalni.txt email_shrnuti.txt ORS_komplet.txt 2>/dev/null || true
+          # Přidáme pouze tyto explicitní výstupy, které se mají nahrát. Obří databáze (.csv, .xlsx) vynecháváme.
+          git add Dashboard.html mapa_zakazky.html vystup_komplet_final_v3.zip whatsapp_vystup_finalni.txt email_shrnuti.txt ORS_komplet.txt 2>/dev/null || true
           
-          git commit -m "Automatická aktualizace webu z OCTO.py" && git push || echo "Žádné změny k nahrání."
+          # Commit a Push provedeme tak, aby při nulové změně v inzerátech akce nespadla.
+          git commit -m "Automatická aktualizace webu z OCTO.py" && git push || echo "Žádné nové změny k nahrání."

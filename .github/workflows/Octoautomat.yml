@@ -1,7 +1,7 @@
-name: Rychly TEST exportu (Bez ORS)
+name: Rychly TEST exportu (Bez čekání na ORS)
 
 on:
-  workflow_dispatch: # Spustíš ručně tlačítkem jako obvykle
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -21,39 +21,49 @@ jobs:
       - name: Instalace pip balicku
         run: pip install pandas requests openrouteservice gdown openpyxl ipython folium
 
-      - name: Priprava prostredi Colabu
+      - name: Priprava prostredi Colabu a stahnuti dat
+        env:
+          FOLDER_ID: ${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}
         run: |
+          # Vytvoříme kompletní strukturu jako minule
           sudo mkdir -p /content/drive/MyDrive/HVB
           sudo chmod -R 777 /content
           
-          # Zkopírujeme soubory z minulého běhu, které už máš na GitHubu (včetně ORS_komplet.txt)
-          cp -r * /content/drive/MyDrive/HVB/ 2>/dev/null || true
+          # Stáhneme aktuální soubory z tvého Disku (obce, makléře atd.)
+          gdown --folder "$FOLDER_ID" -O /content/drive/MyDrive/HVB
+          
+          # Podstrčíme tam i uložený ORS_komplet z minulého úspěšného běhu na GitHubu
+          cp ORS_komplet.txt /content/drive/MyDrive/HVB/ 2>/dev/null || true
+          cp ORS_komplet.txt /content/ 2>/dev/null || true
+          cp -r /content/drive/MyDrive/HVB/* . || true
 
-      - name: Spusteni zkraceneho testu (Preskoceni ORS)
+      - name: Spusteni Pythonu s bypassem ORS
+        env:
+          ORS_TOKEN_SECRET: ${{ secrets.OPENROUTESERVICE_TOKEN }}
         run: |
-          # Vytvoříme testovací skript, který odřízne prvních X řádků s ORS výpočtem 
-          # a začne rovnou načítáním hotového 'ORS_komplet.txt' a generováním Folium mapy.
           python -c "
           import sys, types, os
           
-          # Simulace Colabu
+          # 1. Standardní simulace Colabu
           m_drive = types.ModuleType('google.colab.drive'); m_drive.mount = lambda *a, **k: None
-          m_user = types.ModuleType('google.colab.userdata'); m_user.get = lambda k: 'TEST_TOKEN'
+          m_user = types.ModuleType('google.colab.userdata'); m_user.get = lambda key: os.environ.get('ORS_TOKEN_SECRET')
           m_files = types.ModuleType('google.colab.files'); m_files.download = lambda *a, **k: None; m_files.upload = lambda *a, **k: {}
           m_colab = types.ModuleType('google.colab'); m_colab.drive = m_drive; m_colab.userdata = m_user; m_colab.files = m_files
           sys.modules['google.colab.drive'] = m_drive; sys.modules['google.colab.userdata'] = m_user; sys.modules['google.colab.files'] = m_files; sys.modules['google.colab'] = m_colab
           
-          # Načteme tvůj originální skript
-          with open('OCTO.py', 'r', encoding='utf-8') as f:
-              kod = f.read()
-          
-          # TADY JE TEN TRIK: Pokud skript obsahuje řádek, kde načítá nebo zapisuje ORS_komplet.txt,
-          # můžeme vynutit, aby se nespouštěla funkce pro volání API, ale rovnou se použila lokální data.
-          # Pro tento rychlý test spustíme kód standardně, ale odchytímeFolium export.
+          # 2. TRIK: Odsvaříme openrouteservice klienta. Když se skript pokusí zavolat API, 
+          # vrátíme prázdný objekt, aby to nespadlo, protože data načteš z hotového souboru.
+          import openrouteservice
+          class FakeClient:
+              def __init__(self, *args, **kwargs): pass
+              def directions(self, *args, **kwargs): return {}
+          openrouteservice.Client = FakeClient
+
+          # 3. Spuštění tvého ostrého skriptu
           try:
-              exec(kod)
+              exec(open('OCTO.py', encoding='utf-8').read())
           except Exception as e:
-              print(f'\nKonec testu: {e}')
+              print(f'\n[STOP] Skript se zastavil na chybě: {e}')
           "
 
       - name: Ulozeni vygenerovaneho HTML na GitHub web
@@ -63,6 +73,8 @@ jobs:
           
           cp /content/drive/MyDrive/HVB/Dashboard.html ./Dashboard.html 2>/dev/null || cp /content/drive/MyDrive/HVB/dashboard.html ./Dashboard.html 2>/dev/null || true
           cp /content/drive/MyDrive/HVB/whatsapp_vystup_finalni.txt ./whatsapp_vystup_finalni.txt 2>/dev/null || true
+          cp /content/drive/MyDrive/HVB/email_shrnuti.txt ./email_shrnuti.txt 2>/dev/null || true
+          cp /content/drive/MyDrive/HVB/ORS_komplet.txt ./ORS_komplet.txt 2>/dev/null || true
           
-          git add Dashboard.html whatsapp_vystup_finalni.txt 2>/dev/null || true
-          git commit -m "Testovací aktualizace mapy" && git push || echo "Žádné změny."
+          git add Dashboard.html whatsapp_vystup_finalni.txt email_shrnuti.txt ORS_komplet.txt 2>/dev/null || true
+          git commit -m "Testovací aktualizace bez ORS" && git push || echo "Žádné změny."

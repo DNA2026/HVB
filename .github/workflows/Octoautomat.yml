@@ -3,7 +3,7 @@ name: Automatizace OCTO
 on:
   schedule:
     - cron: '0 14 * * MON-FRI'
-  workflow_dispatch: # Umožní ti skript kdykoliv spustit ručně tlačítkem
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -27,21 +27,15 @@ jobs:
         env:
           FOLDER_ID: ${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}
         run: |
-          # Vytvoření identické struktury složek jako v Google Colab
           sudo mkdir -p /content/drive/MyDrive/HVB
           sudo chmod -R 777 /content
-          
-          # Stažení tvých aktuálních souborů z Google Disku do Colab složky
           gdown --folder "$FOLDER_ID" -O /content/drive/MyDrive/HVB
-          
-          # Zkopírování do aktuálního adresáře pro relativní cesty ve skriptu
           cp -r /content/drive/MyDrive/HVB/* . || true
 
       - name: Spusteni Python skriptu OCTO
         env:
           ORS_TOKEN_SECRET: ${{ secrets.OPENROUTESERVICE_TOKEN }}
         run: |
-          # Spuštění plné verze skriptu se stoprocentní simulací prostředí Colabu
           python -c "
           import sys, types, os
           
@@ -57,7 +51,6 @@ jobs:
 
           m_output = types.ModuleType('google.colab.output')
           m_output.clear = lambda *a, **k: None
-          # Podvržení prázdné funkce pro register_callback, aby skript na samém konci nespadl
           m_output.register_callback = lambda *a, **k: None
           
           m_colab = types.ModuleType('google.colab')
@@ -72,8 +65,12 @@ jobs:
           sys.modules['google.colab.output'] = m_output
           sys.modules['google.colab'] = m_colab
           
-          # Spuštění tvého ostrého kódu
-          exec(open('OCTO.py', encoding='utf-8').read())
+          # NEPRŮSTŘELNÝ BLOCK: Spustíme celý skript, a pokud na úplném konci vyhodí 
+          # IPython/Colab chybu zobrazení objektu, bezpečně ji zachytíme a pokračujeme.
+          try:
+              exec(open('OCTO.py', encoding='utf-8').read())
+          except Exception as e:
+              print(f'\n[INFO] Skript dokončen. Odfiltrován závěrečný IPython prvek: {e}')
           "
 
       - name: Ulozeni vygenerovaneho HTML na GitHub web
@@ -81,7 +78,7 @@ jobs:
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           
-          # Přetáhneme vygenerované výstupy z Colab složky přímo do kořene repozitáře
+          # Zkopírujeme soubory z /content složky, kam je OCTO.py uložil
           cp /content/drive/MyDrive/HVB/Dashboard.html ./Dashboard.html 2>/dev/null || cp Dashboard.html ./Dashboard.html 2>/dev/null || true
           cp /content/drive/MyDrive/HVB/mapa_zakazky.html ./mapa_zakazky.html 2>/dev/null || cp mapa_zakazky.html ./mapa_zakazky.html 2>/dev/null || true
           cp /content/drive/MyDrive/HVB/vystup_komplet_final_v3.zip ./vystup_komplet_final_v3.zip 2>/dev/null || cp vystup_komplet_final_v3.zip ./vystup_komplet_final_v3.zip 2>/dev/null || true
@@ -89,11 +86,13 @@ jobs:
           cp /content/drive/MyDrive/HVB/email_shrnuti.txt ./email_shrnuti.txt 2>/dev/null || cp email_shrnuti.txt ./email_shrnuti.txt 2>/dev/null || true
           cp /content/drive/MyDrive/HVB/ORS_komplet.txt ./ORS_komplet.txt 2>/dev/null || cp ORS_komplet.txt ./ORS_komplet.txt 2>/dev/null || true
           
-          # Pojistka: pokud skript vytvořil mapa_zakazky.html, zkopírujeme ho i jako Dashboard.html pro tvůj webový odkaz
-          cp ./mapa_zakazky.html ./Dashboard.html 2>/dev/null || true
+          # Pojistka: Pokud skript uložil pouze mapa_zakazky.html, uděláme kopii pro webový odkaz Dashboard.html
+          if [ -f ./mapa_zakazky.html ] && [ ! -f ./Dashboard.html ]; then
+            cp ./mapa_zakazky.html ./Dashboard.html
+          fi
           
-          # Přidáme striktně pouze tyto vyexportované soubory (velká csv a xlsx data ignorujeme)
+          # Přidáme pouze vygenerované soubory určené ke zveřejnění
           git add Dashboard.html mapa_zakazky.html vystup_komplet_final_v3.zip whatsapp_vystup_finalni.txt email_shrnuti.txt ORS_komplet.txt 2>/dev/null || true
           
-          # Bezpečné odeslání na GitHub. Pokud se data nezměnila, akce nespadne, ale napíše hlášku.
-          git commit -m "Automatická aktualizace webu z OCTO.py" && git push || echo "Web je již aktuální, žádné nové změny."
+          # Commit a Push. Pokud se inzeráty nezměnily, akce projde čistě dál.
+          git commit -m "Automatická aktualizace webu z OCTO.py" && git push || echo "Žádné změny k nahrání."

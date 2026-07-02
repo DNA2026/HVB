@@ -27,31 +27,45 @@ jobs:
         env:
           FOLDER_ID: ${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}
         run: |
-          # Vytvoříme přesnou strukturu složek, kterou skript vyžaduje (/content/drive/MyDrive/HVB)
-          mkdir -p /content/drive/MyDrive/HVB
-          
           # Stáhneme obsah Google Disku do dočasné složky
           gdown --folder "$FOLDER_ID" -O data_temp
           
-          # Zkopírujeme soubory přesně tam, kde je skript v kódu hledá
-          cp -r data_temp/* /content/drive/MyDrive/HVB/
-          
-          # Pro jistotu je zkopírujeme i do aktuální složky
+          # Vytvoříme si lokální složku HVB přímo v našem pracovním adresáři
+          mkdir -p HVB
+          cp -r data_temp/* HVB/
           cp -r data_temp/* . || true
+          
+          # Vytvoření tokenu v souboru pro starší verze
+          echo "${{ secrets.OPENROUTESERVICE_TOKEN }}" > ors_token.txt
 
       - name: Spusteni Python skriptu OCTO
         env:
-          # Předáme skutečný token z GitHub Secrets do proměnné prostředí
           ORS_TOKEN_SECRET: ${{ secrets.OPENROUTESERVICE_TOKEN }}
         run: |
           python -c "
-          import sys, types, os
-          # 1. Komplexní simulace google.colab včetně drive a userdata
+          import sys, types, os, builtins
+
+          # 1. Přesměrování cest z Colabu (/content/...) do naší lokální složky HVB
+          original_open = builtins.open
+          def patched_open(file, *args, **kwargs):
+              if isinstance(file, str) and '/content/drive/MyDrive/HVB' in file:
+                  file = file.replace('/content/drive/MyDrive/HVB', './HVB')
+              return original_open(file, *args, **kwargs)
+          builtins.open = patched_open
+
+          # Oprava pro pandas a další knihovny, které používají os.path
+          original_listdir = os.listdir
+          def patched_listdir(path='.'):
+              if isinstance(path, str) and '/content/drive/MyDrive/HVB' in path:
+                  path = path.replace('/content/drive/MyDrive/HVB', './HVB')
+              return original_listdir(path)
+          os.listdir = patched_listdir
+
+          # 2. Komplexní simulace google.colab
           m_drive = types.ModuleType('google.colab.drive')
           m_drive.mount = lambda *a, **k: None
           
           m_user = types.ModuleType('google.colab.userdata')
-          # Když skript zavolá userdata.get('...'), vrátí mu to token z GitHub Secrets
           m_user.get = lambda key: os.environ.get('ORS_TOKEN_SECRET')
           
           m_colab = types.ModuleType('google.colab')
@@ -62,7 +76,7 @@ jobs:
           sys.modules['google.colab.userdata'] = m_user
           sys.modules['google.colab'] = m_colab
           
-          # 2. Spuštění samotného skriptu
+          # 3. Spuštění samotného skriptu
           exec(open('OCTO.py').read())
           "
 
@@ -71,9 +85,8 @@ jobs:
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           
-          # Pokud tvůj skript vygeneroval HTML do /content/drive/MyDrive/HVB, zkopírujeme ho sem na GitHub
-          cp /content/drive/MyDrive/HVB/index.html ./index.html || true
-          cp /content/drive/MyDrive/HVB/vystup.html ./index.html || true
+          # Zkopírujeme výsledné HTML, ať už vzniklo v hlavní složce nebo v podadresáři HVB
+          cp HVB/index.html ./index.html || cp HVB/vystup.html ./index.html || cp index.html ./index.html || true
           
           git add index.html
           git diff --quiet && git diff --staged --quiet || (git commit -m "Automatická aktualizace webu z OCTO.py" && git push)

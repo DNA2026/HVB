@@ -21,23 +21,59 @@ jobs:
           python-version: '3.12'
 
       - name: Instalace pip balicku
-        run: pip install pandas requests openrouteservice gdown
+        run: pip install pandas requests openrouteservice gdown openpyxl
 
       - name: Priprava souboru z Google Disku a Tokenu
         env:
           FOLDER_ID: ${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}
         run: |
+          # Vytvoříme přesnou strukturu složek, kterou skript vyžaduje (/content/drive/MyDrive/HVB)
+          mkdir -p /content/drive/MyDrive/HVB
+          
+          # Stáhneme obsah Google Disku do dočasné složky
           gdown --folder "$FOLDER_ID" -O data_temp
-          cp -r data_temp/* .
-          echo "${{ secrets.OPENROUTESERVICE_TOKEN }}" > ors_token.txt
+          
+          # Zkopírujeme soubory přesně tam, kde je skript v kódu hledá
+          cp -r data_temp/* /content/drive/MyDrive/HVB/
+          
+          # Pro jistotu je zkopírujeme i do aktuální složky
+          cp -r data_temp/* . || true
 
       - name: Spusteni Python skriptu OCTO
+        env:
+          # Předáme skutečný token z GitHub Secrets do proměnné prostředí
+          ORS_TOKEN_SECRET: ${{ secrets.OPENROUTESERVICE_TOKEN }}
         run: |
-          python -c "import sys, types; m = types.ModuleType('google.colab.drive'); m.mount = lambda *a, **k: None; sys.modules['google.colab.drive'] = m; sys.modules['google.colab'] = types.ModuleType('google.colab'); sys.modules['google.colab'].drive = m; exec(open('OCTO.py').read())"
+          python -c "
+          import sys, types, os
+          # 1. Komplexní simulace google.colab včetně drive a userdata
+          m_drive = types.ModuleType('google.colab.drive')
+          m_drive.mount = lambda *a, **k: None
+          
+          m_user = types.ModuleType('google.colab.userdata')
+          # Když skript zavolá userdata.get('...'), vrátí mu to token z GitHub Secrets
+          m_user.get = lambda key: os.environ.get('ORS_TOKEN_SECRET')
+          
+          m_colab = types.ModuleType('google.colab')
+          m_colab.drive = m_drive
+          m_colab.userdata = m_user
+          
+          sys.modules['google.colab.drive'] = m_drive
+          sys.modules['google.colab.userdata'] = m_user
+          sys.modules['google.colab'] = m_colab
+          
+          # 2. Spuštění samotného skriptu
+          exec(open('OCTO.py').read())
+          "
 
       - name: Ulozeni vygenerovaneho HTML na GitHub web
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
+          
+          # Pokud tvůj skript vygeneroval HTML do /content/drive/MyDrive/HVB, zkopírujeme ho sem na GitHub
+          cp /content/drive/MyDrive/HVB/index.html ./index.html || true
+          cp /content/drive/MyDrive/HVB/vystup.html ./index.html || true
+          
           git add index.html
           git diff --quiet && git diff --staged --quiet || (git commit -m "Automatická aktualizace webu z OCTO.py" && git push)

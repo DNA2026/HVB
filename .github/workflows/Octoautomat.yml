@@ -27,15 +27,10 @@ jobs:
         env:
           FOLDER_ID: ${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}
         run: |
-          # Stáhneme obsah Google Disku do dočasné složky
           gdown --folder "$FOLDER_ID" -O data_temp
-          
-          # Vytvoříme si lokální složku HVB přímo v našem pracovním adresáři
           mkdir -p HVB
           cp -r data_temp/* HVB/
           cp -r data_temp/* . || true
-          
-          # Vytvoření tokenu v souboru pro starší verze
           echo "${{ secrets.OPENROUTESERVICE_TOKEN }}" > ors_token.txt
 
       - name: Spusteni Python skriptu OCTO
@@ -45,7 +40,7 @@ jobs:
           python -c "
           import sys, types, os, builtins
 
-          # 1. Přesměrování cest z Colabu (/content/...) do naší lokální složky HVB
+          # 1. Přesměrování všech cest z Colabu do naší lokální složky HVB
           original_open = builtins.open
           def patched_open(file, *args, **kwargs):
               if isinstance(file, str) and '/content/drive/MyDrive/HVB' in file:
@@ -53,7 +48,6 @@ jobs:
               return original_open(file, *args, **kwargs)
           builtins.open = patched_open
 
-          # Oprava pro pandas a další knihovny, které používají os.path
           original_listdir = os.listdir
           def patched_listdir(path='.'):
               if isinstance(path, str) and '/content/drive/MyDrive/HVB' in path:
@@ -61,19 +55,34 @@ jobs:
               return original_listdir(path)
           os.listdir = patched_listdir
 
-          # 2. Komplexní simulace google.colab
+          # Oprava pro os.path.exists a os.path.islink atd., které používá Pandas
+          import os.path
+          original_exists = os.path.exists
+          def patched_exists(path):
+              if isinstance(path, str) and '/content/drive/MyDrive/HVB' in path:
+                  path = path.replace('/content/drive/MyDrive/HVB', './HVB')
+              return original_exists(path)
+          os.path.exists = patched_exists
+
+          # 2. Komplexní simulace google.colab (drive, userdata, files)
           m_drive = types.ModuleType('google.colab.drive')
           m_drive.mount = lambda *a, **k: None
           
           m_user = types.ModuleType('google.colab.userdata')
           m_user.get = lambda key: os.environ.get('ORS_TOKEN_SECRET')
+
+          m_files = types.ModuleType('google.colab.files')
+          m_files.download = lambda *a, **k: None
+          m_files.upload = lambda *a, **k: {}
           
           m_colab = types.ModuleType('google.colab')
           m_colab.drive = m_drive
           m_colab.userdata = m_user
+          m_colab.files = m_files
           
           sys.modules['google.colab.drive'] = m_drive
           sys.modules['google.colab.userdata'] = m_user
+          sys.modules['google.colab.files'] = m_files
           sys.modules['google.colab'] = m_colab
           
           # 3. Spuštění samotného skriptu
@@ -85,7 +94,6 @@ jobs:
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           
-          # Zkopírujeme výsledné HTML, ať už vzniklo v hlavní složce nebo v podadresáři HVB
           cp HVB/index.html ./index.html || cp HVB/vystup.html ./index.html || cp index.html ./index.html || true
           
           git add index.html

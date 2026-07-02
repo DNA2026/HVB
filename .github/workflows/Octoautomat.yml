@@ -23,27 +23,19 @@ jobs:
       - name: Instalace pip balicku
         run: pip install pandas requests openrouteservice gdown openpyxl
 
-      - name: Priprava prostředí Colabu a stáhnutí dat
+      - name: Priprava prostredi Colabu a stahnuti dat
         env:
           FOLDER_ID: ${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}
         run: |
-          # 1. Vytvoříme SKUTEČNOU složku /content/drive/MyDrive/HVB v systému přes sudo
           sudo mkdir -p /content/drive/MyDrive/HVB
-          
-          # 2. Nastavíme plná práva, aby do ní mohl skript zapisovat a číst
           sudo chmod -R 777 /content
-          
-          # 3. Stáhneme obsah Google Disku přímo do této složky
           gdown --folder "$FOLDER_ID" -O /content/drive/MyDrive/HVB
-          
-          # 4. Pro jistotu zkopírujeme soubory i do aktuální složky na GitHubu
           cp -r /content/drive/MyDrive/HVB/* . || true
 
       - name: Spusteni Python skriptu OCTO
         env:
           ORS_TOKEN_SECRET: ${{ secrets.OPENROUTESERVICE_TOKEN }}
         run: |
-          # Spustíme čistý Python, pouze s podvržením knihoven google.colab v paměti
           python -c "
           import sys, types, os
           
@@ -75,8 +67,12 @@ jobs:
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           
-          # Vytáhneme výsledné HTML ze složky /content přímo sem do repozitáře
-          cp /content/drive/MyDrive/HVB/index.html ./index.html || cp /content/drive/MyDrive/HVB/vystup.html ./index.html || cp index.html ./index.html || true
+          # 1. Zkopírujeme úplně VŠECHNY soubory, které OCTO.py uložil do složky /content/drive/MyDrive/HVB/
+          # Zůstanou jim přesně jejich původní názvy, které jim dal tvůj skript.
+          cp -r /content/drive/MyDrive/HVB/* . || true
           
-          git add index.html
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Automatická aktualizace webu z OCTO.py" && git push)
+          # 2. Řekneme gitu, ať zaznamená jakékoliv změny ve webových souborech (.html)
+          git add *.html 2>/dev/null || true
+          
+          # 3. Bezpečně odešleme změny na GitHub
+          git commit -m "Automatická aktualizace webu z OCTO.py" && git push || echo "Žádné změny k nahrání."

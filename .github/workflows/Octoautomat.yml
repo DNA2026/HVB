@@ -19,8 +19,8 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      
-      - name: - Instalace pip balicku
+
+      - name: Instalace pip balicku
         run: pip install pandas requests openrouteservice gdown
 
       - name: Priprava souboru z Google Disku a Tokenu
@@ -32,8 +32,6 @@ jobs:
           echo "${{ secrets.OPENROUTESERVICE_TOKEN }}" > ors_token.txt
 
       - name: Spusteni Python skriptu OCTO
-        # TENTO JEDEN ŘÁDEK vymaže problém s Colabem:
-        # Vstříkne do Pythonu simulaci, že google.colab.drive existuje a má metodu mount, která nic nedělá.
         run: |
           python -c "import sys, types; m = types.ModuleType('google.colab.drive'); m.mount = lambda *a, **k: None; sys.modules['google.colab.drive'] = m; sys.modules['google.colab'] = types.ModuleType('google.colab'); sys.modules['google.colab'].drive = m; exec(open('OCTO.py').read())"
 

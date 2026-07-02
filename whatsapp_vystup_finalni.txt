@@ -22,59 +22,59 @@ Tel: +420 733 735 731
 ~3.2 km | Manda | 
 https://www.sreality.cz/detail/prodej/byt/atypicky/praha-nove-mesto-navratilova/743764044
 
-6. Ostrava, Třebovice, okres Ostrava-město, kraj Moravskoslezský
-Tel: +420 603 163 099
-~3.9 km | Hrubá | 
-https://reality.bazos.cz/inzerat/220799947/357-m-ostrava-trebovice.php
-
-7. Praha, Chodov, okres Praha, kraj Hlavní město Praha
+6. Praha, Chodov, okres Praha, kraj Hlavní město Praha
 Tel: +420 602 693 730
 ~4.1 km | Motl | 
 https://www.sreality.cz/detail/prodej/ostatni/garaz/praha-chodov-holusicka/3874811980
 
-8. Praha, Libeň, okres Praha, kraj Hlavní město Praha
+7. Praha, Libeň, okres Praha, kraj Hlavní město Praha
 ~4.6 km | Suchánková | 
 https://www.sreality.cz/detail/prodej/byt/2+kk/praha-liben-v-zahradach/1717297228
 
-9. Hostivice, okres Praha-západ, kraj Středočeský
+8. Hostivice, okres Praha-západ, kraj Středočeský
 Tel: +420 792 245 919
 ~4.8 km | Modrý | 
 https://www.sreality.cz/detail/prodej/dum/rodinny/hostivice/1005908044
 
-10. Praha 9, okres Praha, kraj Hlavní město Praha
+9. Praha 9, okres Praha, kraj Hlavní město Praha
 Tel: +420 704 101 707
 ~5.5 km | Nemes | 
 https://reality.bazos.cz/inzerat/220770767/prodam-zdenou-garaz-s-elektrinou-p9voda-na-pozemku.php
 
-11. Praha, Bubeneč, okres Praha, kraj Hlavní město Praha
+10. Praha, Bubeneč, okres Praha, kraj Hlavní město Praha
 Tel: +420 702 250 985
 ~6.2 km | Manda | 
 https://www.sreality.cz/detail/prodej/byt/3+kk/praha-bubenec-verdunska/834990156
 
-12. Praha, Krč, okres Praha, kraj Hlavní město Praha
+11. Praha, Krč, okres Praha, kraj Hlavní město Praha
 Tel: +420 739 899 663
 ~7.2 km | Manda | 
 https://www.sreality.cz/detail/prodej/ostatni/jine-nemovitosti/praha-krc-sladkovicova/3402952780
 
-13. Líbeznice, okres Praha-východ, kraj Středočeský
+12. Líbeznice, okres Praha-východ, kraj Středočeský
 Tel: +420 735 981 947
 ~8.3 km | Suchánková | 
 https://www.sreality.cz/detail/prodej/dum/rodinny/libeznice-libeznice-pod-lipami/2237390924
 
-14. Praha 19, okres Praha, kraj Hlavní město Praha
+13. Praha 19, okres Praha, kraj Hlavní město Praha
 Tel: +420 602 405 289
 ~9.3 km | Suchánková | 
 https://www.sreality.cz/detail/prodej/byt/3+kk/praha/1985278028
 
-15. Praha 6, okres Praha, kraj Hlavní město Praha
+14. Praha 6, okres Praha, kraj Hlavní město Praha
 Tel: +420 604 599 995
 ~10.6 km | Manda | 
 https://reality.bazos.cz/inzerat/220795794/prodej-radove-garaze-u-patanky-praha-6-dejvice.php
 
-16. Bohumín, okres Karviná, kraj Moravskoslezský
+15. Bohumín, okres Karviná, kraj Moravskoslezský
 Tel: +420 775 581 912
 ~11.7 km | Hrubá | 
 https://reality.bazos.cz/inzerat/220783786/prodej-bytu-21-60-m-s-balkonem-bohumin-zablati.php
+
+16. Ostrava, Třebovice, okres Ostrava-město, kraj Moravskoslezský
+Tel: +420 603 163 099
+~16.0 km | Večerek | 
+https://reality.bazos.cz/inzerat/220799947/357-m-ostrava-trebovice.php
 
 17. Kladno, okres Kladno, kraj Středočeský
 Tel: +420 774 182 270
@@ -96,7 +96,7 @@ Tel: +420 608 432 777
 https://www.sreality.cz/detail/prodej/byt/2+1/karvina-hranice-rude-armady/167112780
 
 21. Světice, okres Praha-východ, kraj Středočeský
-~26.3 km | Nemes | 
+~26.1 km | Manda | 
 https://www.sreality.cz/detail/prodej/dum/rodinny/svetice/784658508
 
 22. Hradec nad Moravicí, okres Opava, kraj Moravskoslezský
@@ -119,12 +119,7 @@ Tel: +420 777 313 310
 ~36.5 km | Marešková | 
 https://reality.bazos.cz/inzerat/220796095/hala-125x40m.php
 
-26. Brno, okres Brno-město, kraj Jihomoravský
-Tel: +420 604 313 057
-~36.8 km | Tauš | 
-https://www.sreality.cz/detail/prodej/byt/2+1/brno-stare-brno-rybarska/3095326796
-
-27. Strážovice, okres Hodonín, kraj Jihomoravský
+26. Strážovice, okres Hodonín, kraj Jihomoravský
 Tel: +420 606 292 156
 ~38.5 km | Tauš | 
 https://reality.bazos.cz/inzerat/220800306/prodej-bytu-31.php

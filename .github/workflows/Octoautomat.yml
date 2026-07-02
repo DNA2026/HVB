@@ -2,7 +2,7 @@ name: Automatizace OCTO
 
 on:
   schedule:
-    - cron: '0 14 * * MON-FRI'
+    - cron: '53 2 * * MON-FRI'
   workflow_dispatch:
 
 permissions:

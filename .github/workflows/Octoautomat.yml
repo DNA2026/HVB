@@ -23,48 +23,30 @@ jobs:
       - name: Instalace pip balicku
         run: pip install pandas requests openrouteservice gdown openpyxl
 
-      - name: Priprava souboru z Google Disku a Tokenu
+      - name: Priprava prostředí Colabu a stáhnutí dat
         env:
           FOLDER_ID: ${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}
         run: |
-          gdown --folder "$FOLDER_ID" -O data_temp
-          mkdir -p HVB
-          cp -r data_temp/* HVB/
-          cp -r data_temp/* . || true
-          echo "${{ secrets.OPENROUTESERVICE_TOKEN }}" > ors_token.txt
+          # 1. Vytvoříme SKUTEČNOU složku /content/drive/MyDrive/HVB v systému přes sudo
+          sudo mkdir -p /content/drive/MyDrive/HVB
+          
+          # 2. Nastavíme plná práva, aby do ní mohl skript zapisovat a číst
+          sudo chmod -R 777 /content
+          
+          # 3. Stáhneme obsah Google Disku přímo do této složky
+          gdown --folder "$FOLDER_ID" -O /content/drive/MyDrive/HVB
+          
+          # 4. Pro jistotu zkopírujeme soubory i do aktuální složky na GitHubu
+          cp -r /content/drive/MyDrive/HVB/* . || true
 
       - name: Spusteni Python skriptu OCTO
         env:
           ORS_TOKEN_SECRET: ${{ secrets.OPENROUTESERVICE_TOKEN }}
         run: |
+          # Spustíme čistý Python, pouze s podvržením knihoven google.colab v paměti
           python -c "
-          import sys, types, os, builtins
-
-          # 1. Přesměrování všech cest z Colabu do naší lokální složky HVB
-          original_open = builtins.open
-          def patched_open(file, *args, **kwargs):
-              if isinstance(file, str) and '/content/drive/MyDrive/HVB' in file:
-                  file = file.replace('/content/drive/MyDrive/HVB', './HVB')
-              return original_open(file, *args, **kwargs)
-          builtins.open = patched_open
-
-          original_listdir = os.listdir
-          def patched_listdir(path='.'):
-              if isinstance(path, str) and '/content/drive/MyDrive/HVB' in path:
-                  path = path.replace('/content/drive/MyDrive/HVB', './HVB')
-              return original_listdir(path)
-          os.listdir = patched_listdir
-
-          # Oprava pro os.path.exists a os.path.islink atd., které používá Pandas
-          import os.path
-          original_exists = os.path.exists
-          def patched_exists(path):
-              if isinstance(path, str) and '/content/drive/MyDrive/HVB' in path:
-                  path = path.replace('/content/drive/MyDrive/HVB', './HVB')
-              return original_exists(path)
-          os.path.exists = patched_exists
-
-          # 2. Komplexní simulace google.colab (drive, userdata, files)
+          import sys, types, os
+          
           m_drive = types.ModuleType('google.colab.drive')
           m_drive.mount = lambda *a, **k: None
           
@@ -85,7 +67,6 @@ jobs:
           sys.modules['google.colab.files'] = m_files
           sys.modules['google.colab'] = m_colab
           
-          # 3. Spuštění samotného skriptu
           exec(open('OCTO.py').read())
           "
 
@@ -94,7 +75,8 @@ jobs:
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           
-          cp HVB/index.html ./index.html || cp HVB/vystup.html ./index.html || cp index.html ./index.html || true
+          # Vytáhneme výsledné HTML ze složky /content přímo sem do repozitáře
+          cp /content/drive/MyDrive/HVB/index.html ./index.html || cp /content/drive/MyDrive/HVB/vystup.html ./index.html || cp index.html ./index.html || true
           
           git add index.html
           git diff --quiet && git diff --staged --quiet || (git commit -m "Automatická aktualizace webu z OCTO.py" && git push)

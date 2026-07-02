@@ -21,16 +21,20 @@ jobs:
           python-version: '3.12'
       
       - name: Instalace pip balicku
-        # Odebrali jsme problémový google-colab
         run: pip install pandas requests openrouteservice gdown
 
       - name: Falešný Google Colab modul (Trik pro řádek 12)
-        # Vytvoříme strukturu, kterou Python vyhodnotí jako nainstalovaný modul google.colab
+        # Tento zápis bezpečně vytvoří správně rozřádkovaný Python soubor
         run: |
           mkdir -p google/colab
           touch google/__init__.py
           touch google/colab/__init__.py
-          echo "class Drive:\n    def mount(self, *args, **kwargs): pass\ndrive = Drive()" > google/colab/drive.py
+          cat << 'EOF' > google/colab/drive.py
+          class Drive:
+              def mount(self, *args, **kwargs):
+                  pass
+          drive = Drive()
+          EOF
 
       - name: Priprava souboru z Google Disku a Tokenu
         env:
@@ -41,7 +45,6 @@ jobs:
           echo "${{ secrets.OPENROUTESERVICE_TOKEN }}" > ors_token.txt
 
       - name: Spusteni Python skriptu OCTO
-        # PYTHONPATH=. řekne Pythonu, aby se podíval i do naší falešné složky google
         run: env PYTHONPATH=. python OCTO.py
 
       - name: Ulozeni vygenerovaneho HTML na GitHub web

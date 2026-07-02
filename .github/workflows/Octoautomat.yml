@@ -1,13 +1,15 @@
-name: Rychly TEST exportu (Bez čekání na ORS)
+name: Automatizace OCTO
 
 on:
+  schedule:
+    - cron: '0 14 * * MON-FRI'
   workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  run-test:
+  run-octo:
     runs-on: ubuntu-latest
     steps:
       - name: Stazeni kodu z GitHubu
@@ -25,45 +27,54 @@ jobs:
         env:
           FOLDER_ID: ${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}
         run: |
-          # Vytvoříme kompletní strukturu jako minule
+          # 1. Vytvoříme složku pro Colab prostředí
           sudo mkdir -p /content/drive/MyDrive/HVB
           sudo chmod -R 777 /content
           
-          # Stáhneme aktuální soubory z tvého Disku (obce, makléře atd.)
+          # 2. Stáhneme data z Disku (obce, makléře atd.)
           gdown --folder "$FOLDER_ID" -O /content/drive/MyDrive/HVB
           
-          # Podstrčíme tam i uložený ORS_komplet z minulého úspěšného běhu na GitHubu
-          cp ORS_komplet.txt /content/drive/MyDrive/HVB/ 2>/dev/null || true
-          cp ORS_komplet.txt /content/ 2>/dev/null || true
+          # 3. JISTOTA: Vezmeme už vygenerovaný ORS_komplet.txt z GitHubu 
+          # a podstrčíme ho do Colab složky JEŠTĚ PŘED spuštěním skriptu.
+          # Díky tomu OCTO.py uvidí, že výpočet je hotový, a nepustí nové ORS dotazy.
+          cp ORS_komplet.txt /content/drive/MyDrive/HVB/ORS_komplet.txt 2>/dev/null || true
+          
+          # Kopie do aktuálního adresáře pro relativní importy
           cp -r /content/drive/MyDrive/HVB/* . || true
 
-      - name: Spusteni Pythonu s bypassem ORS
+      - name: Spusteni Python skriptu OCTO
         env:
           ORS_TOKEN_SECRET: ${{ secrets.OPENROUTESERVICE_TOKEN }}
         run: |
           python -c "
           import sys, types, os
           
-          # 1. Standardní simulace Colabu
-          m_drive = types.ModuleType('google.colab.drive'); m_drive.mount = lambda *a, **k: None
-          m_user = types.ModuleType('google.colab.userdata'); m_user.get = lambda key: os.environ.get('ORS_TOKEN_SECRET')
-          m_files = types.ModuleType('google.colab.files'); m_files.download = lambda *a, **k: None; m_files.upload = lambda *a, **k: {}
-          m_colab = types.ModuleType('google.colab'); m_colab.drive = m_drive; m_colab.userdata = m_user; m_colab.files = m_files
-          sys.modules['google.colab.drive'] = m_drive; sys.modules['google.colab.userdata'] = m_user; sys.modules['google.colab.files'] = m_files; sys.modules['google.colab'] = m_colab
+          m_drive = types.ModuleType('google.colab.drive')
+          m_drive.mount = lambda *a, **k: None
           
-          # 2. TRIK: Odsvaříme openrouteservice klienta. Když se skript pokusí zavolat API, 
-          # vrátíme prázdný objekt, aby to nespadlo, protože data načteš z hotového souboru.
-          import openrouteservice
-          class FakeClient:
-              def __init__(self, *args, **kwargs): pass
-              def directions(self, *args, **kwargs): return {}
-          openrouteservice.Client = FakeClient
+          m_user = types.ModuleType('google.colab.userdata')
+          m_user.get = lambda key: os.environ.get('ORS_TOKEN_SECRET')
 
-          # 3. Spuštění tvého ostrého skriptu
-          try:
-              exec(open('OCTO.py', encoding='utf-8').read())
-          except Exception as e:
-              print(f'\n[STOP] Skript se zastavil na chybě: {e}')
+          m_files = types.ModuleType('google.colab.files')
+          m_files.download = lambda *a, **k: None
+          m_files.upload = lambda *a, **k: {}
+
+          m_output = types.ModuleType('google.colab.output')
+          m_output.clear = lambda *a, **k: None
+          
+          m_colab = types.ModuleType('google.colab')
+          m_colab.drive = m_drive
+          m_colab.userdata = m_user
+          m_colab.files = m_files
+          m_colab.output = m_output
+          
+          sys.modules['google.colab.drive'] = m_drive
+          sys.modules['google.colab.userdata'] = m_user
+          sys.modules['google.colab.files'] = m_files
+          sys.modules['google.colab.output'] = m_output
+          sys.modules['google.colab'] = m_colab
+          
+          exec(open('OCTO.py', encoding='utf-8').read())
           "
 
       - name: Ulozeni vygenerovaneho HTML na GitHub web
@@ -71,10 +82,13 @@ jobs:
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           
-          cp /content/drive/MyDrive/HVB/Dashboard.html ./Dashboard.html 2>/dev/null || cp /content/drive/MyDrive/HVB/dashboard.html ./Dashboard.html 2>/dev/null || true
+          # Přetáhneme vygenerovaný Dashboard a soubory zpět z Colab složky, pokud je tam skript zapsal
+          cp /content/drive/MyDrive/HVB/Dashboard.html ./Dashboard.html 2>/dev/null || true
           cp /content/drive/MyDrive/HVB/whatsapp_vystup_finalni.txt ./whatsapp_vystup_finalni.txt 2>/dev/null || true
           cp /content/drive/MyDrive/HVB/email_shrnuti.txt ./email_shrnuti.txt 2>/dev/null || true
           cp /content/drive/MyDrive/HVB/ORS_komplet.txt ./ORS_komplet.txt 2>/dev/null || true
           
+          # Nahráváme pouze explicitní výstupy zadané v OCTO.py
           git add Dashboard.html whatsapp_vystup_finalni.txt email_shrnuti.txt ORS_komplet.txt 2>/dev/null || true
-          git commit -m "Testovací aktualizace bez ORS" && git push || echo "Žádné změny."
+          
+          git commit -m "Automatická aktualizace webu z OCTO.py" && git push || echo "Žádné změny k nahrání."

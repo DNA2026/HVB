@@ -2,8 +2,9 @@ name: Automatizace OCTO
 
 on:
   schedule:
+    # Běží v 14:00 UTC (16:00 našeho letního času) pouze v pracovní dny (pondělí až pátek)
     - cron: '0 14 * * MON-FRI'
-  workflow_dispatch:
+  workflow_dispatch: # Tlačítko pro ruční spuštění v rozhraní GitHubu
 
 permissions:
   contents: write
@@ -18,25 +19,38 @@ jobs:
       - name: Nastaveni Pythonu a knihoven
         uses: actions/setup-python@v5
         with:
+          # Verze 3.12 zvládne zpětná lomítka ve f-stringu stejně jako Colab
           python-version: '3.12'
       
       - name: Instalace pip balicku
-        run: pip install pandas requests openrouteservice gdown
+        # Přidán balíček google-colab, aby import na řádku 12 prošel bez chyby
+        run: pip install pandas requests openrouteservice gdown google-colab
 
       - name: Priprava souboru z Google Disku a Tokenu
         env:
+          # Bezpečné načtení tajného ID tvé složky z GitHub Secrets
           FOLDER_ID: ${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}
         run: |
+          # 1. Stáhneme složku z Disku do dočasného adresáře
           gdown --folder "$FOLDER_ID" -O data_temp
+          
+          # 2. Přesuneme všechny stažené soubory z Disku přímo ke skriptu OCTO.py
           cp -r data_temp/* .
+          
+          # 3. Vytvoříme textový soubor s tokenem pro OpenRouteService
           echo "${{ secrets.OPENROUTESERVICE_TOKEN }}" > ors_token.txt
 
       - name: Spusteni Python skriptu OCTO
         run: python OCTO.py
 
-      - name: Ulozeni vygenerovaneho HTML na GitHub
+      - name: Ulozeni vygenerovaneho HTML na GitHub web
         run: |
+          # Nastavení identity bota pro provedení zápisu
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
+          
+          # Přidání vygenerovaného HTML (Změň index.html, pokud se tvůj soubor jmenuje jinak)
           git add index.html
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Aktualizace webu z OCTO.py" && git push)
+          
+          # Commit a Push proběhne pouze v případě, že skript HTML soubor skutečně změnil
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Automatická aktualizace webu z OCTO.py" && git push)

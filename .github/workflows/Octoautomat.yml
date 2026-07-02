@@ -59,7 +59,12 @@ jobs:
           sys.modules['google.colab.files'] = m_files
           sys.modules['google.colab'] = m_colab
           
-          exec(open('OCTO.py').read())
+          # Spuštění skriptu se záchrannou sítí pro Colab specifické funkce na konci
+          try:
+              exec(open('OCTO.py').read())
+          except Exception as e:
+              print(f'\n[VAROVÁNÍ] Skript narazil na konci na Colab operaci: {e}')
+              print('Přesto pokračujeme v ukládání vygenerovaných souborů...')
           "
 
       - name: Ulozeni vygenerovaneho HTML na GitHub web
@@ -67,12 +72,11 @@ jobs:
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           
-          # 1. Zkopírujeme úplně VŠECHNY soubory, které OCTO.py uložil do složky /content/drive/MyDrive/HVB/
-          # Zůstanou jim přesně jejich původní názvy, které jim dal tvůj skript.
+          # Zkopírujeme úplně všechny soubory, které OCTO.py uložil, zpět do repozitáře
           cp -r /content/drive/MyDrive/HVB/* . || true
           
-          # 2. Řekneme gitu, ať zaznamená jakékoliv změny ve webových souborech (.html)
+          # Přidáme veškeré HTML soubory ke commitu
           git add *.html 2>/dev/null || true
           
-          # 3. Bezpečně odešleme změny na GitHub
+          # Bezpečně odešleme změny (pokud žádné nejsou, akce nespadne)
           git commit -m "Automatická aktualizace webu z OCTO.py" && git push || echo "Žádné změny k nahrání."

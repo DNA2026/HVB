@@ -25,7 +25,7 @@ jobs:
       - name: Priprava souboru z Google Disku a Tokenu
         run: |
           # 1. Stáhne soubor z Disku (Nahraď TVE_ID_SOUBORU skutečným ID)
-          gdown --id 1UUnO4qww4_tfQmppmDYR7AmC2IBnAd52 -O nazev_souboru_z_disku.csv
+          gdown --id GOOGLE_DRIVE_FOLDER_ID -O nazev_souboru_z_disku.csv
           
           # 2. Vytvoří textový soubor s tokenem pro OpenRouteService
           echo "${{ secrets.OPENROUTESERVICE_TOKEN }}" > ors_token.txt

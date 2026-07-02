@@ -1,0 +1,14 @@
+Finální report a statistiky z dnešního zpracování realitních inzerátů.
+
+Vzhledem k postupující automatizaci bude od zítřejšího dne finalizace reportu k dispozici pouze na níže uvedeném
+webu s možností variantního zpracování:
+
+1. zpracování na PC - přehlednější a intuitivnější (níže uvedený web si uložte pro každodenní zpracování)
+2. zpracování na mobilním telefonu (stávající verze) - sdílejte (nebo kopírujte) data do Whatsapp
+z webového rozhraní (pošlete sama sobě) a postupujte dle zvyklostí
+
+Detailní rozbor (s možností sdílení WhatsApp a datem aktualizace) je k dispozici zde:
+https://dna2026.github.io/HVB/Dashboard.html
+
+S pozdravem,
+Automatizovaný systém zpracování dat

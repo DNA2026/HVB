@@ -1,8 +1,8 @@
 ID	Inzerát	Kraj	Manda (km)	Suchánková (km)	Modrý (km)	Nemes (km)	Motl (km)	Tauš (km)	Marešková (km)	Večerek (km)	Hrubá (km)
-1	Praha, Dejvice, okres Praha, kraj Hlavní město Praha	hlavni mesto praha	8.3	11.9	16.9	10.3	20.6				
+1	Praha, Dejvice, okres Praha, kraj Hlavní město Praha	hlavni mesto praha	8.3	11.9	16.9	9.8	20.6				
 2	Cheb, okres Cheb, kraj Karlovarský	karlovarsky kraj									
 3	Praha, Chodov, okres Praha, kraj Hlavní město Praha	hlavni mesto praha	7.3	16.3	32.1	7.6	4.1				
-4	Praha, Vysočany, okres Praha, kraj Hlavní město Praha	hlavni mesto praha	8.4	7.0	26.7	6.2	13.9				
+4	Praha, Vysočany, okres Praha, kraj Hlavní město Praha	hlavni mesto praha	8.2	7.0	26.7	6.2	13.9				
 5	Drnovice, okres Blansko, kraj Jihomoravský	jihomoravsky kraj						47.6			
 6	Nový Dům, okres Rakovník, kraj Středočeský	stredocesky kraj	61.0	78.2	45.6	63.2					
 7	Čelechovice na Hané, okres Prostějov, kraj Olomoucký	olomoucky kraj									
@@ -10,12 +10,12 @@ ID	Inzerát	Kraj	Manda (km)	Suchánková (km)	Modrý (km)	Nemes (km)	Motl (km)	T
 9	Velký Šenov, okres Děčín, kraj Ústecký	ustecky kraj									
 10	Sokolov, okres Sokolov, kraj Karlovarský	karlovarsky kraj									
 11	Děpoltovice, okres Karlovy Vary, kraj Karlovarský	karlovarsky kraj									
-12	Hlučín, okres Opava, kraj Moravskoslezský	moravskoslezsky kraj								15.2	11.0
+12	Hlučín, okres Opava, kraj Moravskoslezský	moravskoslezsky kraj								15.2	13.0
 13	Šternberk, okres Olomouc, kraj Olomoucký	olomoucky kraj									
 14	Olomouc, okres Olomouc, kraj Olomoucký	olomoucky kraj									
-15	Čelákovice, okres Praha-východ, kraj Středočeský	stredocesky kraj	32.1	28.6	49.2	N/A					
-16	Sázava, okres Benešov, kraj Středočeský	stredocesky kraj	N/A	52.9	62.2	44.2					
-17	Lázně Toušeň, okres Praha-východ, kraj Středočeský	stredocesky kraj	28.4	25.1	45.7	25.5					
+15	Čelákovice, okres Praha-východ, kraj Středočeský	stredocesky kraj	32.1	28.6	49.2	28.9					
+16	Sázava, okres Benešov, kraj Středočeský	stredocesky kraj	44.0	52.9	62.2	44.2					
+17	Lázně Toušeň, okres Praha-východ, kraj Středočeský	stredocesky kraj	28.1	25.1	45.7	25.5					
 18	Neuměřice, okres Kladno, kraj Středočeský	stredocesky kraj	47.4	35.4	37.8	47.3					
 19	Kutná Hora, okres Kutná Hora, kraj Středočeský	stredocesky kraj	80.0	79.4	118.0	76.8					
 20	Březiny, okres Svitavy, kraj Pardubický	pardubicky kraj									
@@ -24,15 +24,14 @@ ID	Inzerát	Kraj	Manda (km)	Suchánková (km)	Modrý (km)	Nemes (km)	Motl (km)	T
 23	Týn nad Vltavou, okres České Budějovice, kraj Jihočeský	jihocesky kraj							100.3		
 24	Nová Pec, okres Prachatice, kraj Jihočeský	jihocesky kraj							77.2		
 25	Karlovy Vary, okres Karlovy Vary, kraj Karlovarský	karlovarsky kraj									
-26	Praha, Libeň, okres Praha, kraj Hlavní město Praha	hlavni mesto praha	7.6	4.6	24.2	6.4	16.0				
+26	Praha, Libeň, okres Praha, kraj Hlavní město Praha	hlavni mesto praha	7.4	4.6	24.2	6.4	16.0				
 27	Písek, okres Písek, kraj Jihočeský	jihocesky kraj							51.2		
 28	Přední Výtoň, okres Český Krumlov, kraj Jihočeský	jihocesky kraj							119.0		
 29	Olomouc, okres Olomouc, kraj Olomoucký	olomoucky kraj									
-30	Nové Město, okres Rokycany, kraj Plzeňský	plzensky kraj							N/A		
-31	Zbraslavice, okres Kutná Hora, kraj Středočeský	stredocesky kraj	N/A	N/A	98.0	80.0					
+30	Nové Město, okres Rokycany, kraj Plzeňský	plzensky kraj							36.5		
+31	Zbraslavice, okres Kutná Hora, kraj Středočeský	stredocesky kraj	79.8	88.8	98.0	80.0					
 32	Blansko, okres Blansko, kraj Jihomoravský	jihomoravsky kraj						32.4			
 33	Litovel, okres Olomouc, kraj Olomoucký	olomoucky kraj									
-34	Kladno, okres Chrudim, kraj Pardubický	stredocesky kraj	33.1	52.8	17.7	34.3					
-35	Praha, Hloubětín, okres Praha, kraj Hlavní město Praha	hlavni mesto praha	9.5	9.1	29.6	6.6	11.7				
+34	Kladno, okres Chrudim, kraj Pardubický	stredocesky kraj	33.1	52.8	17.7	35.3					
+35	Praha, Hloubětín, okres Praha, kraj Hlavní město Praha	hlavni mesto praha	9.2	9.1	29.6	6.6	11.7				
 36	Týn nad Vltavou, okres České Budějovice, kraj Jihočeský	jihocesky kraj							100.3		
-37	Aš, okres Cheb, kraj Karlovarský	karlovarsky kraj									

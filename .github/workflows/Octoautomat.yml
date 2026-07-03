@@ -27,8 +27,39 @@ jobs:
         run: |
           sudo mkdir -p /content/drive/MyDrive/HVB
           sudo chmod -R 777 /content
-          gdown --folder "$FOLDER_ID" -O /content/drive/MyDrive/HVB
+
+          # Stazeni z Google Drive s opakovanim (gdown umi tise selhat / stahnout neuplne)
+          MAX_POKUSU=3
+          for i in $(seq 1 $MAX_POKUSU); do
+            echo "=== Pokus $i/$MAX_POKUSU o stazeni slozky z Google Drive ==="
+            rm -rf /content/drive/MyDrive/HVB/*
+            if gdown --folder "$FOLDER_ID" -O /content/drive/MyDrive/HVB; then
+              POCET_SOUBORU=$(find /content/drive/MyDrive/HVB -type f | wc -l)
+              echo "Stazeno souboru: $POCET_SOUBORU"
+              if [ "$POCET_SOUBORU" -gt 0 ]; then
+                echo "Stazeni uspesne."
+                break
+              else
+                echo "VAROVANI: slozka je prazdna, zkousim znovu..."
+              fi
+            else
+              echo "VAROVANI: gdown selhal, zkousim znovu..."
+            fi
+
+            if [ "$i" = "$MAX_POKUSU" ]; then
+              echo "CHYBA: Stazeni dat z Google Drive selhalo po $MAX_POKUSU pokusech."
+              exit 1
+            fi
+            sleep 20
+          done
+
           cp -r /content/drive/MyDrive/HVB/* . || true
+
+          # Kontrola, ze klicove soubory skutecne existuji, nez spustime OCTO.py
+          if [ ! -f "OCTO.py" ]; then
+            echo "CHYBA: OCTO.py nebyl nalezen po stazeni z Disku. Job se zastavuje."
+            exit 1
+          fi
 
       - name: Spusteni Python skriptu OCTO
         env:
@@ -36,10 +67,10 @@ jobs:
         run: |
           python -c "
           import sys, types, os
-          
+
           m_drive = types.ModuleType('google.colab.drive')
           m_drive.mount = lambda *a, **k: None
-          
+
           m_user = types.ModuleType('google.colab.userdata')
           m_user.get = lambda key: os.environ.get('ORS_TOKEN_SECRET')
 
@@ -50,19 +81,19 @@ jobs:
           m_output = types.ModuleType('google.colab.output')
           m_output.clear = lambda *a, **k: None
           m_output.register_callback = lambda *a, **k: None
-          
+
           m_colab = types.ModuleType('google.colab')
           m_colab.drive = m_drive
           m_colab.userdata = m_user
           m_colab.files = m_files
           m_colab.output = m_output
-          
+
           sys.modules['google.colab.drive'] = m_drive
           sys.modules['google.colab.userdata'] = m_user
           sys.modules['google.colab.files'] = m_files
           sys.modules['google.colab.output'] = m_output
           sys.modules['google.colab'] = m_colab
-          
+
           exec(open('OCTO.py', encoding='utf-8').read())
           "
 
@@ -70,23 +101,73 @@ jobs:
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-          
+
           git rm --cached HVB 2>/dev/null || true
           rm -rf HVB 2>/dev/null || true
-          
+
           echo "*" > .git/info/exclude
           echo "!*.html" >> .git/info/exclude
           echo "!*.txt" >> .git/info/exclude
           echo "!*.zip" >> .git/info/exclude
-          
+
           echo "obce01.csv" >> .git/info/exclude
           echo "Makléři.xlsx" >> .git/info/exclude
           echo "OCTO.py" >> .git/info/exclude
-          
+
           git add .
-          
-          # Pokud se provedl úspěšný push, zapíšeme proměnnou PUSH_SUCCESS pro další krok
-          git commit -m "Automatická aktualizace kompletních dynamických výstupů z OCTO.py" && git push && echo "PUSH_SUCCESS=true" >> $GITHUB_ENV || echo "Žádné změny k nahrání."
+
+          if git diff --cached --quiet; then
+            echo "Žádné změny k nahrání."
+          else
+            git commit -m "Automatická aktualizace kompletních dynamických výstupů z OCTO.py"
+
+            # Push s opakovanim (pro pripad docasneho selhani/konfliktu)
+            PUSH_OK=false
+            for i in 1 2 3; do
+              echo "=== Pokus $i/3 o git push ==="
+              if git push; then
+                PUSH_OK=true
+                break
+              else
+                echo "Push selhal, stahuji zmeny a zkousim znovu..."
+                git pull --rebase || true
+                sleep 10
+              fi
+            done
+
+            if [ "$PUSH_OK" = "true" ]; then
+              echo "PUSH_SUCCESS=true" >> $GITHUB_ENV
+              echo "Push proběhl úspěšně."
+            else
+              echo "CHYBA: git push selhal po 3 pokusech!"
+              exit 1
+            fi
+          fi
+
+      - name: Vynutit GitHub Pages rebuild s opakovanim
+        if: env.PUSH_SUCCESS == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          for i in 1 2 3; do
+            echo "=== Pokus $i/3 o vyvolani Pages buildu ==="
+            RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -X POST \
+              -H "Authorization: Bearer $GH_TOKEN" \
+              -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/${{ github.repository }}/pages/builds")
+
+            if [ "$RESPONSE" = "201" ]; then
+              echo "Pages build úspěšně vyžádán."
+              break
+            else
+              echo "Pokus $i selhal (HTTP $RESPONSE), čekám 30s..."
+              sleep 30
+            fi
+
+            if [ "$i" = "3" ]; then
+              echo "VAROVÁNÍ: Pages build se nepodařilo vyžádat po 3 pokusech (web se možná i tak časem aktualizuje sám)."
+            fi
+          done
 
       - name: Poslat notifikaci na Telegram (pouze při úspěšné změně webu)
         if: env.PUSH_SUCCESS == 'true'
@@ -97,3 +178,13 @@ jobs:
           curl -s -X POST "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage" \
             -d "chat_id=$TELEGRAM_CHAT_ID" \
             -d "text=Přehled realitní inzerce byl automaticky aktualizován"
+
+      - name: Poslat notifikaci na Telegram (při selhání jobu)
+        if: failure()
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          curl -s -X POST "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage" \
+            -d "chat_id=$TELEGRAM_CHAT_ID" \
+            -d "text=⚠️ Automatizace OCTO selhala. Zkontroluj GitHub Actions log."

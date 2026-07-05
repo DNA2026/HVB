@@ -26,11 +26,10 @@ ID	Inzerát	Kraj	Manda (km)	Suchánková (km)	Modrý (km)	Nemes (km)	Motl (km)	T
 25	Karlovy Vary, okres Karlovy Vary, kraj Karlovarský	karlovarsky kraj									
 26	Praha, Libeň, okres Praha, kraj Hlavní město Praha	hlavni mesto praha	7.4	4.6	24.2	6.4	16.0				
 27	Písek, okres Písek, kraj Jihočeský	jihocesky kraj							51.2		
-28	Přední Výtoň, okres Český Krumlov, kraj Jihočeský	jihocesky kraj							119.0		
-29	Olomouc, okres Olomouc, kraj Olomoucký	olomoucky kraj									
-30	Nové Město, okres Rokycany, kraj Plzeňský	plzensky kraj							36.5		
-31	Zbraslavice, okres Kutná Hora, kraj Středočeský	stredocesky kraj	79.8	88.8	98.0	80.0					
-32	Blansko, okres Blansko, kraj Jihomoravský	jihomoravsky kraj						32.4			
-33	Litovel, okres Olomouc, kraj Olomoucký	olomoucky kraj									
-34	Kladno, okres Chrudim, kraj Pardubický	stredocesky kraj	33.1	52.8	17.7	35.3					
-35	Praha, Hloubětín, okres Praha, kraj Hlavní město Praha	hlavni mesto praha	9.2	9.1	29.6	6.6	11.7				
+28	Olomouc, okres Olomouc, kraj Olomoucký	olomoucky kraj									
+29	Nové Město, okres Rokycany, kraj Plzeňský	plzensky kraj							36.5		
+30	Zbraslavice, okres Kutná Hora, kraj Středočeský	stredocesky kraj	79.8	88.8	98.0	80.0					
+31	Blansko, okres Blansko, kraj Jihomoravský	jihomoravsky kraj						32.4			
+32	Litovel, okres Olomouc, kraj Olomoucký	olomoucky kraj									
+33	Kladno, okres Chrudim, kraj Pardubický	stredocesky kraj	33.1	52.8	17.7	35.3					
+34	Praha, Hloubětín, okres Praha, kraj Hlavní město Praha	hlavni mesto praha	9.2	9.1	29.6	6.6	11.7				

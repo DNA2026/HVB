@@ -34,4 +34,3 @@ ID	Inzerát	Kraj	Manda (km)	Suchánková (km)	Modrý (km)	Nemes (km)	Motl (km)	T
 33	Litovel, okres Olomouc, kraj Olomoucký	olomoucky kraj									
 34	Kladno, okres Chrudim, kraj Pardubický	stredocesky kraj	33.1	52.8	17.7	35.3					
 35	Praha, Hloubětín, okres Praha, kraj Hlavní město Praha	hlavni mesto praha	9.2	9.1	29.6	6.6	11.7				
-36	Týn nad Vltavou, okres České Budějovice, kraj Jihočeský	jihocesky kraj							100.3		

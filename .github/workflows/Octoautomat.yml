@@ -2,23 +2,24 @@ name: Automatizace OCTO
 on:
   workflow_dispatch:
 
+# Zabranuje souběhu dvou kompletních běhů celého pipeline (např. rucni rerun +
+# cron-job.org trigger ve stejnou chvíli) - presne tohle zpusobilo minuly
+# merge konflikt na Dashboard.html / mapa_zakazky.html / vystup_komplet.zip.
+concurrency:
+  group: octo-automatizace
+  cancel-in-progress: false
+
 permissions:
   contents: write
   pages: write
-  id-token: write   # nutné pro OIDC autorizaci deploy-pages
-
-# Zabrání souběhu dvou Pages deploymentů, kdyby cron-job.org spustil workflow
-# dřív, než doběhne předchozí běh (dřívější příčina "success outcome != success").
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
+  id-token: write   # nutne pro OIDC autorizaci deploy-pages
 
 jobs:
   run-octo:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deploy1.outputs.page_url || steps.deploy2.outputs.page_url || steps.deploy3.outputs.page_url }}
     steps:
       - name: Stazeni kodu z GitHubu
         uses: actions/checkout@v4
@@ -78,12 +79,22 @@ jobs:
           fi
           echo "Dashboard.html OK, velikost: $(stat -c%s Dashboard.html) bytu"
 
-      - name: Ulozeni vygenerovaneho HTML na GitHub web (s retry na push)
+      # ====================================================================
+      # PUSH: "nas vystup vzdy vyhrava" - misto mergovani/rebase konfliktu
+      # (ktere u generovanych HTML/ZIP souboru stejne nejdou rozumne vyresit)
+      # postavime novy commit vzdy na aktualnim vrcholu main a nahradime
+      # sledovany obsah kompletne novym vystupem z OCTO.py.
+      #
+      # POZOR / vedomy kompromis: pokud by nekdo mezitim rucne upravil neco
+      # jineho primo v repozitari (mimo tento bot), tato zmena by timto
+      # pushem byla prepsana. U ciste automatizovaneho repozitare, kam
+      # zapisuje pouze tento bot, je to bezpecne.
+      # ====================================================================
+      - name: Ulozeni vygenerovaneho HTML na GitHub web (bez merge konfliktu)
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-          git rm --cached HVB 2>/dev/null || true
-          rm -rf HVB 2>/dev/null || true
+
           echo "*" > .git/info/exclude
           echo "!*.html" >> .git/info/exclude
           echo "!*.txt" >> .git/info/exclude
@@ -91,27 +102,37 @@ jobs:
           echo "obce01.csv" >> .git/info/exclude
           echo "Makléři.xlsx" >> .git/info/exclude
           echo "OCTO.py" >> .git/info/exclude
-          git add .
-
-          if git diff --cached --quiet; then
-            echo "Zadne zmeny k nahrani do repozitare."
-            echo "PUSH_SUCCESS=true" >> $GITHUB_ENV
-            echo "NO_CHANGES=true" >> $GITHUB_ENV
-            exit 0
-          fi
-
-          git commit -m "Automatická aktualizace kompletních dynamických výstupů z OCTO.py"
+          git rm --cached HVB 2>/dev/null || true
+          rm -rf HVB 2>/dev/null || true
 
           PUSH_OK=false
-          for i in 1 2 3; do
-            echo "Pokus o push c. $i"
-            git pull --rebase origin main || true
+          for i in 1 2 3 4 5; do
+            echo "Pokus o ulozeni c. $i"
+            git fetch origin main
+
+            # Postavime novy commit na aktualnim vrcholu main, ale s nasim
+            # kompletnim (cerstve vygenerovanym) obsahem - zadny radkovy merge.
+            git reset --soft origin/main
+            git add .
+
+            if git diff --cached --quiet; then
+              echo "Po srovnani s aktualnim main opravdu nejsou zadne zmeny."
+              echo "PUSH_SUCCESS=true" >> $GITHUB_ENV
+              echo "NO_CHANGES=true" >> $GITHUB_ENV
+              PUSH_OK=true
+              break
+            fi
+
+            git commit -m "Automatická aktualizace kompletních dynamických výstupů z OCTO.py"
+
             if git push origin main; then
               PUSH_OK=true
               break
             fi
-            echo "Push selhal, cekam 10s a zkousim znovu..."
-            sleep 10
+
+            WAIT=$((i * 8))
+            echo "Push selhal (pravdepodobne novy zapis mezitim na main), cekam ${WAIT}s a zkousim znovu..."
+            sleep $WAIT
           done
 
           if [ "$PUSH_OK" = true ]; then
@@ -122,25 +143,59 @@ jobs:
           fi
 
       # ====================================================================
-      # Skutecny GitHub Pages deployment (vyzaduje Settings -> Pages -> Source
-      # = "GitHub Actions")
+      # GITHUB PAGES DEPLOYMENT s automatickym retry (3 pokusy, bez nutnosti
+      # rucniho zasahu). "Deployment failed, try again later." je znamy
+      # obcasny problem primo na strane GitHub backendu - reseni je zkusit
+      # to znovu po chvili, presne to ted delame automaticky za tebe.
       # ====================================================================
-      - name: Sbaleni a nahrani artefaktu pro GitHub Pages
+      - name: Sbaleni artefaktu pro GitHub Pages
         if: env.PUSH_SUCCESS == 'true'
         uses: actions/upload-pages-artifact@v3
         with:
           path: '.'
 
-      - name: Nasazeni na GitHub Pages
+      - name: Nasazeni na GitHub Pages (pokus 1)
         if: env.PUSH_SUCCESS == 'true'
-        id: deployment
+        id: deploy1
+        continue-on-error: true
         uses: actions/deploy-pages@v4
+
+      - name: Cekani pred pokusem 2 (30s)
+        if: env.PUSH_SUCCESS == 'true' && steps.deploy1.outcome == 'failure'
+        run: sleep 30
+
+      - name: Nasazeni na GitHub Pages (pokus 2)
+        if: env.PUSH_SUCCESS == 'true' && steps.deploy1.outcome == 'failure'
+        id: deploy2
+        continue-on-error: true
+        uses: actions/deploy-pages@v4
+
+      - name: Cekani pred pokusem 3 (60s)
+        if: env.PUSH_SUCCESS == 'true' && steps.deploy1.outcome == 'failure' && steps.deploy2.outcome == 'failure'
+        run: sleep 60
+
+      - name: Nasazeni na GitHub Pages (pokus 3)
+        if: env.PUSH_SUCCESS == 'true' && steps.deploy1.outcome == 'failure' && steps.deploy2.outcome == 'failure'
+        id: deploy3
+        continue-on-error: true
+        uses: actions/deploy-pages@v4
+
+      - name: Vyhodnoceni vysledku Pages deploymentu
+        if: always() && env.PUSH_SUCCESS == 'true'
+        run: |
+          if [ "${{ steps.deploy1.outcome }}" = "success" ] || \
+             [ "${{ steps.deploy2.outcome }}" = "success" ] || \
+             [ "${{ steps.deploy3.outcome }}" = "success" ]; then
+            echo "PAGES_DEPLOY_SUCCESS=true" >> $GITHUB_ENV
+          else
+            echo "PAGES_DEPLOY_SUCCESS=false" >> $GITHUB_ENV
+          fi
 
       # ====================================================================
       # NOTIFIKACE TELEGRAM
       # ====================================================================
       - name: Telegram - uspesna aktualizace webu
-        if: env.PUSH_SUCCESS == 'true' && env.NO_CHANGES != 'true' && steps.deployment.outcome == 'success'
+        if: always() && env.PUSH_SUCCESS == 'true' && env.NO_CHANGES != 'true' && env.PAGES_DEPLOY_SUCCESS == 'true'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
@@ -150,7 +205,7 @@ jobs:
             -d "text=✅ Přehled realitní inzerce byl automaticky aktualizován a web je LIVE."
 
       - name: Telegram - zadne zmeny k nahrani
-        if: env.NO_CHANGES == 'true'
+        if: always() && env.NO_CHANGES == 'true'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
@@ -167,20 +222,20 @@ jobs:
         run: |
           curl -s -X POST "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage" \
             -d "chat_id=$TELEGRAM_CHAT_ID" \
-            -d "text=❌ Automatizace OCTO: push do GitHubu selhal po 3 pokusech. Zkontroluj repozitář ručně."
+            -d "text=❌ Automatizace OCTO: ulozeni do GitHubu selhalo i po opakovanych pokusech. Zkontroluj repozitář ručně."
 
-      - name: Telegram - selhani Pages deploymentu
-        if: always() && env.PUSH_SUCCESS == 'true' && steps.deployment.outcome == 'failure'
+      - name: Telegram - selhani Pages deploymentu (po 3 automatickych pokusech)
+        if: always() && env.PUSH_SUCCESS == 'true' && env.PAGES_DEPLOY_SUCCESS == 'false'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
           curl -s -X POST "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage" \
             -d "chat_id=$TELEGRAM_CHAT_ID" \
-            -d "text=⚠️ Automatizace OCTO: Data uložena, ale publikace na GitHub Pages selhala. Zkontroluj Settings -> Pages -> Source (musí být 'GitHub Actions')."
+            -d "text=⚠️ Automatizace OCTO: Data uložena, ale GitHub Pages odmítl nasazení i po 3 automatických pokusech. Jde pravděpodobně o dočasný výpadek na straně GitHubu - zkus workflow spustit znovu za pár minut."
 
       - name: Telegram - obecne selhani (jina prevymina)
-        if: always() && failure() && env.PUSH_ERROR != 'true' && steps.deployment.outcome != 'failure'
+        if: always() && failure() && env.PUSH_ERROR != 'true' && env.PAGES_DEPLOY_SUCCESS != 'false'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}

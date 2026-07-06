@@ -1,7 +1,7 @@
 ID	Inzerát	Kraj	Manda (km)	Suchánková (km)	Modrý (km)	Nemes (km)	Motl (km)	Večerek (km)	Hrubá (km)	Tauš (km)	Marešková (km)
 1	Byšice, okres Mělník, kraj Středočeský	stredocesky kraj	45.0	28.7	56.2	42.4					
 2	Přišimasy, okres Kolín, kraj Středočeský	stredocesky kraj	27.9	32.0	53.4	24.8					
-3	Praha, okres Praha, kraj Hlavní město Praha	hlavni mesto praha	1.5	10.4	19.6	3.8	12.7				
+3	Praha, Košíře, okres Praha, kraj Hlavní město Praha	hlavni mesto praha	1.5	10.4	19.6	3.8	12.7				
 4	Karlovice, okres Semily, kraj Liberecký	liberecky kraj									
 5	Teplice, okres Teplice, kraj Ústecký	ustecky kraj									
 6	Teplice, okres Teplice, kraj Ústecký	ustecky kraj									
@@ -73,18 +73,18 @@ ID	Inzerát	Kraj	Manda (km)	Suchánková (km)	Modrý (km)	Nemes (km)	Motl (km)	V
 72	Zlatá, okres Praha-východ, kraj Středočeský	stredocesky kraj	27.1	28.6	48.2	21.4					
 73	Jeseník, okres Jeseník, kraj Olomoucký	olomoucky kraj									
 74	Havlíčkův Brod, okres Havlíčkův Brod, kraj Vysočina	kraj vysocina									
-75	Praha, Nedvězí, okres Hlavní město Praha, kraj Hlavní město Praha	hlavni mesto praha	1.5	10.4	19.6	3.8	12.7				
+75	Praha, Nedvězí, okres Praha, kraj Hlavní město Praha	hlavni mesto praha	1.5	10.4	19.6	3.8	12.7				
 76	Horní Heršpice, okres Brno-město, kraj Jihomoravský	jihomoravsky kraj								36.8	
 77	Slavkov u Brna, okres Vyškov, kraj Jihomoravský	jihomoravsky kraj								21.1	
 78	Krnov, okres Bruntál, Moravskoslezský kraj	moravskoslezsky kraj						69.7	79.7		
 79	Chomutov, okres Chomutov, Ústecký kraj	ustecky kraj									
-80	Praha, Praha 3, okres Hlavní město Praha, kraj Hlavní město Praha	hlavni mesto praha	2.2	9.7	21.9	2.9	12.0				
+80	Praha, Praha 3, okres Praha, kraj Hlavní město Praha	hlavni mesto praha	2.2	9.7	21.9	2.9	12.0				
 81	Veselí nad Moravou, okres Hodonín, kraj Jihomoravský	jihomoravsky kraj								101.5	
 82	Nový Jičín, okres Nový Jičín, kraj Moravskoslezský	moravskoslezsky kraj						29.9	48.3		
 83	Odry, okres Nový Jičín, kraj Moravskoslezský	moravskoslezsky kraj						29.9	48.3		
-84	Praha, Radotín, okres Hlavní město Praha, kraj Hlavní město Praha	hlavni mesto praha	15.8	25.9	17.4	19.4	21.2				
-85	Praha, Hloubětín, okres Hlavní město Praha, kraj Hlavní město Praha	hlavni mesto praha	9.2	9.1	29.6	6.6	11.7				
-86	Praha, Kyje, okres Hlavní město Praha, kraj Hlavní město Praha	hlavni mesto praha	1.5	10.4	19.6	3.8	12.7				
+84	Praha, Radotín, okres Praha, kraj Hlavní město Praha	hlavni mesto praha	15.8	25.9	17.4	19.4	21.2				
+85	Praha, Hloubětín, okres Praha, kraj Hlavní město Praha	hlavni mesto praha	9.2	9.1	29.6	6.6	11.7				
+86	Praha, Kyje, okres Praha, kraj Hlavní město Praha	hlavni mesto praha	1.5	10.4	19.6	3.8	12.7				
 87	Praha, Nedvězí, okres Hlavní město Praha, kraj Hlavní město Praha	hlavni mesto praha	1.5	10.4	19.6	3.8	12.7				
 88	Únětice, okres Plzeň-jih, kraj Plzeňský	plzensky kraj									17.1
 89	Karlovy Vary, okres Karlovy Vary, kraj Karlovarský	karlovarsky kraj									
@@ -108,7 +108,7 @@ ID	Inzerát	Kraj	Manda (km)	Suchánková (km)	Modrý (km)	Nemes (km)	Motl (km)	V
 107	Hlučín, okres Opava, kraj Moravskoslezský	moravskoslezsky kraj						15.2	13.0		
 108	Teplice - Trnovany, okres Teplice, kraj Ústecký	ustecky kraj									
 109	Domažlice, okres Domažlice, kraj Plzeňský	plzensky kraj									58.4
-110	Praha, Bukovany, okres Hlavní město Praha, kraj Hlavní město Praha	hlavni mesto praha	1.5	10.4	19.6	3.8	12.7				
+110	Bukovno, okres Mladá Boleslav, kraj Středočeský	stredocesky kraj	60.5	57.5	78.1	57.9					
 111	Mutějovice, okres Rakovník, kraj Středočeský	stredocesky kraj	62.1	73.7	46.7	64.3					
 112	Praha, Ďáblice, okres Hlavní město Praha, kraj Hlavní město Praha	hlavni mesto praha	1.5	10.4	19.6	3.8	12.7				
 113	Žermanice, okres Frýdek-Místek, kraj Moravskoslezský	moravskoslezsky kraj						27.4	25.5		
@@ -116,3 +116,34 @@ ID	Inzerát	Kraj	Manda (km)	Suchánková (km)	Modrý (km)	Nemes (km)	Motl (km)	V
 115	Chocnějovice, okres Mladá Boleslav, kraj Středočeský	stredocesky kraj	60.5	57.5	78.1	57.9					
 116	Dolní Rožínka, okres Žďár nad Sázavou, kraj Vysočina	kraj vysocina									
 117	Ostrava, okres Ostrava-město, kraj Moravskoslezský	moravskoslezsky kraj						16.0	3.9		
+118	Albrechtice nad Vltavou, okres Písek, kraj Jihočeský	jihocesky kraj									65.7
+119	Předklášteří, okres Brno-venkov, kraj Jihomoravský	jihomoravsky kraj								73.7	
+120	Brno, okres Brno-město, kraj Jihomoravský	jihomoravsky kraj								36.8	
+121	Brno, okres Brno-město, kraj Jihomoravský	jihomoravsky kraj								36.8	
+122	Hroznětín, okres Karlovy Vary, kraj Karlovarský	karlovarsky kraj									
+123	Plzeň, okres Plzeň-město, kraj Plzeňský	plzensky kraj									40.7
+124	Ústí nad Labem, okres Ústí nad Labem, kraj Ústecký	ustecky kraj									
+125	Strážovice, okres Hodonín, kraj Jihomoravský	jihomoravsky kraj								38.5	
+126	Vyškov, okres Vyškov, kraj Jihomoravský	jihomoravsky kraj								3.5	
+127	Karlovy Vary, okres Karlovy Vary, kraj Karlovarský	karlovarsky kraj									
+128	Bohumín, okres Karviná, kraj Moravskoslezský	moravskoslezsky kraj						27.2	11.7		
+129	Opava, okres Opava, kraj Moravskoslezský	moravskoslezsky kraj						31.3	41.3		
+130	Horní Studénky, okres Šumperk, kraj Olomoucký	olomoucky kraj									
+131	Prostějov, okres Prostějov, kraj Olomoucký	olomoucky kraj									
+132	Nové Strašecí, okres Rakovník, kraj Středočeský	stredocesky kraj	47.6	53.7	32.2	49.8					
+133	Postupice, okres Benešov, kraj Středočeský	stredocesky kraj	54.8	63.8	73.0	55.0					
+134	Nalžovice, okres Příbram, kraj Středočeský	stredocesky kraj	56.6	66.8	60.7	60.3					
+135	Černé Voděrady, okres Praha-východ, kraj Středočeský	stredocesky kraj	40.1	49.1	58.4	40.4					
+136	Chomutov, okres Chomutov, kraj Ústecký	ustecky kraj									
+137	Louny, okres Louny, kraj Ústecký	ustecky kraj									
+138	Praha, Praha 1, okres Praha, kraj Hlavní město Praha	hlavni mesto praha	4.5	9.6	20.6	6.1	15.1				
+139	Ostrava, okres Ostrava-město, kraj Moravskoslezský	moravskoslezsky kraj						16.0	3.9		
+140	Dolní Moravice, okres Bruntál, kraj Moravskoslezský	moravskoslezsky kraj						83.1	93.1		
+141	Přerov, okres Přerov, kraj Olomoucký	olomoucky kraj									
+142	Kolín, okres Kolín, kraj Středočeský	stredocesky kraj	69.9	69.3	87.6	66.7					
+143	Poděbrady, okres Nymburk, kraj Středočeský	stredocesky kraj	55.1	54.5	75.1	51.9					
+144	Benešov, okres Benešov, kraj Středočeský	stredocesky kraj	44.0	52.9	62.2	44.2					
+145	Zduchovice, okres Příbram, kraj Středočeský	stredocesky kraj	70.5	80.7	74.6	74.2					
+146	Litoměřice, okres Litoměřice, kraj Ústecký	ustecky kraj									
+147	Jihlava, okres Jihlava, kraj Vysočina	kraj vysocina									
+148	Jihlava, okres Jihlava, kraj Vysočina	kraj vysocina									

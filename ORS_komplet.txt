@@ -1,5 +1,5 @@
 ID	Inzerát	Kraj	Manda (km)	Suchánková (km)	Modrý (km)	Nemes (km)	Motl (km)	Večerek (km)	Hrubá (km)	Tauš (km)
-1	Byšice, okres Mělník, kraj Středočeský	stredocesky kraj	45.0	28.7	56.2	42.4				
+1	Byšice, okres Mělník, kraj Středočeský	stredocesky kraj	49.7	37.7	64.1	49.6				
 2	Přišimasy, okres Kolín, kraj Středočeský	stredocesky kraj	27.9	32.0	53.4	24.8				
 3	Praha, okres Praha, kraj Hlavní město Praha	hlavni mesto praha	1.5	10.4	19.6	3.8	12.7			
 4	Karlovice, okres Semily, kraj Liberecký	liberecky kraj								

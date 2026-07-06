@@ -1,12 +1,24 @@
 name: Automatizace OCTO
 on:
   workflow_dispatch:
+
 permissions:
   contents: write
   pages: write
+  id-token: write   # nutné pro OIDC autorizaci deploy-pages
+
+# Zabrání souběhu dvou Pages deploymentů, kdyby cron-job.org spustil workflow
+# dřív, než doběhne předchozí běh (dřívější příčina "success outcome != success").
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   run-octo:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Stazeni kodu z GitHubu
         uses: actions/checkout@v4
@@ -58,6 +70,7 @@ jobs:
           "
 
       - name: Kontrola existence vystupnich souboru
+        id: dashboard_check
         run: |
           if [ ! -s Dashboard.html ]; then
             echo "CHYBA: Dashboard.html neexistuje nebo je prazdny."
@@ -81,8 +94,9 @@ jobs:
           git add .
 
           if git diff --cached --quiet; then
-            echo "Zadne zmeny k nahrani."
-            echo "PUSH_SUCCESS=false" >> $GITHUB_ENV
+            echo "Zadne zmeny k nahrani do repozitare."
+            echo "PUSH_SUCCESS=true" >> $GITHUB_ENV
+            echo "NO_CHANGES=true" >> $GITHUB_ENV
             exit 0
           fi
 
@@ -107,60 +121,46 @@ jobs:
             echo "PUSH_ERROR=true" >> $GITHUB_ENV
           fi
 
-      - name: Overeni a vynuceni GitHub Pages deploymentu (retry pri selhani)
+      # ====================================================================
+      # Skutecny GitHub Pages deployment (vyzaduje Settings -> Pages -> Source
+      # = "GitHub Actions")
+      # ====================================================================
+      - name: Sbaleni a nahrani artefaktu pro GitHub Pages
         if: env.PUSH_SUCCESS == 'true'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          REPO="${{ github.repository }}"
-          API="https://api.github.com/repos/$REPO/pages/builds"
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
 
-          echo "Cekam 20s, aby GitHub stihl spustit automaticky Pages build..."
-          sleep 20
+      - name: Nasazeni na GitHub Pages
+        if: env.PUSH_SUCCESS == 'true'
+        id: deployment
+        uses: actions/deploy-pages@v4
 
-          SUCCESS=false
-          for i in 1 2 3 4 5; do
-            echo "Kontrola stavu Pages buildu (pokus $i)..."
-            STATUS=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
-                          -H "Accept: application/vnd.github+json" \
-                          "$API/latest" | grep -o '"status": *"[^"]*"' | head -1 | cut -d'"' -f4)
-
-            echo "Aktualni stav: $STATUS"
-
-            if [ "$STATUS" = "built" ]; then
-              SUCCESS=true
-              break
-            fi
-
-            if [ "$STATUS" = "errored" ] || [ -z "$STATUS" ]; then
-              echo "Build selhal nebo neni k dispozici, vynucuji novy pokus přes API..."
-              curl -s -X POST -H "Authorization: token $GITHUB_TOKEN" \
-                    -H "Accept: application/vnd.github+json" \
-                    "$API" > /dev/null
-            fi
-
-            echo "Cekam 20s pred dalsi kontrolou..."
-            sleep 20
-          done
-
-          if [ "$SUCCESS" = true ]; then
-            echo "DEPLOY_SUCCESS=true" >> $GITHUB_ENV
-          else
-            echo "DEPLOY_SUCCESS=false" >> $GITHUB_ENV
-          fi
-
+      # ====================================================================
+      # NOTIFIKACE TELEGRAM
+      # ====================================================================
       - name: Telegram - uspesna aktualizace webu
-        if: env.PUSH_SUCCESS == 'true' && env.DEPLOY_SUCCESS == 'true'
+        if: env.PUSH_SUCCESS == 'true' && env.NO_CHANGES != 'true' && steps.deployment.outcome == 'success'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
           curl -s -X POST "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage" \
             -d "chat_id=$TELEGRAM_CHAT_ID" \
-            -d "text=✅ Přehled realitní inzerce byl automaticky aktualizován a web je nasazen."
+            -d "text=✅ Přehled realitní inzerce byl automaticky aktualizován a web je LIVE."
+
+      - name: Telegram - zadne zmeny k nahrani
+        if: env.NO_CHANGES == 'true'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          curl -s -X POST "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage" \
+            -d "chat_id=$TELEGRAM_CHAT_ID" \
+            -d "text=ℹ️ Automatizace OCTO proběhla, ale data se nezměnila – web se neaktualizoval (nebylo co)."
 
       - name: Telegram - selhani pushe
-        if: env.PUSH_ERROR == 'true'
+        if: always() && env.PUSH_ERROR == 'true'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
@@ -170,11 +170,21 @@ jobs:
             -d "text=❌ Automatizace OCTO: push do GitHubu selhal po 3 pokusech. Zkontroluj repozitář ručně."
 
       - name: Telegram - selhani Pages deploymentu
-        if: env.PUSH_SUCCESS == 'true' && env.DEPLOY_SUCCESS == 'false'
+        if: always() && env.PUSH_SUCCESS == 'true' && steps.deployment.outcome == 'failure'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
           curl -s -X POST "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage" \
             -d "chat_id=$TELEGRAM_CHAT_ID" \
-            -d "text=⚠️ Automatizace OCTO: push proběhl, ale GitHub Pages deployment se nepodařilo dokončit ani po opakovaných pokusech. Zkontroluj GitHub Actions ručně."
+            -d "text=⚠️ Automatizace OCTO: Data uložena, ale publikace na GitHub Pages selhala. Zkontroluj Settings -> Pages -> Source (musí být 'GitHub Actions')."
+
+      - name: Telegram - obecne selhani (jina prevymina)
+        if: always() && failure() && env.PUSH_ERROR != 'true' && steps.deployment.outcome != 'failure'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          curl -s -X POST "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage" \
+            -d "chat_id=$TELEGRAM_CHAT_ID" \
+            -d "text=❌ Automatizace OCTO selhala v jiném kroku (např. stažení dat, generování Dashboard.html). Zkontroluj GitHub Actions log."

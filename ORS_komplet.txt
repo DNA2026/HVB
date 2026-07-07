@@ -147,3 +147,32 @@ ID	Inzerát	Kraj	Manda (km)	Suchánková (km)	Modrý (km)	Nemes (km)	Motl (km)	V
 146	Litoměřice, okres Litoměřice, kraj Ústecký	ustecky kraj									
 147	Jihlava, okres Jihlava, kraj Vysočina	kraj vysocina									
 148	Jihlava, okres Jihlava, kraj Vysočina	kraj vysocina									
+149	Praha, Žižkov, okres Praha, kraj Hlavní město Praha	hlavni mesto praha	3.4	9.5	22.6	3.5	12.6				
+150	Praha, Hodkovičky, okres Praha, kraj Hlavní město Praha	hlavni mesto praha	1.5	10.4	19.6	3.8	12.7				
+151	Praha, Dolní Měcholupy, okres Praha, kraj Hlavní město Praha	hlavni mesto praha	10.8	17.2	47.9	8.7	7.4				
+152	Praha, Praha 1, okres Praha, kraj Hlavní město Praha	hlavni mesto praha	4.5	9.6	20.6	6.1	15.1				
+153	Blansko, okres Blansko, kraj Jihomoravský	jihomoravsky kraj								32.4	
+154	Sivice, okres Brno-venkov, kraj Jihomoravský	jihomoravsky kraj								25.3	
+155	Olomouc, okres Olomouc, kraj Olomoucký	olomoucky kraj									
+156	Dubicko, okres Šumperk, kraj Olomoucký	olomoucky kraj									
+157	Čelákovice, okres Praha-východ, kraj Středočeský	stredocesky kraj	32.1	28.6	49.2	28.9					
+158	Chvalovice, okres Nymburk, kraj Středočeský	stredocesky kraj	53.7	53.0	73.6	50.5					
+159	Teplice, okres Teplice, kraj Ústecký	ustecky kraj									
+160	Praha, Vinohrady, okres Praha, kraj Hlavní město Praha	hlavni mesto praha	0.6	10.5	20.7	3.1	11.2				
+161	Nová Pec, okres Prachatice, kraj Jihočeský	jihocesky kraj									77.2
+162	Nový Jičín, okres Nový Jičín, kraj Moravskoslezský	moravskoslezsky kraj						29.9	48.3		
+163	Olomouc, okres Olomouc, kraj Olomoucký	olomoucky kraj									
+164	Prostějov, okres Prostějov, kraj Olomoucký	olomoucky kraj									
+165	Tachov, okres Česká Lípa, kraj Liberecký	plzensky kraj									93.4
+166	Tachov, okres Česká Lípa, kraj Liberecký	plzensky kraj									93.4
+167	Kralupy nad Vltavou, okres Mělník, kraj Středočeský	stredocesky kraj	32.0	20.0	31.8	31.8					
+168	Sedlčany, okres Příbram, kraj Středočeský	stredocesky kraj	74.8	73.0	66.9	75.0					
+169	Roudnice nad Labem, okres Litoměřice, kraj Ústecký	ustecky kraj									
+170	Most, okres Most, kraj Ústecký	ustecky kraj									
+171	Louny, okres Louny, kraj Ústecký	ustecky kraj									
+172	Dubí, okres Teplice, kraj Ústecký	ustecky kraj									
+173	Želeč, okres Tábor, kraj Jihočeský	jihocesky kraj									94.8
+174	Veselí nad Moravou, okres Hodonín, kraj Jihomoravský	jihomoravsky kraj								101.5	
+175	Karlovy Vary, okres Karlovy Vary, kraj Karlovarský	karlovarsky kraj									
+176	Krmelín, okres Frýdek-Místek, kraj Moravskoslezský	moravskoslezsky kraj						27.4	25.5		
+177	Přerov, okres Přerov, kraj Olomoucký	olomoucky kraj									

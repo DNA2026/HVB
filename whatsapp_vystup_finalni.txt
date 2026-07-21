@@ -50,35 +50,35 @@ Tel: +420 774 268 629
 ~8.3 km | Manda | 
 https://www.sreality.cz/detail/prodej/byt/4+kk/praha-dejvice-vaclavkova/1377165388
 
-12. Ostrava, okres Ostrava-město, kraj Moravskoslezský
+12. Kralupy nad Vltavou, okres Mělník, kraj Středočeský
+Tel: +420 734 503 464
+~8.6 km | Šišková | 
+https://reality.bazos.cz/inzerat/221530799/kralupy-zemechy.php
+
+13. Ostrava, okres Ostrava-město, kraj Moravskoslezský
 Tel: +420 731 520 071
 ~16.0 km | Večerek | 
 https://reality.bazos.cz/inzerat/221553888/prodam-garaz.php
 
-13. Karlovy Vary, okres Karlovy Vary, kraj Karlovarský
+14. Karlovy Vary, okres Karlovy Vary, kraj Karlovarský
 Tel: +420 603 946 312
 ~19.9 km | Gorash | 
 https://reality.bazos.cz/inzerat/221541294/jedinecna-prilezitost-prodej-srubu.php
-
-14. Kralupy nad Vltavou, okres Mělník, kraj Středočeský
-Tel: +420 734 503 464
-~20.0 km | Suchánková | 
-https://reality.bazos.cz/inzerat/221530799/kralupy-zemechy.php
 
 15. Petřvald, okres Karviná, kraj Moravskoslezský
 Tel: +420 739 211 089
 ~23.7 km | Večerek | 
 https://reality.bazos.cz/inzerat/221555881/prodam.php
 
-16. Stochov, okres Kladno, kraj Středočeský
+16. Mochov, okres Praha-východ, kraj Středočeský
+Tel: +420 774 128 696
+~26.6 km | Havlík | 
+https://reality.bazos.cz/inzerat/221557616/prodej-bytu-2kk-44-m-pod-kostelem-mochov.php
+
+17. Stochov, okres Kladno, kraj Středočeský
 Tel: +420 606 535 695
 ~26.8 km | Modrý | 
 https://www.sreality.cz/detail/prodej/dum/rodinny/stochov-stochov-karlovarska/1151787084
-
-17. Mochov, okres Praha-východ, kraj Středočeský
-Tel: +420 774 128 696
-~27.5 km | Nemes | 
-https://reality.bazos.cz/inzerat/221557616/prodej-bytu-2kk-44-m-pod-kostelem-mochov.php
 
 18. Želenice, okres Kladno, kraj Středočeský
 Tel: +420 606 328 106
@@ -90,31 +90,36 @@ Tel: +420 604 677 585
 ~34.6 km | Tauš | 
 https://reality.bazos.cz/inzerat/221549404/prodam-zahradu.php
 
-20. Radnice, okres Rokycany, kraj Plzeňský
+20. Struhařov, okres Benešov, kraj Středočeský
+Tel: +420 606 434 244
+~34.7 km | Havlík | 
+https://www.sreality.cz/detail/prodej/pozemek/bydleni/struharov-struharov-k-cihelne/478601292
+
+21. Radnice, okres Rokycany, kraj Plzeňský
 Tel: +420 721 959 400
 ~36.5 km | Marešková | 
 https://www.sreality.cz/detail/prodej/pozemek/bydleni/radnice/3753304140
 
-21. Skomelno, okres Rokycany, kraj Plzeňský
+22. Skomelno, okres Rokycany, kraj Plzeňský
 ~36.5 km | Marešková | 
 https://www.sreality.cz/detail/prodej/pozemek/bydleni/skomelno/2648105036
 
-22. Plzeň, okres Plzeň-město, kraj Plzeňský
+23. Plzeň, okres Plzeň-město, kraj Plzeňský
 Tel: +420 605 546 746
 ~40.7 km | Marešková | 
 https://reality.bazos.cz/inzerat/221525343/byt-21.php
 
-23. PLZEŇ, okres Plzeň-město, kraj Plzeňský
+24. PLZEŇ, okres Plzeň-město, kraj Plzeňský
 Tel: +420 728 036 384
 ~40.7 km | Marešková | 
 https://reality.bazos.cz/inzerat/221549689/dum-ci-chalupa-nebo-chata.php
 
-24. Bukovany, okres Hodonín, kraj Jihomoravský
+25. Bukovany, okres Hodonín, kraj Jihomoravský
 Tel: +420 731 600 641
 ~40.9 km | Tauš | 
 https://reality.bazos.cz/inzerat/221539196/prodej-garaze-bukovany-u-olomouce.php
 
-25. Opatovice, okres Brno-venkov, kraj Jihomoravský
+26. Opatovice, okres Brno-venkov, kraj Jihomoravský
 Tel: +420 777 699 531
 ~45.6 km | Tauš | 
 https://reality.bazos.cz/inzerat/221542499/developersky-projekt-opatovice-u-cb-rezidencni-usedlost-s-p.php

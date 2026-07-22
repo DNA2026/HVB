@@ -50,11 +50,11 @@ ID	Inzerát	Kraj	Tauš (km)	Večerek (km)	Manda (km)	Suchánková (km)	Flieger (
 49	Bílina, okres Teplice, kraj Ústecký	ustecky kraj												
 50	Heřmanice, okres Havlíčkův Brod, kraj Vysočina	kraj vysocina												
 51	České Budějovice, okres České Budějovice, kraj Jihočeský	jihocesky kraj											100.3	
-52	Dobev, okres Písek, kraj Jihočeský	jihocesky kraj											51.2	
+52	Dobev, okres Písek, kraj Jihočeský	jihocesky kraj											47.9	
 53	Brno, okres Brno-město, kraj Jihomoravský	jihomoravsky kraj	36.6											
 54	Tichá, okres Nový Jičín, kraj Moravskoslezský	moravskoslezsky kraj		29.9										
 55	Plzeň, okres Plzeň-město, kraj Plzeňský	plzensky kraj											40.7	
-56	Benešov, okres Blansko, kraj Jihomoravský	jihomoravsky kraj	32.4											
+56	Benešov, okres Blansko, kraj Jihomoravský	jihomoravsky kraj	39.7											
 57	Přezletice, okres Praha-východ, kraj Středočeský	stredocesky kraj			17.5	11.4	27.9	11.1		34.9	25.2	24.8		
 58	Podbořany, okres Louny, kraj Ústecký	ustecky kraj												
 59	Teplice, okres Teplice, kraj Ústecký	ustecky kraj												

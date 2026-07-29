@@ -41,7 +41,7 @@ ID	Inzerát	Kraj	Gorash (km)	Večerek (km)	Marešková (km)	Manda (km)	Suchánko
 40	Ústí nad Labem, okres Ústí nad Labem, kraj Ústecký	ustecky kraj												
 41	Dolní Olešnice, okres Trutnov, kraj Královéhradecký	kralovehradecky kraj												
 42	Staré Místo, okres Jičín, kraj Královéhradecký	kralovehradecky kraj												
-43	Hodonín, okres Blansko, kraj Jihomoravský	jihomoravsky kraj												57.8
+43	Hodonín, okres Blansko, kraj Jihomoravský	jihomoravsky kraj												65.8
 44	Studénka, okres Nový Jičín, kraj Moravskoslezský	moravskoslezsky kraj		29.9										
 45	Krásné, okres Žďár nad Sázavou, kraj Vysočina	kraj vysocina												
 46	Jirkov, okres Chomutov, kraj Ústecký	ustecky kraj												

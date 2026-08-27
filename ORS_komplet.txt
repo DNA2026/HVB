@@ -4,7 +4,7 @@ ID	Inzerát	Kraj	Manda (km)	Suchánková (km)	Flieger (km)	Nemes (km)	Motl (km)	
 3	Rožnov, okres Náchod, kraj Královéhradecký	kralovehradecky kraj											22.9	39.5				
 4	Horažďovice, okres Klatovy, kraj Plzeňský	plzensky kraj													25.4			
 5	Znojmo, okres Znojmo, kraj Jihomoravský	jihomoravsky kraj														99.2		
-6	Benešov, okres Blansko, kraj Jihomoravský	jihomoravsky kraj														39.7		
+6	Benešov, okres Blansko, kraj Jihomoravský	jihomoravsky kraj														32.4		
 7	Jirkov, okres Chomutov, kraj Ústecký	ustecky kraj								92.1	86.7							
 8	Jihlava, okres Jihlava, kraj Vysočina	kraj vysocina																
 9	Praha, okres Praha, kraj Hlavní město Praha	hlavni mesto praha	1.5	10.4	11.1	7.2	12.7	19.6	23.4	29.0	60.4	2.9						
@@ -44,7 +44,7 @@ ID	Inzerát	Kraj	Manda (km)	Suchánková (km)	Flieger (km)	Nemes (km)	Motl (km)	
 43	Praha, okres Praha, kraj Hlavní město Praha	hlavni mesto praha	1.5	10.4	11.1	7.2	12.7	19.6	23.4	29.0	60.4	2.9						
 44	Vysoká, okres Havlíčkův Brod, kraj Vysočina	kraj vysocina																
 45	Jičín, okres Jičín, kraj Královéhradecký	kralovehradecky kraj											50.3	48.3				
-46	Hronov, okres Náchod, kraj Královéhradecký	kralovehradecky kraj											48.5	41.4				
+46	Hronov, okres Náchod, kraj Královéhradecký	kralovehradecky kraj											56.4	35.8				
 47	Praha, Černý Most, okres Praha, kraj Hlavní město Praha	hlavni mesto praha	10.6	10.8	24.1	4.8	12.8	31.1	18.9	26.2	57.6	12.0						
 48	Praha, Strašnice, okres Praha, kraj Hlavní město Praha	hlavni mesto praha	3.9	12.2	16.0	7.0	8.8	24.4	22.0	30.9	62.4	4.4						
 49	Vlachovo Březí, okres Prachatice, kraj Jihočeský	jihocesky kraj													67.0			
@@ -62,8 +62,8 @@ ID	Inzerát	Kraj	Manda (km)	Suchánková (km)	Flieger (km)	Nemes (km)	Motl (km)	
 61	Praha, okres Praha, kraj Hlavní město Praha	hlavni mesto praha	1.5	10.4	11.1	7.2	12.7	19.6	23.4	29.0	60.4	2.9						
 62	Praha, okres Praha, kraj Hlavní město Praha	hlavni mesto praha	1.5	10.4	11.1	7.2	12.7	19.6	23.4	29.0	60.4	2.9						
 63	Benešov, okres Benešov, kraj Středočeský	stredocesky kraj	44.0	52.9	59.1	48.3		62.2	28.3	73.2	104.6		139.5		161.2			
-64	Miličín, okres Benešov, kraj Středočeský	stredocesky kraj	44.0	52.9	59.1	48.3		62.2	28.3	73.2	104.6		139.5		161.2			
-65	Miličín, okres Benešov, kraj Středočeský	stredocesky kraj	44.0	52.9	59.1	48.3		62.2	28.3	73.2	104.6		139.5		161.2			
+64	Miličín, okres Benešov, kraj Středočeský	stredocesky kraj	69.2	78.2	84.3	73.5		87.4	53.5	98.4	129.8		164.8		112.5			
+65	Miličín, okres Benešov, kraj Středočeský	stredocesky kraj	69.2	78.2	84.3	73.5		87.4	53.5	98.4	129.8		164.8		112.5			
 66	Řehenice, okres Benešov, kraj Středočeský	stredocesky kraj	39.3	48.3	40.8	43.6		43.9	23.6	68.5	99.9		134.9		142.9			
 67	Mladá Boleslav, okres Mladá Boleslav, kraj Středočeský	stredocesky kraj	60.5	57.5	70.8	54.0		77.8	62.7	72.9	57.5		113.0		176.7			
 68	Praha, Žižkov, okres Praha, kraj Hlavní město Praha	hlavni mesto praha	3.4	9.5	14.2	4.8	12.6	22.6	23.3	28.1	59.6	5.7						
@@ -80,7 +80,7 @@ ID	Inzerát	Kraj	Manda (km)	Suchánková (km)	Flieger (km)	Nemes (km)	Motl (km)	
 79	Mšeno, okres Mělník, kraj Středočeský	stredocesky kraj	49.7	37.7	65.5	45.7		64.1	55.4	27.0	15.0		135.4		162.9			
 80	Jičín, okres Jičín, kraj Královéhradecký	kralovehradecky kraj											50.3	48.3				
 81	Písek, okres Písek, kraj Jihočeský	jihocesky kraj													51.2			
-82	Havířov, okres Karviná, kraj Moravskoslezský	moravskoslezsky kraj															28.0	
+82	Havířov, okres Karviná, kraj Moravskoslezský	moravskoslezsky kraj															48.6	
 83	Krupka, okres Teplice, kraj Ústecký	ustecky kraj								70.4	59.9							
 84	Slaný, okres Kladno, kraj Středočeský	stredocesky kraj	36.8	52.8	31.3	35.5		21.4	60.8	42.1	56.3		152.1		128.7			
 85	Chotusice, okres Kutná Hora, kraj Středočeský	stredocesky kraj	80.0	79.4	92.7	75.9		118.0	47.3	94.7	126.2		58.8		217.0			

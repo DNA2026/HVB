@@ -53,7 +53,7 @@ jobs:
           m_drive = types.ModuleType('google.colab.drive')
           m_drive.mount = lambda *a, **k: None
           m_user = types.ModuleType('google.colab.userdata')
-          m_user.get = lambda key: os.environ.get('ORS_TOKEN_SECRET')
+          m_user.get = lambda key: os.environ.get(key)
           m_files = types.ModuleType('google.colab.files')
           m_files.download = lambda *a, **k: None
           m_files.upload = lambda *a, **k: {}

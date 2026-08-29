@@ -915,15 +915,24 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from datetime import datetime
 import pandas as pd
+import re
 
 def get_secret(key):
+    # 1. Nejprve zkontroluje systémové proměnné (GitHub Actions / běžný server)
+    val = os.environ.get(key)
+    if val:
+        return val
+
+    # 2. Pokud nenašel, zkusí prostředí Google Colab
     try:
         from google.colab import userdata
         val = userdata.get(key)
-        if val: return val
-    except:
+        if val:
+            return val
+    except Exception:
         pass
-    return os.environ.get(key)
+
+    return None
 
 def odeslat_automatically_report():
     try:
@@ -954,11 +963,13 @@ def odeslat_automatically_report():
         if 'final_vystup' in globals() and 'df_m_full' in globals():
             op_map = {}
             for _, r in df_m_full.iterrows():
-                if pd.notna(r.get('Jméno')) and pd.notna(r.get('Operátor')):
-                    op_map[str(r['Jméno']).strip()] = str(r['Operátor']).strip()
+                # Bezpečnostní kontrola na None/NaN před .strip()
+                name_val = r.get('Jméno')
+                op_val = r.get('Operátor')
+                if pd.notna(name_val) and pd.notna(op_val):
+                    op_map[str(name_val).strip()] = str(op_val).strip()
 
             for item in final_vystup:
-                import re
                 match = re.search(r'\|\s*([^|]+?)\s*\|', item['text'])
                 if match:
                     name = match.group(1).strip()
@@ -972,8 +983,10 @@ def odeslat_automatically_report():
         if 'filtered_out_info' in globals():
             for item in filtered_out_info:
                 d = str(item.get('Důvod', '')).lower()
-                if 'mimo dosah' in d or 'žádný agent' in d or 'limit' in d: reasons["Mimo dosah (km limit)"] += 1
-                else: reasons["Ostatní"] += 1
+                if 'mimo dosah' in d or 'žádný agent' in d or 'limit' in d:
+                    reasons["Mimo dosah (km limit)"] += 1
+                else:
+                    reasons["Ostatní"] += 1
 
         external_filtered = reasons["Mimo dosah (km limit)"] + reasons["Ostatní"]
         reasons["Duplicity / Již zpracováno"] = max(0, total - exported - external_filtered)

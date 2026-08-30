@@ -64,7 +64,7 @@ jobs:
         try:
             print("🔍 Připojování k Gmailu...")
             mail = imaplib.IMAP4_SSL('imap.gmail.com', 993)
-            mail.login(os.environ['GMAIL_USERNAME'], os.environ['GMAIL_APP_PASSWORD'])
+            mail.login(os.environ['GMAIL_USERNAME_LM'], os.environ['GMAIL_APP_PASSWORD'])
             
             mail.select('INBOX')
             

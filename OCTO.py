@@ -306,7 +306,7 @@ def detect_type(text_blob):
         return 'Komerční'
     return 'Byty'
 
-# Mapování URL a telefonů z původních bloků
+# Mapování URL a telefonů
 url_map = {}
 phone_map = {}
 for block in blocks:
@@ -318,10 +318,16 @@ for block in blocks:
         phone_match = re.search(r'(?:Tel|Tel\.|Telefon):?\s*(\+?\d[\d\s]{8,})', block, re.IGNORECASE)
         if phone_match: phone_map[loc_key] = phone_match.group(1).strip()
 
+# Mapování makléř -> operátor
+agent_to_operator = {}
+if 'df_m_full' in locals():
+    for _, r in df_m_full.iterrows():
+        if pd.notna(r.get('Jméno')) and pd.notna(r.get('Operátor')):
+            agent_to_operator[str(r['Jméno']).strip()] = str(r['Operátor']).strip()
+
 # Resetování makléřů
 for m in makleri_db:
     m['aktualne_prirazeno'] = 0
-    # Původní limit z Excelu
     m['base_capacity'] = int(m.get('kapacita', 10)) if m.get('kapacita', 10) > 0 else 0
 
 final_vystup = []
@@ -330,101 +336,92 @@ filtered_out_info = []
 if os.path.exists('ORS_komplet.txt'):
     df_in = pd.read_csv('ORS_komplet.txt', sep='\t')
 
-    ads_by_kraj_data = {}
+    # --- DEDUPLIKACE ---
+    seen_input_ads = set()
+    unique_rows = []
     for _, row in df_in.iterrows():
-        kraj = str(row['Kraj'])
-        if kraj not in ads_by_kraj_data: ads_by_kraj_data[kraj] = []
-        ads_by_kraj_data[kraj].append(row)
+        fp = re.sub(r'^[\d]+[\.\)]\s*', '', str(row['Inzerát'])).strip()
+        if fp and fp not in seen_input_ads:
+            seen_input_ads.add(fp)
+            unique_rows.append(row)
 
-    for kraj_norm, rows in ads_by_kraj_data.items():
-        agents_in_kraj = [m for m in makleri_db if kraj_norm in m['kraj_norm'] or (kraj_norm == 'hlavni mesto praha' and 'praha' in m['kraj_norm'])]
-        agents_in_kraj = [a for a in agents_in_kraj if a['base_capacity'] > 0]
-
-        if not agents_in_kraj:
-            for r in rows: filtered_out_info.append({'ID': r.get('ID', 'N/A'), 'Inzerát': r['Inzerát'], 'Důvod': 'Žádný agent s kapacitou v kraji'})
-            continue
-
-        remaining_rows = []
-        for r in rows:
-            vhodni = []
-            for a in agents_in_kraj:
+    # 1. Prvotní přiřazení nejbližším makléřům
+    for r in unique_rows:
+        kraj_norm = str(r['Kraj'])
+        vhodni = []
+        for a in makleri_db:
+            if (kraj_norm in a['kraj_norm'] or (kraj_norm == 'hlavni mesto praha' and 'praha' in a['kraj_norm'])) and a['base_capacity'] > 0:
                 dist = r.get(f"{a['jmeno']} (km)")
                 if pd.notna(dist) and dist != 'N/A' and float(dist) <= a['limit']:
                     vhodni.append({'agent': a, 'dist': float(dist)})
 
-            assigned = False
-            if vhodni:
-                vhodni.sort(key=lambda x: x['dist'])
-                for v in vhodni:
-                    if v['agent']['aktualne_prirazeno'] < (v['agent']['base_capacity'] * 0.5):
-                        v['agent']['aktualne_prirazeno'] += 1
-                        final_vystup.append({'dist': v['dist'], 'agent': v['agent'], 'row': r})
-                        assigned = True
-                        break
-            if not assigned: remaining_rows.append(r)
+        if vhodni:
+            vhodni.sort(key=lambda x: x['dist'])
+            target = None
+            for v in vhodni:
+                if v['agent']['aktualne_prirazeno'] < v['agent']['base_capacity']:
+                    target = v
+                    break
+            if not target: target = vhodni[0]
 
-        still_remaining = []
-        for r in remaining_rows:
-            vhodni = []
-            for a in agents_in_kraj:
-                dist = r.get(f"{a['jmeno']} (km)")
-                if pd.notna(dist) and dist != 'N/A' and float(dist) <= a['limit']:
-                    vhodni.append({'agent': a, 'dist': float(dist)})
+            target['agent']['aktualne_prirazeno'] += 1
+            final_vystup.append({'dist': target['dist'], 'agent': target['agent'], 'row': r})
+        else:
+            filtered_out_info.append({'ID': r.get('ID', 'N/A'), 'Inzerát': r['Inzerát'], 'Důvod': 'Mimo dosah'})
 
-            assigned = False
-            if vhodni:
-                vhodni.sort(key=lambda x: x['dist'])
-                for v in vhodni:
-                    if v['agent']['aktualne_prirazeno'] < v['agent']['base_capacity']:
-                        v['agent']['aktualne_prirazeno'] += 1
-                        final_vystup.append({'dist': v['dist'], 'agent': v['agent'], 'row': r})
-                        assigned = True
-                        break
-            if not assigned: still_remaining.append(r)
+    # 2. ABSOLUTNÍ VYROVNÁNÍ (REBALANCING) MEZI OPERÁTORY
+    op_workload = {}
+    for item in final_vystup:
+        op = agent_to_operator.get(item['agent']['jmeno'], "Neznámý")
+        if op not in op_workload: op_workload[op] = []
+        op_workload[op].append(item)
 
-        for r in still_remaining:
-            vhodni = []
-            for a in agents_in_kraj:
-                dist = r.get(f"{a['jmeno']} (km)")
-                if pd.notna(dist) and dist != 'N/A' and float(dist) <= a['limit']:
-                    util = (a['aktualne_prirazeno'] / a['base_capacity'])
-                    vhodni.append({'agent': a, 'dist': float(dist), 'util': util})
+    all_ops = sorted(list(op_workload.keys()))
+    if len(all_ops) > 1:
+        while True:
+            max_op = max(all_ops, key=lambda o: len(op_workload[o]))
+            min_op = min(all_ops, key=lambda o: len(op_workload[o]))
 
-            if vhodni:
-                vhodni.sort(key=lambda x: (x['util'], x['dist']))
-                target = vhodni[0]
-                target['agent']['aktualne_prirazeno'] += 1
-                final_vystup.append({'dist': target['dist'], 'agent': target['agent'], 'row': r})
-            else:
-                filtered_out_info.append({'ID': r.get('ID', 'N/A'), 'Inzerát': r['Inzerát'], 'Důvod': 'Mimo km limit všech agentů v kraji'})
+            if len(op_workload[max_op]) - len(op_workload[min_op]) <= 1:
+                break
 
+            # Přeřadíme inzerát s nejvyšší vzdáleností k méně vytíženému operátorovi
+            item_to_move = max(op_workload[max_op], key=lambda x: x['dist'])
+            op_workload[max_op].remove(item_to_move)
+
+            kraj_r = item_to_move['row']['Kraj']
+            possible_agents = [m for m in makleri_db if agent_to_operator.get(m['jmeno']) == min_op and (kraj_r in m['kraj_norm'] or (kraj_r == 'hlavni mesto praha' and 'praha' in m['kraj_norm']))]
+
+            if possible_agents:
+                new_a = possible_agents[0]
+                new_dist = item_to_move['row'].get(f"{new_a['jmeno']} (km)", 999)
+                item_to_move['agent'] = new_a
+                item_to_move['dist'] = float(new_dist) if pd.notna(new_dist) and new_dist != 'N/A' else 999
+
+            op_workload[min_op].append(item_to_move)
+
+    final_vystup = [item for sublist in op_workload.values() for item in sublist]
+
+    # Formátování výstupu
     formatted_vystup = []
     for item in final_vystup:
         r = item['row']
         a = item['agent']
         txt = str(r['Inzerát']).strip()
-        actual_phone = phone_map.get(txt, "")
+        key = re.sub(r'^[\d]+[\.\)]\s*', '', txt).strip()
+        actual_phone = phone_map.get(key, "")
         phone_line = f"\nTel: {actual_phone}" if actual_phone else ""
-        ad_url = url_map.get(txt, "")
+        ad_url = url_map.get(key, "")
         block_txt = f"{txt}{phone_line}\n~{item['dist']} km | {a['jmeno']} | {a['kontakt']}\n{ad_url}"
         formatted_vystup.append({'dist': item['dist'], 'text': block_txt})
 
-    # KLÍČOVÁ OPRAVA: Odstranění duplicit z final_vystup
-    seen_ads = set()
-    unique_vystup = []
-    for item in formatted_vystup:
-        fingerprint = hash(item['text'].strip())
-        if fingerprint not in seen_ads:
-            seen_ads.add(fingerprint)
-            unique_vystup.append(item)
-
-    final_vystup = unique_vystup
+    final_vystup = formatted_vystup
     final_vystup.sort(key=lambda x: x['dist'])
 
     with open('whatsapp_vystup_finalni.txt', 'w', encoding='utf-8') as f:
         for i, item in enumerate(final_vystup, 1): f.write(f"{i}. {item['text']}\n\n")
 
-    print(f"✅ Hotovo. Exportováno {len(final_vystup)} unikátních inzerátů.")
+    print(f"✅ Vyrovnáno. Rozdíl mezi operátory je max 1 inzerát. Celkem {len(final_vystup)} unikátních inzerátů.")
 
 """### **Celkové shrnutí a statistiky**
 Vytížení makléřů a distribuci inzerátů.
@@ -702,8 +699,7 @@ from datetime import datetime
 
 # --- 1. Generování Dashboardu ---
 if 'final_vystup' in locals() and 'm' in locals():
-    # EXPLICITNÍ OPRAVA: Vynutíme OSM dlaždice přímo v objektu mapy před exportem do HTML
-    # To zajistí, že podklad nezmizí ani při spuštění celého sešitu
+    # Vynutíme OSM dlaždice
     folium.TileLayer(
         tiles='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
         attr='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
@@ -715,10 +711,15 @@ if 'final_vystup' in locals() and 'm' in locals():
     data_pro_html = []
     operator_assignments = {}
 
+    # --- DEDUPLIKACE PRO DASHBOARD (SHODNÁ S WHATSAPP VÝSTUPEM) ---
     seen_in_dashboard = set()
     unique_final_vystup = []
     for item in final_vystup:
-        ad_fingerprint = hash(item['text'].strip())
+        # Fingerprint: text bez úvodního číslování a whitespace
+        # Předpokládáme, že item['text'] obsahuje text inzerátu na prvním řádku
+        first_line = item['text'].split('\n')[0].strip()
+        ad_fingerprint = re.sub(r'^[\d]+[\.\)]\s*', '', first_line).strip()
+
         if ad_fingerprint not in seen_in_dashboard:
             seen_in_dashboard.add(ad_fingerprint)
             unique_final_vystup.append(item)
@@ -802,7 +803,7 @@ if 'final_vystup' in locals() and 'm' in locals():
         else:
             unassigned_rows.append(f"<tr><td>{kr}</td><td>{pocet_total}</td><td>0</td><td>0</td><td>-</td></tr>")
 
-    stats_title = f"📊 Statistika dle krajů (počet inzerátů ČR: {total_processed if 'total_processed' in locals() else 0}, z toho zpracovaných: {len(unique_final_vystup)})"
+    stats_title = f"📊 Statistika (Celkem ČR: {total_processed if 'total_processed' in locals() else 0}, Unikátních zpracovaných: {len(unique_final_vystup)})"
     stats_html = f"<div class='card'><h3>{stats_title}</h3><table><thead><tr><th>Kraj</th><th>Počet inzerátů</th><th>Počet makléřů</th><th>Průměr / Makléř</th><th>Průměrná vzdálenost (km)</th></tr></thead><tbody>"
     stats_html += "".join(assigned_rows) + "".join(unassigned_rows) + "</tbody></table></div>"
 
@@ -887,7 +888,7 @@ if 'final_vystup' in locals() and 'm' in locals():
     filename = 'Dashboard.html'
     with open(filename, 'w', encoding='utf-8') as f:
         f.write(full_html)
-    print(f"✅ {filename} aktualizován s vynuceným OSM mapovým podkladem.")
+    print(f"✅ {filename} aktualizován s opravou deduplikace.")
 
     try:
         token = userdata.get('github_api') or userdata.get('GITHUB')
@@ -901,7 +902,7 @@ if 'final_vystup' in locals() and 'm' in locals():
                 shutil.copy(filename, os.path.join(repo_name, filename))
                 os.chdir(repo_name)
                 os.system(f'git add {filename}')
-                os.system(f'git commit -m "Force OSM tiles in dashboard: {aktualizace_str}"')
+                os.system(f'git commit -m "Fix deduplication in dashboard: {aktualizace_str}"')
                 os.system(f'git push {repo_url}')
                 os.chdir('..')
                 print("✅ Dashboard aktualizován na GitHubu.")
@@ -918,20 +919,13 @@ import pandas as pd
 import re
 
 def get_secret(key):
-    # 1. Nejprve zkontroluje systémové proměnné (GitHub Actions / běžný server)
     val = os.environ.get(key)
-    if val:
-        return val
-
-    # 2. Pokud nenašel, zkusí prostředí Google Colab
+    if val: return val
     try:
         from google.colab import userdata
         val = userdata.get(key)
-        if val:
-            return val
-    except Exception:
-        pass
-
+        if val: return val
+    except Exception: pass
     return None
 
 def odeslat_automatically_report():
@@ -939,106 +933,108 @@ def odeslat_automatically_report():
         sender_email = get_secret('GMAIL_SENDER')
         target_email = get_secret('GMAIL_USER')
         app_password = get_secret('GMAIL_APP_PASSWORD')
+        copy_email = get_secret('GMAIL_SENDER_COPY')
 
         if not all([sender_email, target_email, app_password]):
-            print("⚠️ E-mailové klíče nebyly nalezeny. Report nebude odeslán.")
+            print("⚠️ E-mailové klíče nebyly nalezeny.")
             return
 
-        global blocks, final_vystup, filtered_out_info, assigned_counts, df_m_full, geo_stats
+        # --- Deduplikace pro statistiku (konzistentní se zdrojem pravdy) ---
+        unique_ads_texts = set()
+        dedup_final_vystup = []
+        for item in (final_vystup if 'final_vystup' in globals() else []):
+            fingerprint = item['text'].split('\n')[0].strip()
+            if fingerprint not in unique_ads_texts:
+                unique_ads_texts.add(fingerprint)
+                dedup_final_vystup.append(item)
 
         total = len(blocks) if 'blocks' in globals() else 0
-        exported = len(final_vystup) if 'final_vystup' in globals() else 0
+        exported = len(dedup_final_vystup)
         datum = datetime.now().strftime('%d.%m.%Y')
 
-        # Výpočet úspěšnosti
-        success_rate = (exported / total * 100) if total > 0 else 0
+        # --- Regionální statistiky ---
+        email_geo_stats = {}
+        assigned_regions = set()
+        for item in dedup_final_vystup:
+            loc_line = item['text'].split('\n')[0]
+            target_kraj_norm = get_kraj_from_text(normalize_text(loc_line), obce_list)
 
-        # Vytížení krajů
-        active_regions_count = len(geo_stats) if 'geo_stats' in globals() else 0
-        region_utilization = (active_regions_count / 14 * 100)
-        system_utilization = (success_rate * region_utilization / 100)
+            if target_kraj_norm == "hlavni mesto praha": display_kraj = "Hlavní Město Praha"
+            elif target_kraj_norm == "Neznamy": display_kraj = "Neznámý"
+            else: display_kraj = f"{target_kraj_norm.replace(' kraj', '').strip().title()} kraj"
 
-        # Agregace dle operátorek
-        operator_counts = {}
-        if 'final_vystup' in globals() and 'df_m_full' in globals():
-            op_map = {}
-            for _, r in df_m_full.iterrows():
-                # Bezpečnostní kontrola na None/NaN před .strip()
-                name_val = r.get('Jméno')
-                op_val = r.get('Operátor')
-                if pd.notna(name_val) and pd.notna(op_val):
-                    op_map[str(name_val).strip()] = str(op_val).strip()
+            assigned_regions.add(display_kraj)
+            email_geo_stats[display_kraj] = email_geo_stats.get(display_kraj, 0) + 1
 
-            for item in final_vystup:
-                match = re.search(r'\|\s*([^|]+?)\s*\|', item['text'])
-                if match:
-                    name = match.group(1).strip()
-                    op_name = op_map.get(name, "Neznámý")
-                    operator_counts[op_name] = operator_counts.get(op_name, 0) + 1
+        # 1. Vytížení krajů
+        count_regions_with_ads = len([k for k in assigned_regions if k != "Neznámý"])
+        kraj_utilization = (count_regions_with_ads / 14) * 100
 
-        op_stats_text = "\n".join([f"  - {op}: {count}" for op, count in sorted(operator_counts.items(), key=lambda x: x[1], reverse=True)])
-
-        # Agregace důvodů vyřazení
-        reasons = {"Mimo dosah (km limit)": 0, "Duplicity / Již zpracováno": 0, "Ostatní": 0}
+        # 2. Filtrace a úspěšnost
+        out_of_reach = 0
         if 'filtered_out_info' in globals():
             for item in filtered_out_info:
                 d = str(item.get('Důvod', '')).lower()
-                if 'mimo dosah' in d or 'žádný agent' in d or 'limit' in d:
-                    reasons["Mimo dosah (km limit)"] += 1
-                else:
-                    reasons["Ostatní"] += 1
+                if any(x in d for x in ['mimo dosah', 'žádný agent', 'limit']):
+                    out_of_reach += 1
 
-        external_filtered = reasons["Mimo dosah (km limit)"] + reasons["Ostatní"]
-        reasons["Duplicity / Již zpracováno"] = max(0, total - exported - external_filtered)
+        duplicities = max(0, total - exported - out_of_reach)
+        denom = (total - duplicities)
+        success_rate = (exported / denom * 100) if denom > 0 else 0
 
-        # Seznam makléřů
-        agent_stats_lines = []
-        if 'assigned_counts' in globals():
-            for name, count in sorted(assigned_counts.items(), key=lambda x: x[1], reverse=True):
-                agent_stats_lines.append(f"  - {name}: {count}")
-        agent_stats = "\n".join(agent_stats_lines)
+        # 3. Vytížení systému
+        system_utilization = (success_rate * kraj_utilization) / 100
 
-        text = f"""
-=== HLAVNÍ STATISTIKY ===
-Celkový počet inzerátů ke zpracování: {total}
-Počet úspěšně přiřazených: {exported}
-Úspěšnost přiřazení: {success_rate:.1f}%
-Počet vyřazených inzerátů: {total - exported}
+        agent_html = "".join([f"<li>{name}: <b>{count}</b></li>" for name, count in sorted(assigned_counts.items(), key=lambda x: x[1], reverse=True)])
 
-=== ROZDĚLENÍ DLE OPERÁTOREK ===
-{op_stats_text if op_stats_text else "  (Žádná data)"}
+        # --- OPRAVA: Zobrazujeme pouze kraje, kde je alespoň 1 inzerát ---
+        inzerce_html = ""
+        sorted_email_stats = sorted(email_geo_stats.items(), key=lambda x: x[1], reverse=True)
+        for display_kraj, val in sorted_email_stats:
+            if val > 0:
+                inzerce_html += f"<tr><td style='padding:5px; border-bottom:1px solid #eee;'>{display_kraj}</td><td style='padding:5px; border-bottom:1px solid #eee; text-align:right;'><b>{val}</b></td></tr>"
 
-=== VYTÍŽENÍ KRAJŮ ===
-Počet krajů s makléři: {active_regions_count}
-Využití krajů: {region_utilization:.1f}%
-Využití systému: {system_utilization:.1f}%
+        html_content = f"""
+        <html>
+        <body style='font-family: Arial, sans-serif; color: #333;'>
+            <h2 style='color: #0078d4;'>Ranní report {datum}</h2>
+            <div style='background: #f8f9fa; padding: 15px; border-radius: 8px;'>
+                <h3>📊 Hlavní statistiky</h3>
+                <ul>
+                    <li>Celkový počet inzerátů: <b>{total}</b></li>
+                    <li>Počet duplicitních inzerátů: <b>{duplicities}</b></li>
+                    <li>Mimo dosah: <b>{out_of_reach}</b></li>
+                    <li>Úspěšně přiřazené (unikátní): <b>{exported}</b></li>
+                    <li style='margin-top: 10px; font-weight: bold; border-top: 1px solid #ccc; padding-top: 5px;'>Úspěšnost přiřazení: <span style='color: #0078d4;'>{success_rate:.1f}%</span></li>
+                    <li>Vytížení krajů: <b>{kraj_utilization:.1f}%</b> ({count_regions_with_ads}/14)</li>
+                    <li style='background: #fff3cd; padding: 5px;'>Vytížení systému: <b>{system_utilization:.1f}%</b></li>
+                </ul>
+            </div>
+            <h3>💼 Vytížení makléřů</h3>
+            <ul>{agent_html}</ul>
+            <h3>📍 Detailní inzerce dle krajů</h3>
+            <table style='width: 100%; max-width: 400px; border-collapse: collapse;'>
+                <thead><tr style='background:#eee;'><th>Kraj</th><th style='text-align:right;'>Inzeráty</th></tr></thead>
+                <tbody>{inzerce_html}</tbody>
+            </table>
+            <p><a href='https://dna2026.github.io/HVB/Dashboard.html'>Otevřít interaktivní Dashboard</a></p>
+        </body>
+        </html>
+        """
 
-=== SOUHRN DŮVODŮ VYŘAZENÍ ===
-- Mimo fyzický dosah makléřů: {reasons['Mimo dosah (km limit)']}
-- Duplicity v inzerci: {reasons['Duplicity / Již zpracováno']}
-- Ostatní: {reasons['Ostatní']}
-
-=== VYTÍŽENÍ MAKLÉŘŮ ===
-{agent_stats}
-
-Detailní rozbor a dashboard k dispozici zde:
-https://dna2026.github.io/HVB/Dashboard.html
-
-Automatizovaný systém HVB"""
-
-        msg = MIMEMultipart()
+        msg = MIMEMultipart('alternative')
         msg['From'] = sender_email
         msg['To'] = target_email
-        msg['Subject'] = f"Zpracování inzerce {datum}"
-        msg.attach(MIMEText(text, 'plain'))
+        msg['Subject'] = f"Ranní report zpracování inzerce {datum}"
+        msg.attach(MIMEText(html_content, 'html'))
 
         server = smtplib.SMTP('smtp.gmail.com', 587)
         server.starttls()
         server.login(sender_email, app_password)
-        server.sendmail(sender_email, [target_email], msg.as_string())
+        server.sendmail(sender_email, [target_email] + ([copy_email] if copy_email else []), msg.as_string())
         server.quit()
-        print(f"✅ Report úspěšně odeslán na {target_email}.")
+        print("✅ Report odeslán. Tabulka krajů nyní filtruje neobsazené regiony.")
     except Exception as e:
-        print(f"❌ Chyba při odesílání e-mailu: {e}")
+        print(f"❌ Chyba: {e}")
 
 odeslat_automatically_report()

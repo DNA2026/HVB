@@ -978,10 +978,7 @@ def odeslat_automatically_report():
         dedup_final_vystup = []
 
         if 'final_vystup_raw' in globals():
-            # Použijeme raw data, abychom měli přístup k operátorovi před deduplikací textu,
-            # nebo projdeme deduplikované výsledky
             for item in final_vystup_raw:
-                # Pro statistiku unikátních inzerátů
                 fingerprint = str(item['row']['Inzerát']).strip()
                 if fingerprint not in unique_ads_texts:
                     unique_ads_texts.add(fingerprint)
@@ -1017,13 +1014,11 @@ def odeslat_automatically_report():
                 if any(x in d for x in ['mimo dosah', 'žádný agent', 'limit']):
                     out_of_reach += 1
 
-        # Výpočet duplicit pro zobrazení
         duplicities = max(0, total - exported - out_of_reach)
         denom = (total - duplicities)
         success_rate = (exported / denom * 100) if denom > 0 else 0
         system_utilization = (success_rate * kraj_utilization) / 100
 
-        # Sestavení HTML sekcí
         op_html = "".join([f"<li>{op}: <b>{count} inzerátů</b></li>" for op, count in sorted(op_stats.items())])
         agent_html = "".join([f"<li>{name}: <b>{count}</b></li>" for name, count in sorted(assigned_counts.items(), key=lambda x: x[1], reverse=True)])
 
@@ -1037,7 +1032,6 @@ def odeslat_automatically_report():
         <html>
         <body style='font-family: Arial, sans-serif; color: #333;'>
             <h2 style='color: #0078d4;'>Ranní report {datum}</h2>
-
             <div style='background: #f8f9fa; padding: 15px; border-radius: 8px;'>
                 <h3>📊 Hlavní statistiky</h3>
                 <ul>
@@ -1050,19 +1044,15 @@ def odeslat_automatically_report():
                     <li style='background: #fff3cd; padding: 5px;'>Vytížení systému: <b>{system_utilization:.1f}%</b></li>
                 </ul>
             </div>
-
             <h3>👧 Rozdělení dle operátorek</h3>
             <ul>{op_html}</ul>
-
             <h3>💼 Vytížení makléřů</h3>
             <ul>{agent_html}</ul>
-
             <h3>📍 Detailní inzerce dle krajů</h3>
             <table style='width: 100%; max-width: 400px; border-collapse: collapse;'>
                 <thead><tr style='background:#eee;'><th style='text-align:left; padding:5px;'>Kraj</th><th style='text-align:right; padding:5px;'>Inzeráty</th></tr></thead>
                 <tbody>{inzerce_html}</tbody>
             </table>
-
             <p style='margin-top:20px;'><a href='https://dna2026.github.io/HVB/Dashboard.html' style='background:#0078d4; color:white; padding:10px 15px; text-decoration:none; border-radius:5px;'>Otevřít interaktivní Dashboard</a></p>
             <p><i>Poznámka: Podrobný rozpis duplicit naleznete v přiloženém souboru Duplicity.html.</i></p>
         </body>
@@ -1072,24 +1062,30 @@ def odeslat_automatically_report():
         msg = MIMEMultipart()
         msg['From'] = sender_email
         msg['To'] = target_email
+        if copy_email:
+            msg['Cc'] = copy_email
         msg['Subject'] = f"Ranní report zpracování inzerce {datum}"
         msg.attach(MIMEText(html_content, 'html'))
 
-        # --- Přidání přílohy Duplicity.html ---
         if os.path.exists('Duplicity.html'):
             with open('Duplicity.html', 'rb') as attachment:
                 part = MIMEBase('application', 'octet-stream')
                 part.set_payload(attachment.read())
                 encoders.encode_base64(part)
-                part.add_header('Content-Disposition', f"attachment; filename= Duplicity.html")
+                part.add_header('Content-Disposition', "attachment; filename=Duplicity.html")
                 msg.attach(part)
+
+        # --- Oprava doručení kopie ---
+        recipients = [target_email]
+        if copy_email:
+            recipients.append(copy_email)
 
         server = smtplib.SMTP('smtp.gmail.com', 587)
         server.starttls()
         server.login(sender_email, app_password)
-        server.sendmail(sender_email, [target_email] + ([copy_email] if copy_email else []), msg.as_string())
+        server.sendmail(sender_email, recipients, msg.as_string())
         server.quit()
-        print("✅ Report odeslán s přílohou Duplicity.html a rozdělením dle operátorek.")
+        print(f"✅ Report odeslán na {target_email}" + (f" a v kopii na {copy_email}." if copy_email else "."))
     except Exception as e:
         print(f"❌ Chyba: {e}")
 

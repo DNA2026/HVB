@@ -21,9 +21,7 @@
         if (allowed.includes(val)) {
             document.getElementById('lock-screen').style.display = 'none';
             document.getElementById('main-content').style.filter = 'none';
-        } else {
-            alert('Chybné heslo!');
-        }
+        } else { alert('Chybné heslo!'); }
     }
     function downloadOpText(opId) {
         const text = document.getElementById('txt_' + opId).value;
@@ -35,17 +33,10 @@
     }
     </script>
     </head><body>
-    <div id='lock-screen'>
-        <div class='lock-box'>
-            <h3>🔒 Přístup omezen</h3>
-            <p>Zadej heslo :</p>
-            <input type='password' id='pass' onkeydown='if(event.key==="Enter") checkPassword()'><br>
-            <button class='btn btn-copy' onclick='checkPassword()'>Vstoupit</button>
-        </div>
-    </div>
-    <div id='main-content'>
-        <div class='container'>
-        <div style='text-align:center;'><h2>Přehled realitní inzerce</h2><p>Aktualizováno: 03.09.2026 07:19:43</p></div>
+    <div id='lock-screen'><div class='lock-box'><h3>🔒 Přístup omezen</h3><p>Zadej heslo :</p><input type='password' id='pass' onkeydown='if(event.key==="Enter") checkPassword()'><br><button class='btn btn-copy' onclick='checkPassword()'>Vstoupit</button></div></div>
+    <div id='main-content'><div class='container'>
+        <div style='text-align:center;'><h2>Přehled realitní inzerce</h2><p>Aktualizováno: 03.09.2026 08:06:38</p></div>
+        <div class='card'><h3>📍 Souhrn inzerce dle krajů</h3><table><thead><tr><th>Kraj</th><th>Unikátní</th><th>Originál (duplicita)</th><th>Duplicita (vyřazeno)</th><th>Celkem</th></tr></thead><tbody><tr><td>Hlavní Město Praha</td><td>2</td><td>2</td><td>14</td><td><b>18</b></td></tr><tr><td>Jihocesky kraj</td><td>7</td><td>0</td><td>0</td><td><b>7</b></td></tr><tr><td>Jihomoravsky kraj</td><td>6</td><td>0</td><td>0</td><td><b>6</b></td></tr><tr><td>Karlovarsky kraj</td><td>0</td><td>1</td><td>2</td><td><b>3</b></td></tr><tr><td>Kraj Vysocina kraj</td><td>4</td><td>1</td><td>1</td><td><b>6</b></td></tr><tr><td>Kralovehradecky kraj</td><td>10</td><td>3</td><td>10</td><td><b>23</b></td></tr><tr><td>Moravskoslezsky kraj</td><td>3</td><td>0</td><td>0</td><td><b>3</b></td></tr><tr><td>Olomoucky kraj</td><td>6</td><td>0</td><td>0</td><td><b>6</b></td></tr><tr><td>Plzensky kraj</td><td>4</td><td>0</td><td>0</td><td><b>4</b></td></tr><tr><td>Stredocesky kraj</td><td>22</td><td>7</td><td>16</td><td><b>45</b></td></tr><tr><td>Ustecky kraj</td><td>6</td><td>2</td><td>2</td><td><b>10</b></td></tr><tr><td>Zlinsky kraj</td><td>1</td><td>0</td><td>0</td><td><b>1</b></td></tr><tr style='background:#f0f7ff; font-weight:bold;'><td>CELKEM ČR</td><td>71</td><td>16</td><td>45</td><td>132</td></tr></tbody></table></div>
         <div class='card'><h3>📱 Sekce pro operátory</h3><div style='display:flex; flex-wrap:wrap; gap:15px;'>
         <div style='border:1px solid #ddd; padding:15px; border-radius:8px; background:#fafafa; flex:1; min-width:250px;'>
             <h4 style='margin-top:0;'>👤 Bártková</h4>
@@ -5893,12 +5884,86 @@ https://reality.bazos.cz/inzerat/223312684/prodej-domu-v-postupicich.php</textar
     
             tile_layer_e6d94f61970e2cf5649b8f63e027deae.addTo(map_205d2ce8d3e6ad60a2abeebbcb9b06c7);
         
+    
+            tile_layer_cc9f98533d9e1fcd4beb79305e97502e.addTo(map_205d2ce8d3e6ad60a2abeebbcb9b06c7);
+        
+    
+                marker_0faac63f58d12cac9f8b235a307a293e.setIcon(icon_350ec08bfe185c4f4dffcef2f648aaa1);
+            
+    
+                marker_ba0ee32e0699a53b620c581b36f4b073.setIcon(icon_5494245c5620a7661fafa565a08798ae);
+            
+    
+                marker_53b37574583220c0c3b8ae69fe88cb0f.setIcon(icon_19c6f6fd5d66ec4a3f86c0151fdc37bd);
+            
+    
+                marker_41af88de361bd6ee5fe5e3b41954d8a8.setIcon(icon_086f76a74d520778b6fe4a4e20cc707d);
+            
+    
+                marker_cc0e305700c5ad2c3beca3d3cb414b74.setIcon(icon_4d556f64d094917aaa2239f9874aa87f);
+            
+    
+                marker_0f4d60e3721121a5956889cc8e8e8aa6.setIcon(icon_658b98c7ad0e3b92d3b8791e848208a6);
+            
+    
+                marker_4516550a78bd5019097ecab54e3b3498.setIcon(icon_b4d12c91caf5e177220bf96b9fca76ec);
+            
+    
+                marker_579e2f8c3c8d586e43cd70b38e2e0264.setIcon(icon_56cd4f65e60af24450be3bdc47ad6e55);
+            
+    
+                marker_09846cacd09fa4c93c5f23b1ec996ac8.setIcon(icon_88b026b49c644cb7002684e425aaef31);
+            
+    
+                marker_0214b1c327d1ff1f9c700c81e29ea903.setIcon(icon_9eac1495378d890cebbea8d54abe355e);
+            
+    
+                marker_b26e6def98972247d0a24f167076fcc3.setIcon(icon_3382aaeba76f531ae039b6c0d3997b8d);
+            
+    
+                marker_2a7313e1861460fe45dbc88385cfd8e1.setIcon(icon_45be2a1ad140100b1ef678ca19457b03);
+            
+    
+                marker_1f9f844196832f89ba2f565b7ed9159b.setIcon(icon_41928463a5d0cf71865f6073a1e061ad);
+            
+    
+                marker_ec2a8d7d15f16d1025c4d4cae7d626aa.setIcon(icon_e7fdf148fb20c890e9e99db1c5487eb6);
+            
+    
+                marker_7a0b4e6e0a513725aeccc951fdd48881.setIcon(icon_270c1fbc1349ab325cd0886119284466);
+            
+    
+                marker_01e07c24b42f88465f41ba36da1cb168.setIcon(icon_7a4d4ceb0ec1499f3c157bf5c2c693b2);
+            
+    
+                marker_f18790c7b92eb983fb2a7cfaefef61d2.setIcon(icon_df0538346acd78bb4094df00fd1338a0);
+            
+    
+            tile_layer_e6d94f61970e2cf5649b8f63e027deae.addTo(map_205d2ce8d3e6ad60a2abeebbcb9b06c7);
+        
+    
+            var tile_layer_b3dc5ba6feb3aa836460d0ca75a37b17 = L.tileLayer(
+                &quot;https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
+                {
+  &quot;minZoom&quot;: 0,
+  &quot;maxZoom&quot;: 18,
+  &quot;maxNativeZoom&quot;: 18,
+  &quot;noWrap&quot;: false,
+  &quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;,
+  &quot;subdomains&quot;: &quot;abc&quot;,
+  &quot;detectRetina&quot;: false,
+  &quot;tms&quot;: false,
+  &quot;opacity&quot;: 1,
+}
+
+            );
+        
+    
+            tile_layer_b3dc5ba6feb3aa836460d0ca75a37b17.addTo(map_205d2ce8d3e6ad60a2abeebbcb9b06c7);
+        
 &lt;/script&gt;
 &lt;/html&gt;" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe></div></div></div></div>
-        <div class='card' style='margin-top:30px;'>
-            <h3>📋 Seznam unikátních inzerátů</h3>
-            <p style='color:red; font-weight:bold; margin-top:-10px;'>- před voláním zkontrolujte, zda lokalita v inzerci souhlasí s regionem makléře, v případě neshody inzerci vyřaďte.</p>
-            <table border="1" class="dataframe pure-table">
+        <div class='card' style='margin-top:30px;'><h3>📋 Seznam unikátních inzerátů</h3><table border="1" class="dataframe pure-table">
   <thead>
     <tr style="text-align: right;">
       <th>#</th>
@@ -6344,9 +6409,5 @@ https://reality.bazos.cz/inzerat/223312684/prodej-domu-v-postupicich.php</textar
       <td><a href="" target="_blank">Otevřít</a></td>
     </tr>
   </tbody>
-</table>
-        </div>
-        <div class='card'><h3>📊 Statistika (Celkem ČR: 132, Unikátních zpracovaných: 48)</h3><table><thead><tr><th>Kraj</th><th>Počet inzerátů</th><th>Počet makléřů</th><th>Průměr / Makléř</th><th>Průměrná vzdálenost (km)</th></tr></thead><tbody><tr><td>Hlavní Město Praha</td><td>18</td><td>10</td><td>1.8</td><td>1.7</td></tr><tr><td>Jihocesky kraj</td><td>7</td><td>2</td><td>3.5</td><td>30.6</td></tr><tr><td>Jihomoravsky kraj</td><td>6</td><td>1</td><td>6.0</td><td>32.5</td></tr><tr><td>Karlovarsky kraj</td><td>3</td><td>2</td><td>1.5</td><td>20.8</td></tr><tr><td>Kralovehradecky kraj</td><td>23</td><td>2</td><td>11.5</td><td>21.6</td></tr><tr><td>Plzensky kraj</td><td>4</td><td>3</td><td>1.3</td><td>36.7</td></tr><tr><td>Stredocesky kraj</td><td>45</td><td>11</td><td>4.1</td><td>34.3</td></tr><tr><td>Ustecky kraj</td><td>10</td><td>2</td><td>5.0</td><td>58.0</td></tr><tr><td>Kraj Vysocina kraj</td><td>6</td><td>0</td><td>0</td><td>-</td></tr><tr><td>Moravskoslezsky kraj</td><td>3</td><td>0</td><td>0</td><td>-</td></tr><tr><td>Olomoucky kraj</td><td>6</td><td>0</td><td>0</td><td>-</td></tr><tr><td>Zlinsky kraj</td><td>1</td><td>0</td><td>0</td><td>-</td></tr></tbody></table></div>
-        </div>
-    </div>
-    </body></html>
+</table></div>
+        </div></div></body></html>

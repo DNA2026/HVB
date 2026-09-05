@@ -4,8 +4,8 @@ posílám shrnutí dnešního zpracování inzerátů ze dne 05.09.2026.
 
 Statistiky:
 - Celkem nalezeno: 89
-- Úspěšně exportováno: 53
-- Odfiltrováno (mimo dosah/duplicity): 36
+- Úspěšně exportováno: 52
+- Odfiltrováno (mimo dosah/duplicity): 37
 
 Detailní report a interaktivní mapa jsou k dispozici v příloze nebo na níže uvedeném odkazu:
 https://dna2026.github.io/HVB/Dashboard.html

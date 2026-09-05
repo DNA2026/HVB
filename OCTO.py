@@ -1099,7 +1099,8 @@ def odeslat_automatically_report():
         if rejected:
             print(f"⚠️ Varování: SMTP server odmítl doručení pro tyto adresy: {rejected}")
 
-        print(f"✅ Report úspěšně předán SMTP serveru pro: {target_email}" + (f" a CC: {copy_email}" if copy_email else ""))
+        has_cc = "ANO" if copy_email else "NE (Secret GMAIL_SENDER_COPY nenalezen/prázdný)"
+        print(f"✅ Report úspěšně předán SMTP serveru. Hlavní příjemce: Načten | Kopie (CC): {has_cc}")
 
     except Exception as e:
         print(f"❌ Kritická chyba při odesílání e-mailu: {str(e)}")

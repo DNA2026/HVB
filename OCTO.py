@@ -766,6 +766,7 @@ import folium
 import pandas as pd
 import base64
 import re
+
 import os
 import shutil
 import pytz
@@ -926,15 +927,19 @@ if 'final_vystup' in locals() and 'm' in locals():
 
             if os.system(f'git clone {repo_url}') == 0:
                 shutil.copy(filename, os.path.join(repo_name, filename))
+                # Export souboru Duplicity.html pokud existuje
+                if os.path.exists('Duplicity.html'):
+                    shutil.copy('Duplicity.html', os.path.join(repo_name, 'Duplicity.html'))
+
                 os.chdir(repo_name)
                 os.system('git config --global user.email "bot@hvbreal.cz"')
                 os.system('git config --global user.name "HVB Bot"')
-                os.system(f'git add {filename}')
-                os.system(f'git commit -m "Auto-update dashboard: {aktualizace_str}"')
+                os.system(f'git add {filename} Duplicity.html')
+                os.system(f'git commit -m "Auto-update dashboard and duplicity report: {aktualizace_str}"')
                 if os.system(f'git push {repo_url} main') != 0:
                     os.system(f'git push {repo_url} master')
                 os.chdir('..')
-                print("✅ Dashboard byl úspěšně exportován na GitHub.")
+                print("✅ Dashboard a report duplicit byly úspěšně exportovány na GitHub.")
             else: print("❌ Chyba pri klonovani repozitare.")
         else: print("⚠️ GitHub token nenalezen v Secrets.")
     except Exception as e: print(f"❌ Chyba GitHub: {e}")
@@ -948,16 +953,14 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email import encoders
 from datetime import datetime
-import pandas as pd
-import re
 
 def get_secret(key):
     val = os.environ.get(key)
-    if val: return val
+    if val: return val.strip()
     try:
         from google.colab import userdata
         val = userdata.get(key)
-        if val: return val
+        if val: return val.strip()
     except Exception: pass
     return None
 
@@ -969,7 +972,7 @@ def odeslat_automatically_report():
         copy_email = get_secret('GMAIL_SENDER_COPY')
 
         if not all([sender_email, target_email, app_password]):
-            print("⚠️ E-mailové klíče nebyly nalezeny.")
+            print("⚠️ E-mailové klíče nebyly nalezeny (zkontrolujte Secrets).")
             return
 
         # --- Statistiky operátorek ---
@@ -1020,7 +1023,7 @@ def odeslat_automatically_report():
         system_utilization = (success_rate * kraj_utilization) / 100
 
         op_html = "".join([f"<li>{op}: <b>{count} inzerátů</b></li>" for op, count in sorted(op_stats.items())])
-        agent_html = "".join([f"<li>{name}: <b>{count}</b></li>" for name, count in sorted(assigned_counts.items(), key=lambda x: x[1], reverse=True)])
+        agent_html = "".join([f"<li>{name}: <b>{count}</b></li>" for name, count in sorted(assigned_counts.items() if 'assigned_counts' in globals() else {}, key=lambda x: x[1], reverse=True)])
 
         inzerce_html = ""
         sorted_email_stats = sorted(email_geo_stats.items(), key=lambda x: x[1], reverse=True)
@@ -1062,31 +1065,43 @@ def odeslat_automatically_report():
         msg = MIMEMultipart()
         msg['From'] = sender_email
         msg['To'] = target_email
+        recipients = [target_email]
+
         if copy_email:
             msg['Cc'] = copy_email
+            recipients.append(copy_email)
+
         msg['Subject'] = f"Ranní report zpracování inzerce {datum}"
         msg.attach(MIMEText(html_content, 'html'))
 
-        if os.path.exists('Duplicity.html'):
-            with open('Duplicity.html', 'rb') as attachment:
+        # Připojení souboru Duplicity.html - Robustní cesta pro GitHub runner i Colab
+        base_dir = os.getcwd()
+        file_path = os.path.join(base_dir, 'Duplicity.html')
+
+        if os.path.exists(file_path):
+            with open(file_path, 'rb') as attachment:
                 part = MIMEBase('application', 'octet-stream')
                 part.set_payload(attachment.read())
                 encoders.encode_base64(part)
-                part.add_header('Content-Disposition', "attachment; filename=Duplicity.html")
+                part.add_header('Content-Disposition', f'attachment; filename=Duplicity.html')
                 msg.attach(part)
-
-        # --- Oprava doručení kopie ---
-        recipients = [target_email]
-        if copy_email:
-            recipients.append(copy_email)
+        else:
+            print(f"⚠️ Soubor Duplicity.html nebyl nalezen na cestě: {file_path}. E-mail bude odeslán bez přílohy.")
 
         server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.set_debuglevel(0)
         server.starttls()
         server.login(sender_email, app_password)
-        server.sendmail(sender_email, recipients, msg.as_string())
+
+        rejected = server.sendmail(sender_email, recipients, msg.as_string())
         server.quit()
-        print(f"✅ Report odeslán na {target_email}" + (f" a v kopii na {copy_email}." if copy_email else "."))
+
+        if rejected:
+            print(f"⚠️ Varování: SMTP server odmítl doručení pro tyto adresy: {rejected}")
+
+        print(f"✅ Report úspěšně předán SMTP serveru pro: {target_email}" + (f" a CC: {copy_email}" if copy_email else ""))
+
     except Exception as e:
-        print(f"❌ Chyba: {e}")
+        print(f"❌ Kritická chyba při odesílání e-mailu: {str(e)}")
 
 odeslat_automatically_report()

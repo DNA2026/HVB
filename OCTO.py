@@ -948,6 +948,7 @@ if 'final_vystup' in locals() and 'm' in locals():
 
 import smtplib
 import os
+import pytz
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
@@ -969,7 +970,22 @@ def odeslat_automatically_report():
         sender_email = get_secret('GMAIL_SENDER')
         target_email = get_secret('GMAIL_USER')
         app_password = get_secret('GMAIL_APP_PASSWORD')
-        copy_email = get_secret('GMAIL_SENDER_COPY')
+
+        # Nastavení času pro Prahu
+        prague_tz = pytz.timezone('Europe/Prague')
+        now_prague = datetime.now(prague_tz)
+        current_hour = now_prague.hour
+        current_minute = now_prague.minute
+
+        # Podmínka pro kopii: pouze mezi 4:00 a 5:30 ráno
+        is_morning_window = (current_hour == 4) or (current_hour == 5 and current_minute <= 30)
+
+        if is_morning_window:
+            copy_emails = ['libor.manda@gmail.com']
+            print(f"🕒 Detekováno ranní okno ({now_prague.strftime('%H:%M')}). Kopie bude odeslána.")
+        else:
+            copy_emails = []
+            print(f"🕒 Čas mimo ranní okno ({now_prague.strftime('%H:%M')}). Kopie nebude odeslána.")
 
         if not all([sender_email, target_email, app_password]):
             print("⚠️ E-mailové klíče nebyly nalezeny (zkontrolujte Secrets).")
@@ -1057,7 +1073,6 @@ def odeslat_automatically_report():
                 <tbody>{inzerce_html}</tbody>
             </table>
             <p style='margin-top:20px;'><a href='https://dna2026.github.io/HVB/Dashboard.html' style='background:#0078d4; color:white; padding:10px 15px; text-decoration:none; border-radius:5px;'>Otevřít interaktivní Dashboard</a></p>
-            <p><i>Poznámka: Podrobný rozpis duplicit naleznete v přiloženém souboru Duplicity.html.</i></p>
         </body>
         </html>
         """
@@ -1067,26 +1082,12 @@ def odeslat_automatically_report():
         msg['To'] = target_email
         recipients = [target_email]
 
-        if copy_email:
-            msg['Cc'] = copy_email
-            recipients.append(copy_email)
+        if copy_emails:
+            msg['Cc'] = ", ".join(copy_emails)
+            recipients.extend(copy_emails)
 
         msg['Subject'] = f"Ranní report zpracování inzerce {datum}"
         msg.attach(MIMEText(html_content, 'html'))
-
-        # Připojení souboru Duplicity.html - Robustní cesta pro GitHub runner i Colab
-        base_dir = os.getcwd()
-        file_path = os.path.join(base_dir, 'Duplicity.html')
-
-        if os.path.exists(file_path):
-            with open(file_path, 'rb') as attachment:
-                part = MIMEBase('application', 'octet-stream')
-                part.set_payload(attachment.read())
-                encoders.encode_base64(part)
-                part.add_header('Content-Disposition', f'attachment; filename=Duplicity.html')
-                msg.attach(part)
-        else:
-            print(f"⚠️ Soubor Duplicity.html nebyl nalezen na cestě: {file_path}. E-mail bude odeslán bez přílohy.")
 
         server = smtplib.SMTP('smtp.gmail.com', 587)
         server.set_debuglevel(0)
@@ -1099,8 +1100,7 @@ def odeslat_automatically_report():
         if rejected:
             print(f"⚠️ Varování: SMTP server odmítl doručení pro tyto adresy: {rejected}")
 
-        has_cc = "ANO" if copy_email else "NE (Secret GMAIL_SENDER_COPY nenalezen/prázdný)"
-        print(f"✅ Report úspěšně předán SMTP serveru. Hlavní příjemce: Načten | Kopie (CC): {has_cc}")
+        print(f"✅ Report úspěšně předán SMTP serveru pro: {target_email}" + (f" a CC: {', '.join(copy_emails)}" if copy_emails else " (bez CC)"))
 
     except Exception as e:
         print(f"❌ Kritická chyba při odesílání e-mailu: {str(e)}")

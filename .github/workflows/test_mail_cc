@@ -1,0 +1,60 @@
+name: Test Mail CC
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-email:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Spustit test odeslání kopie
+        env:
+          GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          GMAIL_SENDER_COPY: ${{ secrets.GMAIL_SENDER_COPY }}
+        run: |
+          python -c "
+          import os, smtplib
+          from email.mime.text import MIMEText
+
+          sender = (os.environ.get('GMAIL_SENDER') or '').strip()
+          target = (os.environ.get('GMAIL_USER') or '').strip()
+          pwd = (os.environ.get('GMAIL_APP_PASSWORD') or '').strip()
+          copy = (os.environ.get('GMAIL_SENDER_COPY') or '').strip()
+
+          print('='*50)
+          print(f'1. SENDER: {sender if sender else '❌ CHYBÍ'}')
+          print(f'2. TARGET: {target if target else '❌ CHYBÍ'}')
+          print(f'3. COPY:   {copy if copy else '❌ CHYBÍ (Secret nebyl předán!)'}')
+          print('='*50)
+
+          if not all([sender, target, pwd]):
+              print('❌ Chyba: Chybí základní přihlašovací údaje.')
+              exit(1)
+
+          recipients = [target]
+          if copy:
+              recipients.append(copy)
+
+          try:
+              msg = MIMEText('Test doručení kopie z GitHub Actions.', 'plain')
+              msg['From'] = sender
+              msg['To'] = target
+              if copy:
+                  msg['Cc'] = copy
+              msg['Subject'] = 'TEST - Diagnostika CC'
+
+              server = smtplib.SMTP('smtp.gmail.com', 587)
+              server.starttls()
+              server.login(sender, pwd)
+              rejected = server.sendmail(sender, recipients, msg.as_string())
+              server.quit()
+
+              if rejected:
+                  print(f'❌ SMTP odmítlo tyto adresy: {rejected}')
+              else:
+                  print(f'✅ SMTP server PŘIJAL zprávu pro: {recipients}')
+          except Exception as e:
+              print(f'❌ Chyba při odesílání: {e}')
+          "

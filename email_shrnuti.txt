@@ -1,10 +1,10 @@
 Dobrý den,
 
-posílám shrnutí dnešního zpracování inzerátů ze dne 10.09.2026.
+posílám shrnutí dnešního zpracování inzerátů ze dne 11.09.2026.
 
 Statistiky:
-- Celkem nalezeno: 106
-- Úspěšně exportováno: 46
+- Celkem nalezeno: 114
+- Úspěšně exportováno: 54
 - Odfiltrováno (mimo dosah/duplicity): 60
 
 Detailní report a interaktivní mapa jsou k dispozici v příloze nebo na níže uvedeném odkazu:

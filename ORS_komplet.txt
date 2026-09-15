@@ -15,7 +15,7 @@ ID	Inzerát	Kraj	Gorash (km)	Pechanová (KV) (km)	Šišková (km)	Kalkus (km)	Ma
 14	Kralupy nad Vltavou, okres Mělník, kraj Středočeský	stredocesky kraj			8.6	35.5	32.0	20.0	32.0		48.1	31.9	44.0		130.9	155.1	128.3		
 15	Mochov, okres Praha-východ, kraj Středočeský	stredocesky kraj			38.3	53.6	28.6	29.5	42.2		67.6	51.3	17.3		150.5	154.5	93.6		
 16	Hradčany, okres Brno-venkov, kraj Jihomoravský	jihomoravsky kraj																	58.1
-17	Valtice, okres Břeclav, kraj Jihomoravský	jihomoravsky kraj																	91.6
+17	Valtice, okres Břeclav, kraj Jihomoravský	jihomoravsky kraj																	88.6
 18	Blansko, okres Blansko, kraj Jihomoravský	jihomoravsky kraj																	32.5
 19	Sokolnice, okres Brno-venkov, kraj Jihomoravský	jihomoravsky kraj																	35.2
 20	Mikulov, okres Břeclav, kraj Jihomoravský	jihomoravsky kraj																	88.6
@@ -48,7 +48,7 @@ ID	Inzerát	Kraj	Gorash (km)	Pechanová (KV) (km)	Šišková (km)	Kalkus (km)	Ma
 47	Brno-Černovice, okres Brno-město, kraj Jihomoravský	jihomoravsky kraj																	36.8
 48	Brno-Židenice, okres Brno-město, kraj Jihomoravský	jihomoravsky kraj																	36.8
 49	Morkůvky, okres Břeclav, kraj Jihomoravský	jihomoravsky kraj																	52.5
-50	Machov, okres Náchod, kraj Královéhradecký	kralovehradecky kraj															67.4	46.2	
+50	Machov, okres Náchod, kraj Královéhradecký	kralovehradecky kraj															46.1	41.5	
 51	Horní Bříza, okres Plzeň-sever, kraj Plzeňský	plzensky kraj		68.1											48.6	119.4			
 52	Kostelní Lhota, okres Nymburk, kraj Středočeský	stredocesky kraj			58.1	75.1	48.3	49.3	61.9		87.4	71.0	37.8		170.2	174.3	67.9		
 53	Lhotka, okres Mělník, kraj Středočeský	stredocesky kraj			33.7	19.7	45.7	33.4	53.7		88.6	72.4	57.7		171.4	173.2	123.9		
@@ -96,14 +96,14 @@ ID	Inzerát	Kraj	Gorash (km)	Pechanová (KV) (km)	Šišková (km)	Kalkus (km)	Ma
 95	Postřižín, okres Mělník, kraj Středočeský	stredocesky kraj			1.8	38.2	25.0	12.7	33.1		57.0	40.2	37.0		139.9	152.5	121.3		
 96	Nedomice, okres Mělník, kraj Středočeský	stredocesky kraj			21.0	31.6	38.8	23.1	43.4		67.4	50.6	41.4		150.2	166.0	122.2		
 97	Liblice, okres Mělník, kraj Středočeský	stredocesky kraj			24.2	23.9	47.6	28.7	48.9		72.9	56.1	50.3		155.8	174.8	112.8		
-98	Dřínov, okres Kladno, kraj Středočeský	stredocesky kraj			34.7	38.5	48.4	45.3	43.6		59.6	43.5	74.1		142.5	166.7	153.6		
+98	Dřínov, okres Kladno, kraj Středočeský	stredocesky kraj			32.2	56.2	32.7	37.3	26.3		24.9	17.7	56.8		125.2	149.4	150.3		
 99	Násedlovice, okres Hodonín, kraj Jihomoravský	jihomoravsky kraj																	38.8
 100	Míchov, okres Blansko, kraj Jihomoravský	jihomoravsky kraj																	32.5
 101	Moravský Krumlov, okres Znojmo, kraj Jihomoravský	jihomoravsky kraj																	73.4
 102	Brno-střed, Černá Pole, okres Brno-město, kraj Jihomoravský	jihomoravsky kraj																	36.8
 103	Lipovec, okres Blansko, kraj Jihomoravský	jihomoravsky kraj																	32.5
 104	Stará Paka, okres Jičín, kraj Královéhradecký	kralovehradecky kraj															55.9	35.4	
-105	Hronov, okres Náchod, kraj Královéhradecký	kralovehradecky kraj															57.0	35.9	
+105	Hronov, okres Náchod, kraj Královéhradecký	kralovehradecky kraj															46.1	41.5	
 106	Horní Bříza, okres Plzeň-sever, kraj Plzeňský	plzensky kraj		68.1											48.6	119.4			
 107	Libosváry, okres Domažlice, kraj Plzeňský	plzensky kraj		72.3											58.2	110.2			
 108	Praha, Kobylisy, okres Praha, kraj Hlavní město Praha	hlavni mesto praha			13.7	51.3	9.5	1.8	17.5	18.9	41.5	24.7	30.2	17.5					
@@ -144,7 +144,7 @@ ID	Inzerát	Kraj	Gorash (km)	Pechanová (KV) (km)	Šišková (km)	Kalkus (km)	Ma
 143	Mníšek pod Brdy, okres Praha-západ, kraj Středočeský	stredocesky kraj			56.1	92.7	32.0	42.5	33.3		52.9	36.5	40.1		80.2	98.1	139.8		
 144	Libomyšl, okres Beroun, kraj Středočeský	stredocesky kraj			68.4	99.2	48.6	55.4	37.3		16.5	33.0	68.1		80.0	103.0	161.6		
 145	Škrdlovice, okres Žďár nad Sázavou, kraj Vysočina	kraj vysocina																	
-146	Postřekov, okres Domažlice, kraj Plzeňský	plzensky kraj		72.3											58.2	110.2			
+146	Postřekov, okres Domažlice, kraj Plzeňský	plzensky kraj		69.5											68.6	120.6			
 147	Jevišovice, okres Znojmo, kraj Jihomoravský	jihomoravsky kraj																	109.6
 148	Jevišovice, okres Znojmo, kraj Jihomoravský	jihomoravsky kraj																	109.6
 149	Jevišovice, okres Znojmo, kraj Jihomoravský	jihomoravsky kraj																	109.6

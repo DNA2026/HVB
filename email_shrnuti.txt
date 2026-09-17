@@ -1,11 +1,11 @@
 Dobrý den,
 
-posílám shrnutí dnešního zpracování inzerátů ze dne 16.09.2026.
+posílám shrnutí dnešního zpracování inzerátů ze dne 17.09.2026.
 
 Statistiky:
-- Celkem nalezeno: 130
-- Úspěšně exportováno: 55
-- Odfiltrováno (mimo dosah/duplicity): 75
+- Celkem nalezeno: 153
+- Úspěšně exportováno: 58
+- Odfiltrováno (mimo dosah/duplicity): 95
 
 Detailní report a interaktivní mapa jsou k dispozici v příloze nebo na níže uvedeném odkazu:
 https://dna2026.github.io/HVB/Dashboard.html

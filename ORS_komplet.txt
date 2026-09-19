@@ -8,7 +8,7 @@ ID	Inzerát	Kraj	Manda (km)	Suchánková (km)	Flieger (km)	Motl (km)	Pechanová 
 7	Benešov, okres Benešov, kraj Středočeský	stredocesky kraj	44.0	53.0	59.2		78.8	62.4	30.4	68.3	104.9		113.6	148.1	127.8				
 8	Sedlec-Prčice, okres Příbram, kraj Středočeský	stredocesky kraj	74.8	83.8	90.0		75.5	93.2	61.2	99.1	135.7		95.7	178.9	70.3				
 9	Brno, okres Brno-město, kraj Jihomoravský	jihomoravsky kraj														36.8			
-10	Hodonín, okres Blansko, kraj Jihomoravský	jihomoravsky kraj														32.5			
+10	Hodonín, okres Blansko, kraj Jihomoravský	jihomoravsky kraj														58.0			
 11	Bučovice, okres Vyškov, kraj Jihomoravský	jihomoravsky kraj														21.1			
 12	Podolí, okres Brno-venkov, kraj Jihomoravský	jihomoravsky kraj														29.0			
 13	Rokytnice v Orlických horách, okres Rychnov nad Kněžnou, kraj Královéhradecký	kralovehradecky kraj												58.7			92.2		
@@ -23,7 +23,7 @@ ID	Inzerát	Kraj	Manda (km)	Suchánková (km)	Flieger (km)	Motl (km)	Pechanová 
 22	Srubec, okres České Budějovice, kraj Jihočeský	jihocesky kraj											100.5		31.9				
 23	Mcely, okres Nymburk, kraj Středočeský	stredocesky kraj	53.9	54.9	67.5		92.9	76.6	43.3	63.7	68.4		175.8	69.6	179.9				
 24	Břeclav, okres Břeclav, kraj Jihomoravský	jihomoravsky kraj														88.6			
-25	Únějovice, okres Domažlice, kraj Plzeňský	plzensky kraj											44.7		98.2			89.0	
+25	Únějovice, okres Domažlice, kraj Plzeňský	plzensky kraj											58.2		110.2			72.3	
 26	Stará Paka, okres Jičín, kraj Královéhradecký	kralovehradecky kraj												55.9			35.4		
 27	Doudleby nad Orlicí, okres Rychnov nad Kněžnou, kraj Královéhradecký	kralovehradecky kraj												38.1			79.1		
 28	Přeštice, okres Plzeň-jih, kraj Plzeňský	plzensky kraj											23.5		94.3			91.9	
@@ -54,7 +54,7 @@ ID	Inzerát	Kraj	Manda (km)	Suchánková (km)	Flieger (km)	Motl (km)	Pechanová 
 53	Zastávka, okres Brno-venkov, kraj Jihomoravský	jihomoravsky kraj														55.7			
 54	Most, okres Most, kraj Ústecký	ustecky kraj								77.5	67.0								
 55	Pelhřimov, okres Pelhřimov, kraj Vysočina	kraj vysocina																	
-56	Otnice, okres Vyškov, kraj Jihomoravský	jihomoravsky kraj														34.6			
+56	Otnice, okres Vyškov, kraj Jihomoravský	jihomoravsky kraj														3.5			
 57	Hustopeče, okres Břeclav, kraj Jihomoravský	jihomoravsky kraj														61.0			
 58	Moravský Krumlov, okres Znojmo, kraj Jihomoravský	jihomoravsky kraj														73.4			
 59	Úpice, okres Trutnov, kraj Královéhradecký	kralovehradecky kraj												51.0			8.7		
@@ -98,7 +98,7 @@ ID	Inzerát	Kraj	Manda (km)	Suchánková (km)	Flieger (km)	Motl (km)	Pechanová 
 97	Strážnice, okres Hodonín, kraj Jihomoravský	jihomoravsky kraj														75.7			
 98	Klatovy, okres Klatovy, kraj Plzeňský	plzensky kraj											27.5		78.9			113.1	
 99	Praha 9, Prosek, okres Praha, kraj Hlavní město Praha	hlavni mesto praha	7.6	7.2	19.3	15.8	43.3	26.5	27.1	19.8	56.3	13.0							
-100	Dubňany, okres Hodonín, kraj Jihomoravský	jihomoravsky kraj														60.7			
+100	Dubňany, okres Hodonín, kraj Jihomoravský	jihomoravsky kraj														65.9			
 101	Nesovice, okres Vyškov, kraj Jihomoravský	jihomoravsky kraj														22.2			
 102	Nové Město nad Metují, okres Náchod, kraj Královéhradecký	kralovehradecky kraj												34.7			53.0		
 103	Liteň, okres Beroun, kraj Středočeský	stredocesky kraj	33.6	40.4	22.3		3.0	18.0	53.1	53.4	84.2		87.8	146.6	120.7				

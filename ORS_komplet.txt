@@ -99,7 +99,7 @@ ID	Inzerát	Kraj	Manda (km)	Suchánková (km)	Flieger (km)	Motl (km)	Pechanová 
 98	Protivanov, okres Prostějov, kraj Olomoucký	olomoucky kraj																			
 99	Vintířov, okres Sokolov, kraj Karlovarský	karlovarsky kraj																		41.8	13.0
 100	Kladno, okres Chrudim, kraj Pardubický	stredocesky kraj	32.7	37.3	26.3		24.9	17.7	56.8	32.2		42.8	31.7		125.2	150.3	56.2	149.4			
-101	Duchcov, okres Teplice, kraj Ústecký	ustecky kraj								70.4							59.9				
+101	Duchcov, okres Teplice, kraj Ústecký	ustecky kraj								70.0							59.5				
 102	Mladá Boleslav, okres Mladá Boleslav, kraj Středočeský	stredocesky kraj	61.4	59.2	71.0		94.9	78.1	62.8	68.0		62.8	75.0		177.8	101.2	57.0	188.6			
 103	Brno, okres Brno-město, kraj Jihomoravský	jihomoravsky kraj												36.8							
 104	HAVÍŘOV, okres Karviná, kraj Moravskoslezský	moravskoslezsky kraj																			

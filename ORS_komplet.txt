@@ -43,7 +43,7 @@ ID	Inzerát	Kraj	Tauš (km)	Seidlová (km)	Marešková (km)	Pechanová (km)	Mand
 42	Moravské Budějovice, okres Třebíč, kraj Vysočina	kraj vysocina																			
 43	Želetava, okres Třebíč, kraj Vysočina	kraj vysocina																			
 44	Ústí nad Labem, okres Ústí nad Labem, kraj Ústecký	ustecky kraj												69.8				59.2			
-45	Žalhostice, okres Litoměřice, kraj Ústecký	ustecky kraj												47.9				26.8			
+45	Žalhostice, okres Litoměřice, kraj Ústecký	ustecky kraj												48.4				23.5			
 46	Lukov, okres Znojmo, kraj Jihomoravský	jihomoravsky kraj	99.4																		
 47	Havlíčkův Brod, okres Havlíčkův Brod, kraj Vysočina	kraj vysocina																			
 48	Praha, okres Praha, kraj Hlavní město Praha	hlavni mesto praha					1.5	10.4	11.2	12.8	35.2	19.9	24.1	24.0	9.7	6.4	8.6				
@@ -72,7 +72,7 @@ ID	Inzerát	Kraj	Tauš (km)	Seidlová (km)	Marešková (km)	Pechanová (km)	Mand
 71	Vyškov, okres Vyškov, kraj Jihomoravský	jihomoravsky kraj	3.5																		
 72	Kožušice, okres Vyškov, kraj Jihomoravský	jihomoravsky kraj	30.8																		
 73	Brno, okres Brno-město, kraj Jihomoravský	jihomoravsky kraj	36.8																		
-74	Kořenec, okres Blansko, kraj Jihomoravský	jihomoravsky kraj	41.5																		
+74	Kořenec, okres Blansko, kraj Jihomoravský	jihomoravsky kraj	32.5																		
 75	Malá Lhota, okres Blansko, kraj Jihomoravský	jihomoravsky kraj	45.8																		
 76	Rokycany, okres Rokycany, kraj Plzeňský	plzensky kraj			36.6	102.9															99.5
 77	Praha, Třebonice, okres Praha, kraj Hlavní město Praha	hlavni mesto praha					15.9	26.4	4.2	25.3	25.8	6.8	35.0	39.4	9.6	14.9	21.0				
@@ -80,7 +80,7 @@ ID	Inzerát	Kraj	Tauš (km)	Seidlová (km)	Marešková (km)	Pechanová (km)	Mand
 79	Mirošovice, okres Praha-východ, kraj Středočeský	stredocesky kraj		93.6	150.5	154.5	28.6	29.5	42.2		67.6	51.3	17.3	38.3			28.7	53.6	41.0		
 80	Jiřice, okres Znojmo, kraj Jihomoravský	jihomoravsky kraj	99.4																		
 81	Pasohlávky, okres Brno-venkov, kraj Jihomoravský	jihomoravsky kraj	69.4																		
-82	Vítězná, okres Trutnov, kraj Královéhradecký	kralovehradecky kraj		51.0																	
+82	Vítězná, okres Trutnov, kraj Královéhradecký	kralovehradecky kraj		42.8																	
 83	Brno, okres Brno-město, kraj Jihomoravský	jihomoravsky kraj	36.8																		
 84	Jevišovice, okres Znojmo, kraj Jihomoravský	jihomoravsky kraj	109.6																		
 85	Lhota Rapotina, okres Blansko, kraj Jihomoravský	jihomoravsky kraj	40.0																		

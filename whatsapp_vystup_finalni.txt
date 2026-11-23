@@ -1,173 +1,309 @@
-1. Praha, Háje, okres Praha, kraj Hlavní město Praha
-~0.0 km | Motl | 
-https://reality.bazos.cz/inzerat/226655449/byt-2kk-mendelova-haje-praha.php
+1. Praha, Stodůlky, okres Praha, kraj Hlavní město Praha
+~0.6 km | Flieger | 
+https://www.sreality.cz/detail/prodej/byt/3+kk/praha-stodulky-borovanskeho/4216746060
 
-2. Nechanice, okres Hradec Králové, kraj Královéhradecký
+2. Hradec Králové, okres Hradec Králové, kraj Královéhradecký
+Tel: +420 777 196 909
 ~1.7 km | Seidlová | 
-https://reality.bazos.cz/inzerat/226652641/prodej-stavebniho-pozemku-755-m-klenice-u-sadove-okres-h.php
+https://reality.bazos.cz/inzerat/226776679/venkovni-parkovaci-stani-v-hk-ul-rybova.php
 
-3. Hradec Králové, okres Hradec Králové, kraj Královéhradecký
+3. Nový Bydžov, okres Hradec Králové, kraj Královéhradecký
 ~1.7 km | Seidlová | 
-https://reality.bazos.cz/inzerat/226661043/prodej-bytu-3kk-685-m-gollova-hradec-kralove-malsovic.php
+https://reality.bazos.cz/inzerat/226718775/prodam-maly-rodinny-domek-v-novem-bydzove.php
 
-4. Osice, okres Hradec Králové, kraj Královéhradecký
+4. Boharyně, okres Hradec Králové, kraj Královéhradecký
 ~1.7 km | Seidlová | 
-https://reality.bazos.cz/inzerat/226666553/prodej-pozemku-skvela-dostupnost-hradce-kralove-i-pardubic.php
+https://reality.bazos.cz/inzerat/226760363/boharyne-investicni-prilezitost-pozemek-11410-m-prodam.php
 
-5. Králův Dvůr, okres Beroun, kraj Středočeský
-~4.7 km | Pechanová (SČ) | 
-https://reality.bazos.cz/inzerat/226655483/obchod-sklad-servis-411-m-u-prahy-d5-zlicin-10-min.php
+5. Smidary, okres Hradec Králové, kraj Královéhradecký
+~1.7 km | Seidlová | 
+https://reality.bazos.cz/inzerat/226791761/prodam-dva-domky.php
 
-6. Praha, Malá Strana, okres Praha, kraj Hlavní město Praha
-~7.9 km | Reindlová | 
-https://reality.bazos.cz/inzerat/226646205/vymenim-mensi-byt-za-vetsi-mala-strana.php
+6. Praha 13, Stodůlky, okres Praha, kraj Hlavní město Praha
+~2.2 km | Flieger | 
+https://reality.bazos.cz/inzerat/226675159/byt-21-667-m-terasa-95-m-praha-13-stodulky.php
 
-7. Kralupy nad Vltavou, okres Mělník, kraj Středočeský
-Tel: +420 602 223 275
-~8.6 km | Šišková | 
-https://www.sreality.cz/detail/prodej/komercni/obchodni-prostor/kralupy-nad-vltavou-kralupy-nad-vltavou-kaplirova/2792386636
+7. Praha 13, okres Praha, kraj Hlavní město Praha
+~2.2 km | Flieger | 
+https://reality.bazos.cz/inzerat/226763009/prodej-bytu-2kk-47-m-po-kompletni-rekonstrukci-praha-13.php
 
-8. Praha 4, okres Praha, kraj Hlavní město Praha
-Tel: +420 725 855 817
-~9.5 km | Motl | 
-https://reality.idnes.cz/detail/prodej/byt/praha-4-leva/6aff1d6ff2807ccd9b053b56/
+8. Sokolov, okres Sokolov, kraj Karlovarský
+Tel: +420 608 722 306
+~2.3 km | Gorash | 
+https://reality.bazos.cz/inzerat/226690295/byt-31-s-lodzii-sokolov.php
 
-9. Praha, okres Praha, kraj Hlavní město Praha
-Tel: +420 603 584 113
-~11.2 km | Flieger | 
-https://reality.bazos.cz/inzerat/226670334/prodej-bytu-1kk28m-se-zahradkou-23mhostiviceza-mlynem.php
+9. Chodov, okres Sokolov, kraj Karlovarský
+Tel: +420 776 389 269
+~2.3 km | Gorash | 
+https://reality.bazos.cz/inzerat/226789450/byt-11-40m2-balkon.php
 
-10. Chyňava, okres Beroun, kraj Středočeský
-~11.4 km | Pechanová (SČ) | 
-https://reality.bazos.cz/inzerat/226651629/prodej-zahrady-ve-vyhledavane-lokalite-chynava.php
+10. Praha, Krč, okres Praha, kraj Hlavní město Praha
+~2.8 km | Reindlová | 
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-krc-stallichova/4250300492
 
-11. Praha, Nové Město, okres Praha, kraj Hlavní město Praha
-Tel: +420 733 521 205
-~11.5 km | Jelínek (PHA) | 
-https://www.sreality.cz/detail/prodej/byt/2+kk/praha-nove-mesto-jeruzalemska/2001760332
+11. Praha 10, okres Praha, kraj Hlavní město Praha
+~4.8 km | Malík | 
+https://reality.bazos.cz/inzerat/226786700/prodej-garaze-18-m-v-ov-s-vodou-a-elektrinou-praha-10.php
 
-12. Praha, Libeň, okres Praha, kraj Hlavní město Praha
-Tel: +420 606 964 678
-~11.6 km | Malík | 
-https://www.sreality.cz/detail/prodej/byt/1+kk/praha-liben-u-svobodarny/1791062092
+12. Praha, Strašnice, okres Praha, kraj Hlavní město Praha
+Tel: +420 775 955 007
+~6.2 km | Malík | 
+https://www.sreality.cz/detail/prodej/pozemek/bydleni/praha-strasnice-stredova/2715250764
 
-13. Praha, Stodůlky, okres Praha, kraj Hlavní město Praha
-Tel: +420 607 845 568
-~11.6 km | Reindlová | 
-https://www.sreality.cz/detail/prodej/byt/3+kk/praha-stodulky-bellusova/2346807372
+13. Praha, okres Praha, kraj Hlavní město Praha
+Tel: +420 704 685 777
+~6.4 km | Reindlová | 
+https://reality.bazos.cz/inzerat/226815373/kemping-v-spanelsku.php
 
-14. Praha, Nusle, okres Praha, kraj Hlavní město Praha
-Tel: +420 606 708 742
-~12.0 km | Flieger | 
-https://www.sreality.cz/detail/prodej/byt/1+kk/praha-nusle-druzstevni-ochoz/113274956
+14. Žinkovy, okres Plzeň-jih, kraj Plzeňský
+~7.6 km | Marešková | 
+https://reality.bazos.cz/inzerat/226701129/k-chatu-chalupu.php
 
-15. Chodová Planá, okres Tachov, kraj Plzeňský
-~12.3 km | Pechanová (KV) | 
-https://reality.bazos.cz/inzerat/226673173/byt-31l.php
+15. Praha 6, Liboc, okres Praha, kraj Hlavní město Praha
+~8.8 km | Flieger | 
+https://reality.bazos.cz/inzerat/226767961/prodej-garaze-navigatoru-praha-6-liboc.php
 
-16. Praha, Žižkov, okres Praha, kraj Hlavní město Praha
-Tel: +420 731 101 111
+16. Roztoky, okres Praha-západ, kraj Středočeský
+~9.5 km | Modrý | 
+https://reality.bazos.cz/inzerat/226687577/prenechani-najemni-smlouvy-zahrady-roztoky-p-z.php
+
+17. Praha 9, Střížkov, okres Praha, kraj Hlavní město Praha
+~11.3 km | Malík | 
+https://reality.bazos.cz/inzerat/226795584/prodej-bytu-31-65-m-praha-9-strizkov.php
+
+18. Praha, Žižkov, okres Praha, kraj Hlavní město Praha
 ~12.7 km | Motl | 
-https://www.sreality.cz/detail/prodej/byt/2+kk/praha-zizkov-olsanska/57700428
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-zizkov-zerotinova/2255908940
 
-17. Praha, Vysočany, okres Praha, kraj Hlavní město Praha
-~13.9 km | Reindlová | 
-https://reality.bazos.cz/inzerat/226649681/prodej-garaze-15-m2-bassova-praha-vysocany.php
+19. Tišice, okres Mělník, kraj Středočeský
+~14.7 km | Kalkus | 
+https://reality.bazos.cz/inzerat/226764118/velky-rodinny-dum-2x-4kk-240-m2-na-pozemku-1032-m2-tisi.php
 
-18. Třebechovice pod Orebem, okres Hradec Králové, kraj Královéhradecký
-~14.9 km | Seidlová | 
-https://reality.bazos.cz/inzerat/226649018/chaticka-na-prodej.php
+20. Hořín, okres Mělník, kraj Středočeský
+~14.7 km | Kalkus | 
+https://reality.bazos.cz/inzerat/226780053/prodej-stavebniho-pozemku-1476m2-melnik.php
 
-19. Praha, Malešice, okres Praha, kraj Hlavní město Praha
-Tel: +420 605 238 110
-~16.8 km | Havlík | 
-https://www.sreality.cz/detail/prodej/byt/2+kk/praha-malesice-karanska/1004564556
+21. Praha, Střížkov, okres Praha, kraj Hlavní město Praha
+Tel: +420 778 629 094
+~15.5 km | Reindlová | 
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-strizkov-roudnicka/2177331276
 
-20. Sulice, okres Praha-východ, kraj Středočeský
+22. Praha 5, Zličín, okres Praha, kraj Hlavní město Praha
+~15.8 km | Motl | 
+https://reality.bazos.cz/inzerat/226745562/prodej-bytu-1kk-36-m-prizemi-praha-5-stary-zlicin.php
+
+23. Praha, Libeň, okres Praha, kraj Hlavní město Praha
+Tel: +420 737 050 494
+~16.2 km | Motl | 
+https://www.sreality.cz/detail/prodej/byt/1+kk/praha-liben-u-libenskeho-pivovaru/2014539852
+
+24. Veleň, okres Praha-východ, kraj Středočeský
 ~17.3 km | Havlík | 
-https://reality.bazos.cz/inzerat/226638078/nabizime-pozemek-se-stavebnim-povolenim-na-2-rd.php
+https://reality.bazos.cz/inzerat/226769942/velen-pozemky-454-m2.php
 
-21. Líbeznice, okres Praha-východ, kraj Středočeský
-Tel: +420 603 504 411
+25. Úvaly, okres Praha-východ, kraj Středočeský
+Tel: +420 721 839 245
 ~17.3 km | Havlík | 
-https://www.sreality.cz/detail/prodej/dum/chata/libeznice-libeznice-skolska/1326477388
+https://reality.bazos.cz/inzerat/226776565/parkovani-uvaly-skvorecka-ulice.php
 
-22. Svatá, okres Beroun, kraj Středočeský
-Tel: +420 732 168 964
-~18.0 km | Modrý | 
-https://reality.bazos.cz/inzerat/226674518/zahradka-svata-anna.php
+26. Unhošť, okres Kladno, kraj Středočeský
+~17.7 km | Modrý | 
+https://reality.bazos.cz/inzerat/226675805/prodej.php
 
-23. Praha 9, okres Praha, kraj Hlavní město Praha
-~19.3 km | Flieger | 
-https://reality.bazos.cz/inzerat/226661900/prodej-zateplene-sestavy-stavebnich-bunek-praha-9.php
+27. Slaný, okres Kladno, kraj Středočeský
+~17.7 km | Modrý | 
+https://reality.bazos.cz/inzerat/226701459/rd-41-6km-od-velkych-prilep-v-okrese-praha-zapad.php
 
-24. Skašov, okres Plzeň-jih, kraj Plzeňský
-Tel: +420 605 022 913
-~19.3 km | Jelínek (PLZ) | 
-https://reality.bazos.cz/inzerat/226663767/prodej-stavebniho-pozemku-skasov.php
+28. Praha, Zličín, okres Praha, kraj Hlavní město Praha
+Tel: +420 722 179 833
+~18.7 km | Reindlová | 
+https://www.sreality.cz/detail/prodej/byt/1+kk/praha-zlicin-prusanecka/3701502028
 
-25. Praha, Uhříněves, okres Praha, kraj Hlavní město Praha
-Tel: +420 724 083 873
-~22.1 km | Jelínek (PHA) | 
-https://www.sreality.cz/detail/prodej/byt/2+kk/praha-uhrineves-vaclava-trojana/355008588
+29. Mníšek pod Brdy, okres Praha-západ, kraj Středočeský
+~20.8 km | Jelínek (PHA) | 
+https://reality.bazos.cz/inzerat/226799366/prodej-stavebniho-pozemku-7957m2-v-mnisku-pod-brdy.php
 
-26. Strážov, okres Klatovy, kraj Plzeňský
+30. Toužim, okres Karlovy Vary, kraj Karlovarský
+Tel: +420 722 115 491
+~20.8 km | Gorash | 
+https://reality.bazos.cz/inzerat/226784454/exkluzivni-resort-4-zahrad.php
+
+31. Lužec nad Vltavou, okres Mělník, kraj Středočeský
+~21.3 km | Šišková | 
+https://reality.bazos.cz/inzerat/226680568/rodinny-dum-80-m2-10x8-m-komplet-na-klic.php
+
+32. Lovosice, okres Litoměřice, kraj Ústecký
+Tel: +420 721 537 574
+~23.5 km | Kalkus | 
+https://reality.idnes.cz/detail/pronajem/komercni-nemovitost/lovosice-svatopluka-cecha/6affd4a788355ed23700fa63
+
+33. Štětí, okres Litoměřice, kraj Ústecký
+Tel: +420 735 224 110
+~23.5 km | Kalkus | 
+https://reality.bazos.cz/inzerat/226733147/prodej-domu-poceplice.php
+
+34. Litoměřice, okres Litoměřice, kraj Ústecký
+Tel: +420 134 615 159
+~23.5 km | Kalkus | 
+https://reality.bazos.cz/inzerat/226743250/bydleni-rekreace.php
+
+35. Křesín, okres Litoměřice, kraj Ústecký
+Tel: +420 733 676 047
+~23.5 km | Růžička | 
+https://reality.bazos.cz/inzerat/226748867/chatka-k-oprave.php
+
+36. Jaroměř, okres Náchod, kraj Královéhradecký
+~25.1 km | Seidlová | 
+https://reality.bazos.cz/inzerat/226680910/prodej-primo-od-majitele-prodej-domu-90-m-3kk-jaromer.php
+
+37. Klatovy, okres Klatovy, kraj Plzeňský
 ~27.5 km | Marešková | 
-https://reality.bazos.cz/inzerat/226655727/prodej-rodinny-dum-splz-8.php
+https://reality.bazos.cz/inzerat/226721664/byt-e4-31-v-novostavbe-s-lodzii-10548-m.php
 
-27. Klatovy, okres Klatovy, kraj Plzeňský
+38. Strážov, okres Klatovy, kraj Plzeňský
 ~27.5 km | Marešková | 
-https://reality.bazos.cz/inzerat/226663153/garaz-dilna.php
+https://reality.bazos.cz/inzerat/226685575/prodej-podilu-916-louky-3-022-m-dlazov.php
 
-28. Vlašim, okres Benešov, kraj Středočeský
+39. Davle, okres Praha-západ, kraj Středočeský
+~28.1 km | Jelínek (PHA) | 
+https://reality.bazos.cz/inzerat/226685866/prodej-chaty-29m2-v-davli-na-jedinecnem-miste.php
+
+40. Úhonice, okres Praha-západ, kraj Středočeský
+Tel: +420 731 514 055
+~28.1 km | Jelínek (PHA) | 
+https://www.sreality.cz/detail/prodej/byt/4+kk/uhonice-uhonice-slunecna/234254412
+
+41. Libčice nad Vltavou, okres Praha-západ, kraj Středočeský
+~29.4 km | Flieger | 
+https://reality.bazos.cz/inzerat/226745557/prodej-bytu-31-62-m-s-lodzii-libcice-nad-vltavou.php
+
+42. Vlašim, okres Benešov, kraj Středočeský
 ~30.4 km | Havlík | 
-https://reality.bazos.cz/inzerat/226662353/prodej-dum-150-m-590-m-poz-dvorakova-1316-vlasim-cesk.php
+https://reality.bazos.cz/inzerat/226760754/prodej-garaze-19m2-vlasim-severni-ul-osobni-vlastnictvi.php
 
-29. Slaný, okres Kladno, kraj Středočeský
-Tel: +420 777 011 199
-~32.2 km | Šišková | 
-https://reality.bazos.cz/inzerat/226652425/byt-3kk-50-m2-osobni-vlast-slany-plynarenska.php
+43. Týnec nad Sázavou, okres Benešov, kraj Středočeský
+~30.7 km | Jelínek (PHA) | 
+https://reality.bazos.cz/inzerat/226688997/prodej-byt-31-tynec-nad-sazavou.php
 
-30. Plzeň, okres Plzeň-město, kraj Plzeňský
+44. Přeštice, okres Plzeň-jih, kraj Plzeňský
+~30.7 km | Jelínek (PLZ) | 
+https://reality.bazos.cz/inzerat/226809748/prodej-bytu-31-prestice.php
+
+45. Dřínov, okres Kladno, kraj Středočeský
+~34.7 km | Šišková | 
+https://reality.bazos.cz/inzerat/226701537/prodej-stavebpozemku-o-vel-1-064m2-17-km-od-prahy.php
+
+46. Nové Město nad Metují, okres Náchod, kraj Královéhradecký
+~34.7 km | Seidlová | 
+https://reality.bazos.cz/inzerat/226760228/prodam.php
+
+47. Plzeň, okres Plzeň-město, kraj Plzeňský
+Tel: +420 775 975 987
 ~36.4 km | Marešková | 
-https://reality.bazos.cz/inzerat/226664934/rdum-hala-200m2-hospodarska-budova-mobilni-dum.php
+https://reality.bazos.cz/inzerat/226762751/prodej-garaze.php
 
-31. PLZEŇ, okres Plzeň-město, kraj Plzeňský
-Tel: +420 607 646 838
-~36.4 km | Marešková | 
-https://reality.bazos.cz/inzerat/226662231/prodej-bytu-31-plzen.php
+48. Zalešany, okres Kolín, kraj Středočeský
+Tel: +420 605 700 242
+~36.4 km | Havlík | 
+https://reality.bazos.cz/inzerat/226801258/vymenim-stavebni-pozemek-okr-kolin-za-byt.php
 
-32. Rokycany, okres Rokycany, kraj Plzeňský
-~36.6 km | Marešková | 
-https://reality.bazos.cz/inzerat/226634629/byt-31-s-balkonem-na-prodej.php
-
-33. Bašť, okres Praha-východ, kraj Středočeský
+49. Líbeznice, okres Praha-východ, kraj Středočeský
+Tel: +420 728 009 874
 ~37.1 km | Jelínek (PHA) | 
-https://reality.bazos.cz/inzerat/226659123/stavebni-parcela-pro-rd-za-hranici-prahy-s-bonusem.php
+https://reality.idnes.cz/detail/prodej/dum/libeznice-skolska/6b017fb4a3505e0b000ebb3d/
 
-34. Pašinka, okres Kolín, kraj Středočeský kraj
-~43.5 km | Havlík | 
-https://www.sreality.cz/detail/prodej/pozemek/bydleni/pasinka/4283461708
+50. Nučice, okres Praha-východ, kraj Středočeský
+Tel: +420 604 473 565
+~37.1 km | Jelínek (PHA) | 
+https://reality.bazos.cz/inzerat/226753979/prodej-rekreacni-objektu-1-200-m.php
 
-35. Trokavec, okres Rokycany, kraj Plzeňský
-~43.8 km | Jelínek (PLZ) | 
-https://www.sreality.cz/detail/prodej/dum/rodinny/trokavec/1996517452
+51. Dýšina, okres Plzeň-město, kraj Plzeňský
+~39.1 km | Marešková | 
+https://reality.bazos.cz/inzerat/226749837/prodej-chaty-k-rozebrani.php
 
-36. Nýřany, okres Plzeň-sever, kraj Plzeňský
-Tel: +420 605 435 502
-~48.2 km | Marešková | 
-https://reality.bazos.cz/inzerat/226650726/byt-31l.php
+52. Kravaře, okres Česká Lípa, kraj Liberecký
+Tel: +420 774 184 178
+~39.5 km | Růžička | 
+https://www.sreality.cz/detail/prodej/dum/rodinny/kravare-kravare-alejni/2071359564
 
-37. Lužná, okres Rakovník, kraj Středočeský
+53. Brandýs nad Labem - Stará Boleslav, okres Praha-východ, kraj Středočeský
+Tel: +420 731 125 583
+~39.7 km | Růžička | 
+https://www.sreality.cz/detail/prodej/byt/2+1/brandys-nad-labem-stara-boleslav-stara-boleslav-na-kloboucku/240545868
+
+54. Hradištko, okres Nymburk, kraj Středočeský
+Tel: +420 770 349 879
+~39.9 km | Havlík | 
+https://reality.bazos.cz/inzerat/226708874/kersko-stavebni-pozemek-s-vlastnim-lesem-4-693-m.php
+
+55. Smečno, okres Kladno, kraj Středočeský
+~40.8 km | Šišková | 
+https://reality.bazos.cz/inzerat/226676857/garaz-smecno.php
+
+56. Nymburk, okres Nymburk, kraj Středočeský
+Tel: +420 732 822 415
+~43.3 km | Havlík | 
+https://reality.bazos.cz/inzerat/226812464/rodinny-dum-straky.php
+
+57. Dobříš, okres Příbram, kraj Středočeský
+Tel: +420 775 651 565
+~44.4 km | Pechanová (SČ) | 
+https://www.sreality.cz/detail/prodej/byt/2+kk/dobris-dobris-karnetova-zahrada/2086039628
+
+58. Poděbrady, okres Nymburk, kraj Středočeský
+~45.1 km | Havlík | 
+https://reality.bazos.cz/inzerat/226707230/nadstandardni-mezonet-v-centru-podebrad.php
+
+59. Druztová, okres Plzeň-sever, kraj Plzeňský
+~45.1 km | Marešková | 
+https://reality.bazos.cz/inzerat/226783522/prodej-rodinny-dum-obec-druztova-plzen-sever.php
+
+60. Vestec u Chocerad, okres Benešov, kraj Středočeský
+~46.1 km | Jelínek (PHA) | 
+https://reality.bazos.cz/inzerat/226726039/prodam-pozemekorna-puda-3-287-m-vestec-u-chocerad.php
+
+61. Kutná Hora, okres Kutná Hora, kraj Středočeský
+~47.5 km | Havlík | 
+https://reality.bazos.cz/inzerat/226714586/prodam-byt-41-90m2-v-kutne-hore.php
+
+62. Vinaře, okres Kutná Hora, kraj Středočeský
+Tel: +420 778 761 177
+~47.5 km | Havlík | 
+https://reality.bazos.cz/inzerat/226747493/prodej-stavebniho-pozemku-vinice-vinare.php
+
+63. Rašovice, okres Kutná Hora, kraj Středočeský
+~47.5 km | Havlík | 
+https://reality.bazos.cz/inzerat/226753859/prodej-zahrady-385-m2-uhlirske-janovice.php
+
+64. Horka II, okres Kutná Hora, kraj Středočeský
+Tel: +420 728 997 694
+~47.5 km | Havlík | 
+https://www.sreality.cz/detail/prodej/komercni/ubytovani/horka-ii/2299949132
+
+65. Kolín, okres Kolín, kraj Středočeský
+~48.2 km | Havlík | 
+https://reality.bazos.cz/inzerat/226710770/garaz-u-cihelny-kolin.php
+
+66. Zvoleněves, okres Kladno, kraj Středočeský
+Tel: +420 777 207 002
+~50.8 km | Pechanová (SČ) | 
+https://reality.bazos.cz/inzerat/226748523/prodej-bytu-31-68-m-osobni-vlastnictvi.php
+
+67. Kounov, okres Rakovník, kraj Středočeský
 ~56.6 km | Pechanová (SČ) | 
-https://reality.bazos.cz/inzerat/226643388/prodej-pole-v-ku-luzna-u-rakovnika.php
+https://reality.bazos.cz/inzerat/226702949/prodej-lesniho-pozemku-ku-kounov-u-rakovnika.php
 
-38. Dolní Pohleď, okres Kutná Hora, kraj Středočeský
+68. Dolní Pohleď, okres Kutná Hora, kraj Středočeský
 ~57.4 km | Havlík | 
-https://reality.bazos.cz/inzerat/226636674/prodej-lesnich-pozemku-ku-slavosov-u-zruce-nad-sazavou.php
+https://reality.bazos.cz/inzerat/226721026/prodej-stavebniho-pozemku-863-m-vlastejovice-budcice.php
 
-39. Louny, okres Louny, kraj Ústecký kraj
-Tel: +420 605 788 220
-~58.1 km | Šišková | 
-https://reality.bazos.cz/inzerat/226656715/pacht-196-ha-zem-pudy-v-okrese-louny.php
+69. Loucká, okres Kladno, kraj Středočeský
+Tel: +420 734 236 602
+~59.4 km | Havlík | 
+https://reality.bazos.cz/inzerat/226699585/prodej-orne-pudy.php
+
+70. Mnichovice, okres Benešov, kraj Středočeský
+Tel: +420 722 018 033
+~59.4 km | Havlík | 
+https://reality.bazos.cz/inzerat/226762079/rd-51-mnichovice.php
 

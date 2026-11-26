@@ -1,379 +1,435 @@
-1. Vyškov, okres Vyškov, kraj Jihomoravský
-Tel: +420 606 090 900
-https://reality.bazos.cz/inzerat/226864129/prodej-pozemku.php
+1. Praha, okres Praha, kraj Hlavní město Praha
+Tel: +420 730 177 779
+https://reality.bazos.cz/inzerat/226913428/ocelova-konstrukce-haly-10-466-m-466-m.php
 
-2. Karlovy Vary, okres Karlovy Vary, kraj Karlovarský
-Tel: +420 774 975 638
-https://www.sreality.cz/detail/prodej/komercni/cinzovni-dum/karlovy-vary-karlovy-vary-svahova/2159374412
+2. Brno - Žabovřesky, okres Brno-město, kraj Jihomoravský
+Tel: +420 776 369 915
+https://www.sreality.cz/detail/prodej/byt/2+kk/brno-zabovresky-sochorova/1199861836
 
-3. Želízy, okres Mělník, kraj Středočeský
-Tel: +420 602 326 133
-http://www.reality.cz/prodej/domy/L00-007025
+3. Žalhostice, okres Litoměřice, kraj Ústecký
+Tel: +420 604 738 764
+https://reality.bazos.cz/inzerat/226911588/prodej-chaty.php
 
-4. Vilémov, okres Havlíčkův Brod, kraj Vysočina
-Tel: +420 604 380 900
-https://www.sreality.cz/detail/prodej/pozemek/pole/vilemov/1604677708
-
-5. Rajhradice, okres Brno-venkov, kraj Jihomoravský
-Tel: +420 739 327 585
-https://reality.bazos.cz/inzerat/226869471/prodam-novy-mobilni-dum-9x4-m-k-celorocnimu-bydleni.php
-
-6. Babice nad Svitavou, okres Brno-venkov, kraj Jihomoravský
+4. Praha 9, Kbely, okres Praha, kraj Hlavní město Praha
 Tel: v inzerci
-https://reality.bazos.cz/inzerat/226865145/stavebni-pozemek-302m-u-reky-svitavy.php
+https://reality.bazos.cz/inzerat/226912956/garaz-praha-9-kbely-ulice-ulibicka-hornopocernicka.php
 
-7. Babice nad Svitavou, okres Brno-venkov, kraj Jihomoravský
+5. Mělník, okres Mělník, kraj Středočeský
+Tel: +420 606 780 084
+https://reality.bazos.cz/inzerat/226910894/prodej-garaz-melnik-ul-mladoboleslavska.php
+
+6. Solenice, okres Příbram, kraj Středočeský
 Tel: v inzerci
-https://reality.bazos.cz/inzerat/226865147/byt-41-kk-v-ov-bilovice-nad-svitavou.php
-
-8. Brno, okres Brno-město, kraj Jihomoravský
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226861021/prodam-byt-v-os-vlast-2kk-3p-panel-brno-kouhoutovice.php
-
-9. Plzeň, okres Plzeň-město, kraj Plzeňský
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226870321/prodej-bytu-11.php
-
-10. Klatovy, okres Klatovy, kraj Plzeňský
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226865376/prodej-male-vodni-elektrarny-934-m-benovy-u-klatov.php
-
-11. Blovice, okres Plzeň-jih, kraj Plzeňský
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226865265/prodej-bytu-2kk-46-m-and-sup2-se-zahradou-osobni-vlastni.php
-
-12. Úněšov, okres Plzeň-sever, kraj Plzeňský
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226861851/rdomek-hospodarska-budova-hala-200m2-mobilni-dum.php
-
-13. Plzeň, okres Plzeň-město, kraj Plzeňský
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226861598/zemedelsky-pozemek-958-m-16-orna-puda-plzen-radcice.php
-
-14. Kvíčovice, okres Domažlice, kraj Plzeňský
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226861377/byt-31-68m2-lodzie.php
-
-15. Praha 9, okres Praha, kraj Hlavní město Praha
-Tel: +420 774 431 994
-https://reality.idnes.cz/detail/prodej/byt/praha-9-gerstelova/6b049870c5484cbb5300d7fc/
-
-16. Praha, okres Praha, kraj Hlavní město Praha
-Tel: v inzerci
-#
-
-17. Rožmitál pod Třemšínem, okres Příbram, kraj Středočeský
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226866202/pozemek-zahrada.php
-
-18. Benešov, okres Blansko, kraj Jihomoravský
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226862649/dum-u-benesova-bukova-lhota-14.php
-
-19. Rakovník, okres Rakovník, kraj Středočeský
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226862362/maly-dum-6-km-od-rakovniku-pricina-80-okres-rakovnik.php
-
-20. Říčany, okres Brno-venkov, kraj Jihomoravský
-Tel: +420 775 300 000
-https://reality.bazos.cz/inzerat/226860634/modulovy-dum-nizkoenergeticky-dum-drevostavba.php
-
-21. Kladno, okres Chrudim, kraj Pardubický
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226872672/rd-41-6km-od-velkych-prilep-v-okrese-praha-zapad.php
-
-22. Doubravník, okres Brno-venkov, kraj Jihomoravský
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226874168/prodej-pozemku-krizovice.php
-
-23. Dobruška, okres Rychnov nad Kněžnou, kraj Královéhradecký
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226871513/chata-zahradni-chatka-domek.php
-
-24. Tachov, okres Česká Lípa, kraj Liberecký
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226873077/byt-31-69-m-se-satnou-lodzii-garazi-a-velkym-sklepem.php
-
-25. Praha, okres Praha, kraj Hlavní město Praha
-Tel: +420 774 398 288
-https://reality.bazos.cz/inzerat/226868638/moderni-ramove-drevostavby.php
-
-26. Slavkov u Brna, okres Vyškov, kraj Jihomoravský
-Tel: +420 777 555 999
-https://www.sreality.cz/detail/prodej/dum/rodinny/slavkov-u-brna-slavkov-u-brna-tyrsova/1468362828
-
-27. Mírová, okres Karlovy Vary, kraj Karlovarský
-Tel: +420 705 724 285
-https://reality.bazos.cz/inzerat/226869943/prodam-zahradu-v-osobnim-vlastnictvi-mirova-u-kvary.php
-
-28. Nový Jičín, okres Nový Jičín, kraj Moravskoslezský
-Tel: +420 608 509 700
-https://reality.bazos.cz/inzerat/226875108/mobilni-chata-big-chalet-gr528-celorocni-doprava-zdarma.php
-
-29. Dukovany, okres Třebíč, kraj Vysočina
-Tel: +420 775 330 206
-https://reality.bazos.cz/inzerat/226870242/prodej-pozemku-v-mysliboricich-dukovany-13-minut.php
-
-30. Mnichovice, okres Praha-východ, kraj Středočeský
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226877480/stavebni-pozemek-727-m-s-chatou-mnichovice-u-prahy.php
-
-31. Mnichovice, okres Praha-východ, kraj Středočeský
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226877457/stavebni-pozemek-757-m-s-chatou-mnichovice-u-prahy.php
-
-32. Divec, okres Hradec Králové, kraj Královéhradecký
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226877036/investicni-prilezitost-v-hradci-kralove-a-okoli.php
-
-33. Kvíčovice, okres Plzeň-jih, kraj Plzeňský
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226877479/k-prodeji-rodinny-dum-v-holysove-169m2.php
-
-34. Ševětín, okres České Budějovice, kraj Jihočeský
-Tel: +420 723 441 866
-https://reality.idnes.cz/detail/prodej/byt/sevetin-namesti-simona-lomnickeho/6b0535356298d4bceb00dddc
-
-35. Nová Ves, okres České Budějovice, kraj Jihočeský
-Tel: +420 734 871 510
-https://www.sreality.cz/detail/prodej/byt/3+kk/nova-ves-nova-ves-nad-hristem/3095752780
-
-36. Čelákovice, okres Praha-východ, kraj Středočeský
-Tel: +420 607 800 224
-https://www.sreality.cz/detail/prodej/dum/rodinny/celakovice-celakovice-u-hajku/1301639244
-
-37. Velké Meziříčí, okres Žďár nad Sázavou, kraj Vysočina
-Tel: +420 775 115 750
-https://reality.bazos.cz/inzerat/226876331/prodej-stavebniho-pozemku-ul-trebicska-velke-mezirici.php
-
-38. Uherčice, okres Břeclav, kraj Jihomoravský
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226881335/prodam-zemedelskou-pudu-a-vinice-v-k-u-uhercice-u-hustopec.php
-
-39. Břeclav, okres Břeclav, kraj Jihomoravský
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226879822/prodej-slunneho-pudniho-bytu-3kk-1008m2-s-terasou.php
-
-40. PLZEŇ, okres Plzeň-město, kraj Plzeňský
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226880620/cinzovni-dum.php
-
-41. PLZEŇ, okres Plzeň-město, kraj Plzeňský
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226879024/prodej-pozemku-vice-nez-14300-m2-v-lokalite-plzen-bozkov.php
-
-42. Chvalovice, okres Prachatice, kraj Jihočeský
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226884999/prodej-bytu-2kk-62-m2-pecky.php
-
-43. Praha, okres Praha, kraj Hlavní město Praha
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226881942/klidna-vilova-ctvrt-kokorinsko-za-rohem-praha-do-30-min.php
-
-44. Svatobořice-Mistřín, okres Hodonín, kraj Jihomoravský
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226883491/ovocny-sad-s-vinohradem.php
-
-45. Kostelec nad Orlicí, okres Rychnov nad Kněžnou, kraj Královéhradecký
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226886239/prodej-pozemku-v-ku-cestice-u-castolovice.php
-
-46. Vitice, okres Kolín, kraj Středočeský
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226885734/pozemek-krimice.php
-
-47. Vitice, okres Kolín, kraj Středočeský
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226885765/orna-puda.php
-
-48. Praha, okres Praha, kraj Hlavní město Praha
-Tel: +420 777 128 681
-https://www.sreality.cz/detail/prodej/byt/2+kk/praha-lhotka-k-novemu-dvoru/3027529804
-
-49. Praha, okres Praha, kraj Hlavní město Praha
-   ✉️   teresie@seznam.cz
-https://www.sreality.cz/detail/prodej/byt/2+kk/praha-kyje-peluskova/1182036044
-
-50. Český Krumlov, okres Český Krumlov, kraj Jihočeský
-Tel: +420 607 400 559
-https://reality.bazos.cz/inzerat/226886198/byt-11-cesky-krumlov-id-8561e-1612.php
-
-51. Řepeč, okres Tábor, kraj Jihočeský
-Tel: +420 602 165 106
-https://www.sreality.cz/detail/prodej/pozemek/les/repec/894726220
-
-52. Brno - Štýřice, okres Brno-město, kraj Jihomoravský
-Tel: +420 720 589 444
-https://www.sreality.cz/detail/prodej/byt/2+1/brno-styrice-polni/2774822988
-
-53. Karlovy Vary, okres Karlovy Vary, kraj Karlovarský
-Tel: +420 604 258 462
-https://reality.bazos.cz/inzerat/226887792/dum-16-karlovy-vary-osobnim-vlastnictvim.php
-
-54. Karviná, okres Karviná, kraj Moravskoslezský
-Tel: +420 777 925 000
-https://reality.bazos.cz/inzerat/226881766/dr-byt-2kk-ul-csl-armady-karvina.php
-
-55. Kopřivnice, okres Nový Jičín, kraj Moravskoslezský
-Tel: +420 724 069 800
-https://reality.bazos.cz/inzerat/226886234/byt-31-68-m-s-lodzii-a-klimatizaci-v-koprivnici.php
-
-56. Olomouc - Nová Ulice, okres Olomouc, kraj Olomoucký
-   ✉️   D10H@seznam.cz
-https://www.sreality.cz/detail/prodej/byt/2+kk/olomouc-nova-ulice-stitneho/3564400716
-
-57. Senička na Hané, okres Olomouc, kraj Olomoucký
-Tel: +420 606 567 305
-https://reality.bazos.cz/inzerat/226887509/stavebni-pozemek-800-m-senicka-na-hane-okres-olomouc.php
-
-58. Čelákovice, okres Praha-východ, kraj Středočeský
-Tel: +420 702 405 239
-https://www.sreality.cz/detail/prodej/dum/rodinny/celakovice-celakovice-v-prokope/1771401292
-
-59. Náchod, okres Náchod, kraj Královéhradecký
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226889372/zalonov-pozemek-614-m2-okres-nachod-kralovehradecky-kraj.php
-
-60. Rokytnice v Orlických horách, okres Rychnov nad Kněžnou, kraj Královéhradecký
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226891770/prodej-bytu-1kk-25m.php
-
-61. Skuhrov nad Bělou, okres Rychnov nad Kněžnou, kraj Královéhradecký
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226890914/prodej-bytu-2kk-37m.php
-
-62. Praha, Chodov, okres Praha, kraj Hlavní město Praha
-Tel: +420 777 256 824
-https://www.sreality.cz/detail/prodej/dum/vicegeneracni-dum/praha-chodov-zakourilova/2555670604
-
-63. Hrabová, okres Šumperk, kraj Olomoucký
-Tel: +420 777 890 290
-https://www.sreality.cz/detail/prodej/komercni/obchodni-prostor/ostrava-hrabova-u-reky/1370910796
-
-64. Česká Ves, okres Jeseník, kraj Olomoucký
-Tel: +420 607 748 949
-https://reality.bazos.cz/inzerat/226889525/jesenik-ceska-ves-prodej-byvale-zastavene-plochy-a-nadvori.php
-
-65. Pelhřimov, okres Pelhřimov, kraj Vysočina
-Tel: +420 607 748 949
-https://reality.bazos.cz/inzerat/226888893/velka-rovna-prodej-pozemek-1460-m2-obec-pacov-okr-pelhrimov.php
-
-66. Hodonín, okres Hodonín, kraj Jihomoravský
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226893851/prodej-zemedelskych-pozemku-knezdub-3-135-m.php
-
-67. Luštěnice, okres Mladá Boleslav, kraj Středočeský
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226896368/byt-v-osobni-vlastnictvi-lustenice-zelena-21-55m.php
-
-68. Vlašim, okres Benešov, kraj Středočeský
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226895525/prodam-garaz-ve-vlasimi.php
-
-69. Plzeň, okres Plzeň-město, kraj Plzeňský
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226895473/investicni-pozemek-958-m-podil-16-plzen-radcice-v-up.php
-
-70. Lednice, okres Břeclav, kraj Jihomoravský
-Tel: +420 728 084 998
-https://www.sreality.cz/detail/prodej/pozemek/komercni/lednice/3511291980
-
-71. Hranice, okres České Budějovice, kraj Jihočeský
-Tel: +420 727 834 600
-https://reality.bazos.cz/inzerat/226897569/zajimava-investicni-prilezitost.php
-
-72. Ostrava, okres Ostrava-město, kraj Moravskoslezský
-Tel: +420 725 920 871
-https://www.avizo.cz/reality/prodam-garaz-ul-svermova-19990755.html
-
-73. Opava, okres Opava, kraj Moravskoslezský
-Tel: +420 736 268 265
-https://reality.bazos.cz/inzerat/226897235/lesni-pozemek-podvihov.php
-
-74. Březová, okres Karlovy Vary, kraj Karlovarský
-Tel: +420 775 104 680
-https://reality.bazos.cz/inzerat/226895950/rodinny-dum-k-prodeji.php
-
-75. Jinočany, okres Praha-západ, kraj Středočeský
-Tel: +420 777 314 532
-https://www.sreality.cz/detail/prodej/pozemek/komercni/jinocany/386166860
-
-76. Náchod, okres Náchod, kraj Královéhradecký
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226897657/prodej-rodinneho-domu-ul-pod-montaci-nachod.php
-
-77. Hradec Králové, okres Hradec Králové, kraj Královéhradecký
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226900324/po-kompletni-rekonstrukci-prodam-byt-3kk-v-malsovicich.php
-
-78. Kozlovice, okres Frýdek-Místek, kraj Moravskoslezský
-Tel: +420 604 707 221
-https://reality.bazos.cz/inzerat/226900301/prodam-dvougeneracni-dum.php
-
-79. Praha, okres Praha, kraj Hlavní město Praha
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226900972/prodej-druzstevniho-bytu-11-40-m2-ul-klimentska.php
-
-80. Praha, okres Praha, kraj Hlavní město Praha
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226902483/svetly-byt-51-m-s-prosklenou-lodzii-kousek-od-kunratickeho.php
-
-81. Svatobořice-Mistřín, okres Hodonín, kraj Jihomoravský
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226902368/stavebni-pozemek-se-zapsanou-stavbou-s-cislem-popisnym.php
-
-82. Kumburský Újezd, okres Jičín, kraj Královéhradecký
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226901473/stavebni-pozemek-kumbursky-ujezd-626m.php
-
-83. Strakonice, okres Strakonice, kraj Jihočeský
-Tel: +420 776 261 911
-https://reality.bazos.cz/inzerat/226898670/zesilena-plachtova-hala-915-12-45-m-dvoje-vrata.php
-
-84. Louny, okres Louny, kraj Ústecký
-Tel: +420 721 649 810
-https://reality.bazos.cz/inzerat/226898975/prodam-dum.php
-
-85. Pustina, okres Žďár nad Sázavou, kraj Vysočina
-Tel: +420 731 490 157
-https://reality.bazos.cz/inzerat/226902809/pustina-u-merina.php
-
-86. Jičín, okres Jičín, kraj Královéhradecký
-Tel: +420 792 401 817
-https://reality.bazos.cz/inzerat/226905210/prodej-5-stavebnich-pozemku-5266m2.php
-
-87. Jičín, okres Jičín, kraj Královéhradecký
-Tel: +420 792 401 817
-https://reality.bazos.cz/inzerat/226904334/prodej-stavebniho-pozemku-910m2.php
-
-88. Hradec Králové, okres Hradec Králové, kraj Královéhradecký
-Tel: v inzerci
-https://reality.bazos.cz/inzerat/226907054/dum-vcetne-zahrady-a-dalsich-dvou-parcel-v-centru-mesta.php
-
-89. Petřvald, okres Karviná, kraj Moravskoslezský
-Tel: +420 739 915 311
-https://reality.bazos.cz/inzerat/226905508/prodej-garaze-s-pozemkem-petrvald-u-karvine.php
-
-90. Písečná, okres Jeseník, kraj Olomoucký
-Tel: +420 777 265 240
-https://reality.bazos.cz/inzerat/226906187/byt-pisecna-u-jesenika.php
-
-91. Šestajovice, okres Praha-východ, kraj Středočeský
-Tel: +420 702 206 407
-https://www.sreality.cz/detail/prodej/byt/3+kk/sestajovice-sestajovice-trojmezni/61108300
-
-92. Chomutov, okres Chomutov, kraj Ústecký
-Tel: +420 720 338 868
-https://reality.bazos.cz/inzerat/226906060/byt-31-chomutov-brezenecka.php
-
-93. Plzeň, okres Plzeň-město, kraj Plzeňský
-Tel: +420 775 407 404
-https://reality.bazos.cz/inzerat/226909326/prodam-chatu-radobycice.php
-
-94. Příbram, okres Příbram, kraj Středočeský
-Tel: +420 604 604 510
 https://reality.bazos.cz/inzerat/226910628/prodam-rodinny-dum.php
 
-95. Meziboří, okres Most, kraj Ústecký
-Tel: +420 605 960 608
-https://reality.bazos.cz/inzerat/226908890/prodam-zahradu-na-mezibori.php
+7. Šestajovice, okres Náchod, kraj Královéhradecký
+Tel: +420 702 206 407
+#
+
+8. Rakvice, okres Břeclav, kraj Jihomoravský
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226916741/stavebni-parcela.php
+
+9. Kyjov, okres Hodonín, kraj Jihomoravský
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226915983/prodej-bytu-11-s-balkonem-kyjov.php
+
+10. Žabovřesky, okres České Budějovice, kraj Jihočeský
+Tel: +420 776 369 915
+#
+
+11. Žabovřesky, okres České Budějovice, kraj Jihočeský
+Tel: +420 776 369 915
+#
+
+12. Ruprechtov, okres Vyškov, kraj Jihomoravský
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226912988/pozemky-7911m2-obec-ruprechtov-okr-vyskov.php
+
+13. Ruprechtov, okres Vyškov, kraj Jihomoravský
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226912735/pozemek-o-vymere-5044-m2-obec-ruprechtov-okr-vyskov.php
+
+14. Pavlov, okres Břeclav, kraj Jihomoravský
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226912658/rd-41-975-m-pavlov-okr-breclav.php
+
+15. Břeclav, okres Břeclav, kraj Jihomoravský
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226912348/prodej-rd-breclav-charvatska-nova-ves.php
+
+16. Zaječí, okres Břeclav, kraj Jihomoravský
+Tel: +420 774 745 025
+#
+
+17. Náchod, okres Náchod, kraj Královéhradecký
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226915434/prodej-rodinneho-domu-pavlisov.php
+
+18. Náchod, okres Náchod, kraj Královéhradecký
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226913099/prodej-bytu-21-nachod-bez-realitky.php
+
+19. Soběraz, okres Jičín, kraj Královéhradecký
+Tel: +420 792 401 817
+https://reality.bazos.cz/inzerat/226910170/prodej-stavebniho-pozemku-1110m-soberaz-u-jicina.php
+
+20. Police nad Metují, okres Náchod, kraj Královéhradecký
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226909814/prodej-rodinneho-domu.php
+
+21. Plzeň, okres Plzeň-město, kraj Plzeňský
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226909326/prodam-chatu-radobycice.php
+
+22. Šumperk, okres Šumperk, kraj Olomoucký
+Tel: +420 739 387 424
+https://sumpersko.zdeinzeruj.cz/inzerat/250529
+
+23. Čáslav, okres Kutná Hora, kraj Středočeský
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226921660/dum-caslav-drobovice-120-m2.php
+
+24. Chvalovice, okres Prachatice, kraj Jihočeský
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226921262/prodej-bytu-3kk-71-m2-se-zahradou-212-m2.php
+
+25. Červený Kostelec, okres Náchod, kraj Královéhradecký
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226920354/prodej-louka-32970m2-stolin-nachod.php
+
+26. Tymákov, okres Plzeň-město, kraj Plzeňský
+Tel: +420 722 683 400
+https://reality.bazos.cz/inzerat/226920814/stavebni-pozemek-mokrouse-tymakov-1036m2.php
+
+27. Jeseník, okres Jeseník, kraj Olomoucký
+Tel: +420 602 122 165
+https://reality.bazos.cz/inzerat/226922615/ocelova-montovana-konstrukce-haly.php
+
+28. Krajníčko, okres Strakonice, kraj Jihočeský
+Tel: +420 602 461 517
+https://reality.bazos.cz/inzerat/226920984/zemedelska-stavba-krajnicko.php
+
+29. Praha, Chodov, okres Praha, kraj Hlavní město Praha
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226922759/2kk-praha-chodov-blizko-lesa-a-metra.php
+
+30. Praha, Prosek, okres Praha, kraj Hlavní město Praha
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226922427/praha-prosek-2kk-primo-u-metra.php
+
+31. Kladno, okres Kladno, kraj Středočeský
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226923188/prodej-bytu-21b-62m2-kladno-krocehlavy-vrchlickeho.php
+
+32. Boskovice, okres Blansko, kraj Jihomoravský
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226923653/prodej-srubu.php
+
+33. Boskovice, okres Blansko, kraj Jihomoravský
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226924939/garaz-24m2-boskovice.php
+
+34. Domažlice, okres Domažlice, kraj Plzeňský
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226927368/maxov-u-vserub.php
+
+35. Osek, okres Rokycany, kraj Plzeňský
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226928778/stavebni-pozemek-v-osek-u-rokycan.php
+
+36. Praha, Žižkov, okres Praha, kraj Hlavní město Praha
+Tel: +420 606 440 010
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-zizkov-krasova/2875940940
+
+37. Netolice, okres Prachatice, kraj Jihočeský
+Tel: +420 602 544 909
+https://reality.bazos.cz/inzerat/226925694/celorocne-obyvatelna-novostavba-chaty-u-netolic.php
+
+38. Židlochovice, okres Brno-venkov, kraj Jihomoravský
+Tel: +420 513 034 433
+https://reality.bazos.cz/inzerat/226925869/pozemek-parc-c-12684.php
+
+39. Zaječí, okres Břeclav, kraj Jihomoravský
+Tel: +420 771 710 469
+https://www.sreality.cz/detail/prodej/dum/vicegeneracni-dum/zajeci/636907596
+
+40. Vlašim, okres Benešov, kraj Středočeský
+Tel: +420 775 214 270
+https://www.sreality.cz/detail/prodej/pozemek/bydleni/vlasim-bolina/3529203788
+
+41. Doubravčice, okres Kolín, kraj Středočeský
+Tel: +420 602 392 379
+https://www.sreality.cz/detail/prodej/pozemek/bydleni/doubravcice-doubravcice-kamenicka/1199267916
+
+42. Příbram, okres Příbram, kraj Středočeský
+Tel: +420 723 322 497
+https://www.1inzerce.cz/inzerat-vypis-novy-kabrinec.html
+
+43. Teplice, okres Teplice, kraj Ústecký
+Tel: +420 770 710 245
+https://reality.bazos.cz/inzerat/226923299/byt-21-v-osobnim-vlastnictvi-teplice.php
+
+44. Třebíč, okres Třebíč, kraj Vysočina
+Tel: +420 728 862 481
+https://www.sreality.cz/detail/prodej/byt/2+kk/trebic-zamosti-subakova/2861854796
+
+45. Bučovice, okres Vyškov, kraj Jihomoravský
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226931510/prodam-dum-k-rekonstrukci.php
+
+46. Vyškov, okres Vyškov, kraj Jihomoravský
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226929836/byt-3kk-vyskov-po-rekonstrukci.php
+
+47. Trutnov, okres Trutnov, kraj Královéhradecký
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226929908/stavebni-pozemek-1500-m-zlata-olesnice-u-trutnova.php
+
+48. Praha, Stodůlky, okres Praha, kraj Hlavní město Praha
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226931372/prodej-bytu-1kk-24-m-praha-stodulky.php
+
+49. Praha, okres Praha, kraj Hlavní město Praha
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226930591/prodej-bytu-2kk-40-m-praha-barrandov.php
+
+50. Čelákovice, okres Praha-východ, kraj Středočeský
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226931925/prodej-rd-celakovice-sedlcanky.php
+
+51. Mladá Boleslav, okres Mladá Boleslav, kraj Středočeský
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226930373/garaz-u-akumy.php
+
+52. Koněprusy, okres Beroun, kraj Středočeský
+Tel: +420 774 983 822
+https://reality.bazos.cz/inzerat/226932275/stavebni-pozemek-856-m-s-projektem-rd-koneprusy-u-berouna.php
+
+53. Černý Důl, okres Trutnov, kraj Královéhradecký
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226933415/mam-zajem-o-chalupu-nebo-chatu.php
+
+54. Hradec Králové, okres Hradec Králové, kraj Královéhradecký
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226932357/nemovitost-k-mani.php
+
+55. Hradec Králové, okres Hradec Králové, kraj Královéhradecký
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226932590/mam-zajem-o-byt.php
+
+56. Praha, Chodov, okres Praha, kraj Hlavní město Praha
+Tel: +420 608 169 933
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-chodov-kloboukova/2369478732
+
+57. Prostějov, okres Prostějov, kraj Olomoucký
+Tel: +420 702 660 493
+https://reality.bazos.cz/inzerat/226932120/2kk.php
+
+58. Hořovice, okres Beroun, kraj Středočeský
+Tel: +420 773 490 484
+https://www.sreality.cz/detail/prodej/pozemek/bydleni/horovice/1247502412
+
+59. Most, okres Most, kraj Ústecký
+Tel: +420 702 813 362
+https://reality.bazos.cz/inzerat/226931586/prodam-drustevni-byt-41.php
+
+60. Třebíč, okres Třebíč, kraj Vysočina
+Tel: +420 774 653 503
+https://reality.bazos.cz/inzerat/226929915/moderni-rd-trebic-na-kopcich.php
+
+61. Hradec Králové, okres Hradec Králové, kraj Královéhradecký
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226935281/prodam-dr-byt-11-v-hradci-kralove-cena-3500000-kc.php
+
+62. Praha 9, Kbely, okres Praha, kraj Hlavní město Praha
+Tel: +420 733 737 688
+https://reality.bazos.cz/inzerat/226935537/prodej-garazoveho-stani-praha-9-kbely-nejedna-se-o-podil.php
+
+63. Praha, okres Praha, kraj Hlavní město Praha
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226935242/byt-3kk-po-kompletni-rekonstrukci-64-m-2m-sklep.php
+
+64. Praha, okres Praha, kraj Hlavní město Praha
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226937974/prodej-bytu.php
+
+65. Nový Knín, okres Příbram, kraj Středočeský
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226938073/pozemek-mala-hrastice.php
+
+66. Hradec Králové, okres Hradec Králové, kraj Královéhradecký
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226936765/po-kompletni-rekonstrukci-prodam-byt-3kk-v-malsovicich.php
+
+67. Plzeň, okres Plzeň-město, kraj Plzeňský
+Tel: +420 737 657 166
+https://reality.bazos.cz/inzerat/226938385/garaz-plzen-ul-nepomucka.php
+
+68. Únějovice, okres Domažlice, kraj Plzeňský
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226937766/lukrativni-pozemky-u-hranice-se-srn-24km-prodej.php
+
+69. Praha, Prosek, okres Praha, kraj Hlavní město Praha
+Tel: +420 776 589 419
+https://www.sreality.cz/detail/prodej/byt/1+kk/praha-prosek-prosecka/2328584268
+
+70. Praha, Strašnice, okres Praha, kraj Hlavní město Praha
+Tel: +420 721 972 378
+https://www.sreality.cz/detail/prodej/byt/4+kk/praha-strasnice-nad-kaplickou/1892376652
+
+71. Praha, okres Praha, kraj Hlavní město Praha
+Tel: +420 732 400 851
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha--rezlerova/988504140
+
+72. Praha, okres Praha, kraj Hlavní město Praha
+Tel: +420 732 400 851
+https://www.sreality.cz/detail/prodej/byt/4+kk/praha--rezlerova/3002818636
+
+73. Brno, okres Brno-město, kraj Jihomoravský
+Tel: +420 774 325 111
+https://www.sreality.cz/detail/prodej/byt/1+kk/brno-horni-herspice-jizni/1961582668
+
+74. Znojmo, okres Znojmo, kraj Jihomoravský
+Tel: +420 737 225 584
+https://reality.bazos.cz/inzerat/226935656/prodej-bytu-4kk-rezidence-jarosova-znojmo.php
+
+75. Karviná, okres Karviná, kraj Moravskoslezský
+Tel: +420 731 005 593
+https://reality.bazos.cz/inzerat/226938197/31-karvina-bozkova-544-druzstevni-byt.php
+
+76. Frýdek-Místek, okres Frýdek-Místek, kraj Moravskoslezský
+Tel: +420 730 232 068
+https://reality.bazos.cz/inzerat/226936140/stavebni-pozemek-1570-m2-ve-frydku-mistku.php
+
+77. Těrlicko, okres Karviná, kraj Moravskoslezský
+Tel: +420 602 526 936
+https://reality.bazos.cz/inzerat/226939472/dumchalupachata-pro-2-rodiny-ci-gener-u-terlicke-prehrady.php
+
+78. Šternberk, okres Olomouc, kraj Olomoucký
+Tel: +420 157 882 025
+https://reality.bazos.cz/inzerat/226938818/radova-garaz-sternberk-okres-olomouc.php
+
+79. Přerov, okres Přerov, kraj Olomoucký
+Tel: +420 602 129 551
+https://reality.bazos.cz/inzerat/226938667/prodej-garaze-v-prerove.php
+
+80. Šternberk, okres Olomouc, kraj Olomoucký
+Tel: +420 157 882 025
+https://reality.bazos.cz/inzerat/226938599/rekreacni-chata-sternberk-okres-olomouc.php
+
+81. Dlouhá Loučka, okres Olomouc, kraj Olomoucký
+Tel: +420 734 541 011
+https://www.sreality.cz/detail/prodej/pozemek/bydleni/dlouha-loucka-dlouha-loucka-unicovska/3505086540
+
+82. Plzeň, okres Plzeň-město, kraj Plzeňský
+Tel: +420 727 902 200
+https://www.sreality.cz/detail/prodej/ostatni/garaz/plzen-doubravka-potocni/885743692
+
+83. Jinolice, okres Jičín, kraj Královéhradecký
+Tel: +420 704 438 591
+https://reality.bazos.cz/inzerat/226938802/prodej-karavanu-v-ceskem-raji-kemp-jinolice.php
+
+84. Jesenice, okres Praha-západ, kraj Středočeský
+Tel: +420 777 228 288
+https://www.sreality.cz/detail/prodej/pozemek/bydleni/jesenice-hulin/1833656396
+
+85. Chrášťany, okres Praha-západ, kraj Středočeský
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226940414/stavebni-pozemek-o-vymere-966m2-15km-od-prahy.php
+
+86. Praha, okres Praha, kraj Hlavní město Praha
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226941172/luzec-nad-cidlinoupodil-14.php
+
+87. Říčany, okres Brno-venkov, kraj Jihomoravský
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226941941/prodej-rodinneho-domu-180m2-na-pozemku-527m2-strasin-ricany.php
+
+88. Benešov, okres Blansko, kraj Jihomoravský
+Tel: +420 778 004 889
+https://reality.bazos.cz/inzerat/226944434/prodam-zavedeny-a-vybaveny-kosmeticky-a-masazni-salon.php
+
+89. Týnec nad Sázavou, okres Benešov, kraj Středočeský
+Tel: +420 737 553 002
+https://www.sreality.cz/detail/prodej/dum/chata/tynec-nad-sazavou-cakovice/2402746444
+
+90. Brno, okres Brno-město, kraj Jihomoravský
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226943899/prodej-byt-31-s-balkonem-cp-72-m2-brno-lesna.php
+
+91. Jičín, okres Jičín, kraj Královéhradecký
+Tel: +420 792 401 817
+https://reality.bazos.cz/inzerat/226944647/prodej-5-stavebnich-pozemku-5266m2.php
+
+92. Dobříš, okres Příbram, kraj Středočeský
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226944826/prodej-domku-dobris.php
+
+93. Vlašim, okres Benešov, kraj Středočeský
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226944910/stavebni-pozemek-v-obci-kondrac.php
+
+94. Pohořelice, okres Brno-venkov, kraj Jihomoravský
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226945887/pozemek-k-bydleni-do-30-km-od-brna-cca-20-min-autem.php
+
+95. Plzeň, okres Plzeň-město, kraj Plzeňský
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226945526/prodam-chatu-radobycice.php
+
+96. Plzeň, okres Plzeň-město, kraj Plzeňský
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226945294/chata-plzen-radobycice-2kk-s-komorou-sklep.php
+
+97. Moravany, okres Brno-venkov, kraj Jihomoravský
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226947707/prodej-nemovitosti.php
+
+98. Brno, okres Brno-město, kraj Jihomoravský
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226946657/dva-navazujici-stavebni-pozemky-v-reckovicich.php
+
+99. Jičín, okres Jičín, kraj Královéhradecký
+Tel: +420 792 401 817
+https://reality.bazos.cz/inzerat/226947811/prodej-stavebniho-pozemku-910m2.php
+
+100. Kolín, okres Kolín, kraj Středočeský
+Tel: v inzerci
+https://reality.bazos.cz/inzerat/226948034/prodej-komercniho-objektu-1-040-m-and-sup2-kolin-prazska.php
+
+101. Brno, okres Brno-město, kraj Jihomoravský
+Tel: +420 775 967 959
+https://www.sreality.cz/detail/prodej/byt/3+1/brno-styrice-videnska/1632374860
+
+102. Pavlovice, okres Benešov, kraj Středočeský
+Tel: +420 728 328 248
+https://reality.bazos.cz/inzerat/226948714/rodinny-dum-bohdalicepavlovice-55.php
+
+103. Karlovy Vary, okres Karlovy Vary, kraj Karlovarský
+Tel: +420 778 065 850
+https://reality.bazos.cz/inzerat/226944344/prodej-byt-3kk-karlovy-vary.php
+
+104. Havířov, okres Karviná, kraj Moravskoslezský
+   ✉️   Josef.Valcuha@seznam.cz
+https://www.sreality.cz/detail/prodej/byt/3+kk/havirov-podlesi-junacka/666591308
+
+105. Teplice, okres Teplice, kraj Ústecký
+Tel: +420 720 622 137
+https://reality.bazos.cz/inzerat/226944613/prodej-bytu-21-teplice-bilina.php
+
+106. Březno, okres Mladá Boleslav, kraj Středočeský
+Tel: +420 734 398 971
+https://reality.bazos.cz/inzerat/226943950/prodej-investicniho-bytu-31-s-balkonem-krasne-brezno.php
+
+107. Praha, Řeporyje, okres Praha, kraj Hlavní město Praha
+Tel: +420 608 321 215
+https://www.sreality.cz/detail/prodej/dum/rodinny/praha-reporyje/4273238092
+
+108. Ostrava, okres Ostrava-město, kraj Moravskoslezský
+Tel: +420 778 957 576
+https://www.sreality.cz/detail/prodej/byt/2+1/ostrava-dubina-jaromira-matuska/898326604
+
+109. Jihlava, okres Jihlava, kraj Vysočina
+Tel: +420 776 674 255
+https://www.sreality.cz/detail/prodej/byt/3+1/jihlava-jihlava-kralovsky-vrsek/2492162124
